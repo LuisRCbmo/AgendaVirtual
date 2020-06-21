@@ -16,6 +16,7 @@ public class VentanaContactos extends javax.swing.JFrame {
      */
     public VentanaContactos() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -62,6 +63,7 @@ public class VentanaContactos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(255, 255, 255));
+        setMinimumSize(new java.awt.Dimension(600, 400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -79,12 +81,12 @@ public class VentanaContactos extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(422, 45, 102, -1));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 150, 50));
 
         jButton6.setBackground(new java.awt.Color(153, 153, 255));
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Eliminar -");
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(422, 88, 102, -1));
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, 150, 50));
 
         jPanel5.setBackground(new java.awt.Color(0, 153, 153));
         jPanel5.setLayout(new java.awt.BorderLayout());
@@ -93,7 +95,7 @@ public class VentanaContactos extends javax.swing.JFrame {
         jLabel2.setText("CONTACTOS");
         jPanel5.add(jLabel2, java.awt.BorderLayout.CENTER);
 
-        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 490, 20));
+        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 610, 50));
 
         jButton5.setBackground(new java.awt.Color(153, 153, 255));
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
@@ -105,10 +107,10 @@ public class VentanaContactos extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 20));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "Contacto" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -124,7 +126,9 @@ public class VentanaContactos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        VistaAgendaVirtual va = new VistaAgendaVirtual();
+        va.setVisible(true);
+        this.dispose(); // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

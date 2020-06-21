@@ -8,6 +8,8 @@ public class InterfazAlarma extends javax.swing.JFrame {
    
     public InterfazAlarma() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setSize(600,400);
        ;
         LIAL = new ListaAlarma();
     }
@@ -24,6 +26,7 @@ public class InterfazAlarma extends javax.swing.JFrame {
         botonAnadir = new javax.swing.JToggleButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        botonAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,6 +47,15 @@ public class InterfazAlarma extends javax.swing.JFrame {
         });
 
         jLabel3.setText("NOMBRE DE ALARMA");
+
+        botonAtras.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        botonAtras.setText("<");
+        botonAtras.setPreferredSize(new java.awt.Dimension(43, 22));
+        botonAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAtrasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,11 +80,15 @@ public class InterfazAlarma extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(botonAnadir)
                 .addGap(31, 31, 31))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,7 +101,7 @@ public class InterfazAlarma extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(minutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(botonAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(278, Short.MAX_VALUE))
         );
 
         pack();
@@ -98,8 +114,15 @@ public class InterfazAlarma extends javax.swing.JFrame {
         String FA= al.obtenerFechaActual();
         al.ProgramarAlarma(al.stringADate(FA+" "+hor+":"+min),jTextField1.getText());
         LIAL.agregarAlarma(al);
+        this.setSize(600,400);
         
     }//GEN-LAST:event_botonAnadirActionPerformed
+
+    private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
+        CrearCita cita = new CrearCita();
+        cita.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_botonAtrasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,6 +161,7 @@ public class InterfazAlarma extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton botonAnadir;
+    private javax.swing.JButton botonAtras;
     private javax.swing.JSpinner horas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

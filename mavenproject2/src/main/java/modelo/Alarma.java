@@ -23,14 +23,14 @@ public class Alarma {
             public void run() {
                 JOptionPane.showMessageDialog(null, asunto+" A las : "+dateAString(fechaActual));
                 desactivarAlarma();
-                /*int com = JOptionPane.showOptionDialog(null,"Apagar Alarma","Alarma",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,botones, botones[0]);
+                int com = JOptionPane.showOptionDialog(null,"Apagar Alarma","Alarma",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,botones, botones[0]);
                 if(com == 0){
                     desactivarAlarma();
                 }else{                   
                     desactivarAlarma();
                     ProgramarAlarma(SumarDiez(fechaActual),asunto);
                     
-                }*/
+                }
             }
         };
     }

@@ -16,6 +16,7 @@ public class VentanaVerContacto extends javax.swing.JFrame {
      */
     public VentanaVerContacto() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
