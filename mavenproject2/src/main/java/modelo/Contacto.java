@@ -27,6 +27,10 @@ public class Contacto {
         this.correo = correo;
         this.direccion = direccion;
     }
+
+    public Contacto(String nombre, String apellido, String direccion, String correo, int fijo, int celular, int fijo0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     public String getNombre(){
         return nombre;
