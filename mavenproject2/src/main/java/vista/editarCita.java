@@ -29,6 +29,7 @@ public class editarCita extends javax.swing.JFrame {
         this.mostrar=mostrar;
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setVisible(true);
         
     }
 
@@ -196,7 +197,7 @@ public class editarCita extends javax.swing.JFrame {
         getContentPane().add(botonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 150, 50));
 
         jLabel10.setText("jLabel10");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 410));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

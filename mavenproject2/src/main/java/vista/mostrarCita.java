@@ -43,7 +43,6 @@ public class mostrarCita extends javax.swing.JFrame {
         botonEditar = new javax.swing.JButton();
         contFecha = new javax.swing.JLabel();
         contHora = new javax.swing.JLabel();
-        activacionAlarma = new javax.swing.JCheckBox();
         botonAtras = new javax.swing.JButton();
         contAsunto = new javax.swing.JLabel();
         contNota = new javax.swing.JLabel();
@@ -114,14 +113,6 @@ public class mostrarCita extends javax.swing.JFrame {
         contHora.setText("hora");
         getContentPane().add(contHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 164, 22));
 
-        activacionAlarma.setBackground(new java.awt.Color(153, 153, 255));
-        activacionAlarma.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                activacionAlarmaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(activacionAlarma, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, -1, -1));
-
         botonAtras.setBackground(new java.awt.Color(149, 173, 177));
         botonAtras.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         botonAtras.setForeground(new java.awt.Color(255, 255, 255));
@@ -147,7 +138,6 @@ public class mostrarCita extends javax.swing.JFrame {
         contDuracion.setText("duracion");
         getContentPane().add(contDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\59165\\Desktop\\Taller\\Agenda\\imagenes\\fondo.jpeg")); // NOI18N
         jLabel10.setText("jLabel10");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 4, 600, 400));
 
@@ -166,10 +156,6 @@ public class mostrarCita extends javax.swing.JFrame {
         edit.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonEditarActionPerformed
-
-    private void activacionAlarmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activacionAlarmaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_activacionAlarmaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,7 +215,6 @@ public class mostrarCita extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox activacionAlarma;
     private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonEditar;
     private javax.swing.JLabel contAsunto;
