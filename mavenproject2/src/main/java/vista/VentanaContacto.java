@@ -159,17 +159,7 @@ public class VentanaContacto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String nombre,apellido,direccion,correo;
-        int fijo, celular;
-        
-        nombre = txtnombre.getText();
-        apellido = txtapellido.getText();
-        direccion = txtdireccion.getText();
-        correo = txtcorreo.getText();
-        fijo = Integer.parseInt(txtfijo.getText() );
-        celular = Integer.parseInt(txtcelular.getText());
-        Contacto nuevo = new Contacto(nombre,apellido,direccion,correo,fijo,celular,fijo);
-        contactos.add(nuevo);
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
