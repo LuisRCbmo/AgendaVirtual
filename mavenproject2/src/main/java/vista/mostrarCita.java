@@ -17,9 +17,19 @@ public class mostrarCita extends javax.swing.JFrame {
      */
     public Cita cita;
     public mostrarCita(Cita cita) {
-        this.cita=cita;
         initComponents();
+        this.cita=cita;
         this.setLocationRelativeTo(null);
+        if(cita.getAsunto()!=null){
+        this.setAsunto(cita.getAsunto());
+        }
+        if(cita.getNota()!=null){
+        this.setNota(cita.getNota());
+        }
+        if(cita.getDuracion()!=0){
+        String duracion=cita.toString(cita.getDuracion());
+        this.setDuracion(duracion);
+        }
     }
 
     /**
@@ -105,12 +115,10 @@ public class mostrarCita extends javax.swing.JFrame {
         getContentPane().add(botonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, 150, 50));
 
         contFecha.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        contFecha.setText("fecha");
         contFecha.setPreferredSize(new java.awt.Dimension(22, 22));
         getContentPane().add(contFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 154, -1));
 
         contHora.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        contHora.setText("hora");
         getContentPane().add(contHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 164, 22));
 
         botonAtras.setBackground(new java.awt.Color(149, 173, 177));
@@ -125,21 +133,18 @@ public class mostrarCita extends javax.swing.JFrame {
         getContentPane().add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
 
         contAsunto.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        contAsunto.setText("asunto");
         getContentPane().add(contAsunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 441, 22));
 
         contNota.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         contNota.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        contNota.setText("nota");
         contNota.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         getContentPane().add(contNota, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 400, 60));
 
         contDuracion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        contDuracion.setText("duracion");
         getContentPane().add(contDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
 
         jLabel10.setText("jLabel10");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 4, 600, 400));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -164,18 +169,28 @@ public class mostrarCita extends javax.swing.JFrame {
     
     public void setAsunto(String p){
     contAsunto.setText(p);
+    cita.setAsunto(p);
     }
     
     public void setNota(String p){
     contNota.setText(p);
+    cita.setNota(p);
     }
     
     public void setDuracion(String p){
     contDuracion.setText(p);
+    int dur= Integer.parseInt(p);
+    cita.setDuracion(dur);
     }
     
+    public void setFecha(String d, String m, String a){
+    contFecha.setText(d+"/"+m+"/"+a);
+    }
     public void setFecha(String p){
-    contDuracion.setText(p);
+    contFecha.setText(p);
+    }
+    public void setHora(String h, String m){
+    contHora.setText(h+":"+m);
     }
     
     public void setHora(String p){
@@ -187,32 +202,11 @@ public class mostrarCita extends javax.swing.JFrame {
     }
     
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(mostrarCita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(mostrarCita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(mostrarCita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(mostrarCita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-       
+        Cita cita=new Cita("hola",2);
+       mostrarCita holi=new mostrarCita(cita);
+       holi.setVisible(true);
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAtras;

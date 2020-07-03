@@ -13,7 +13,7 @@ public class Cita{
     private Date fechaHora;
     private int duracion;
     private boolean alarm;
-    private Calendar calendario;
+    Calendar calendario;
     
     public Cita(String asunto, int duracion, boolean alarmar){
         if(alarmar){
@@ -65,8 +65,8 @@ public class Cita{
     public void apagarAlarma(){
         alarma.desactivarAlarma();
     }
-    public String toString(){
-    return "Asunto: " + asunto +" "+ "Nota:" + nota+" "+"Duracion:"+duracion;
+    public String toString(int numero){
+    return ""+numero+"";
             
     }
     public void muestra(){
@@ -84,7 +84,7 @@ public class Cita{
     calendario.setTime(fechaHora);
     muestra.setFecha(""+calendario.get(Calendar.DAY_OF_MONTH)+"/"+calendario.get(Calendar.MONTH)+1+"/"+calendario.get(Calendar.YEAR)+"");
     calendario.setTime(fechaHora);
-    muestra.setFecha(""+calendario.get(Calendar.HOUR)+":"+calendario.get(Calendar.MINUTE)+"");
+    muestra.setHora(""+calendario.get(Calendar.HOUR)+":"+calendario.get(Calendar.MINUTE)+"");
     }
     
     if(alarm){

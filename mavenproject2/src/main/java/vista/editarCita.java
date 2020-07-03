@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import javax.swing.*;
+import java.awt.Dimension;
 /**
  *
  * @author Nath
@@ -30,6 +31,7 @@ public class editarCita extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        this.setPreferredSize(new Dimension(600,400));
         
     }
 
@@ -55,7 +57,7 @@ public class editarCita extends javax.swing.JFrame {
         contAsunto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         contNota = new javax.swing.JTextArea();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        contDuracion = new javax.swing.JComboBox<>();
         contHora = new javax.swing.JComboBox<>();
         contMinuto = new javax.swing.JComboBox<>();
         amPm = new javax.swing.JComboBox<>();
@@ -136,8 +138,8 @@ public class editarCita extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 430, 50));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
+        contDuracion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(contDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
 
         contHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         contHora.addActionListener(new java.awt.event.ActionListener() {
@@ -163,7 +165,12 @@ public class editarCita extends javax.swing.JFrame {
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
 
         listaDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(listaDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, -1));
+        listaDia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaDiaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(listaDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, -1, -1));
 
         listaMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
         getContentPane().add(listaMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
@@ -174,7 +181,7 @@ public class editarCita extends javax.swing.JFrame {
                 listaAnioActionPerformed(evt);
             }
         });
-        getContentPane().add(listaAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, -1, -1));
+        getContentPane().add(listaAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, -1));
 
         botonCancelar.setBackground(new java.awt.Color(172, 96, 100));
         botonCancelar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -220,15 +227,20 @@ public class editarCita extends javax.swing.JFrame {
     }//GEN-LAST:event_contHoraActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        mostrar.cita.setAsunto(contAsunto.getText());
-         mostrar.cita.setNota(contNota.getText());
-         mostrar.setVisible(true);
-         this.setVisible(false);
+        mostrar.setAsunto(contAsunto.getText());
+        mostrar.setNota(contNota.getText());
+        mostrar.setDuracion((String)contDuracion.getSelectedItem());
+        mostrar.setHora((String)contHora.getSelectedItem(),(String)contMinuto.getSelectedItem());
+        mostrar.setFecha((String)listaDia.getSelectedItem(),(String)listaMes.getSelectedItem(),(String)listaAnio.getSelectedItem());
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void contMinutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contMinutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_contMinutoActionPerformed
+
+    private void listaDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaDiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listaDiaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,10 +265,10 @@ public class editarCita extends javax.swing.JFrame {
     private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonGuardar;
     private javax.swing.JTextField contAsunto;
+    private javax.swing.JComboBox<String> contDuracion;
     private javax.swing.JComboBox<String> contHora;
     private javax.swing.JComboBox<String> contMinuto;
     private javax.swing.JTextArea contNota;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
