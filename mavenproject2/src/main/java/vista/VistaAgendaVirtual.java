@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package vista;
-import modelo.*;
+import controlador.*;
 import java.util.*;
 import javax.swing.JOptionPane;
 
@@ -130,8 +130,8 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-    vcs vcs = new vcs();
-    vcs.setVisible(true);
+    Agenda_Virtual av = new Agenda_Virtual();
+    av.VentanaContactos();
     this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 

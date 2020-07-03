@@ -19,7 +19,7 @@ public class Contacto {
     private String direccion;
     private int id = 0;
     
-    Contacto(String nombre, String apellido, String celular, String fijo, String correo, String direccion){
+    public Contacto(String nombre, String apellido, String celular, String fijo, String correo, String direccion){
         this.nombre = nombre;
         this.apellido = apellido;
         this.celular = celular;
@@ -27,17 +27,9 @@ public class Contacto {
         this.correo = correo;
         this.direccion = direccion;
     }
-
-    public Contacto(String nombre, String apellido, String direccion, String correo, int fijo, int celular, int fijo0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     public String getNombre(){
         return nombre;
-    }
-    
-    public void setId(int n){
-        this.id = n;
     }
     
     public String getApellido(){
@@ -46,5 +38,9 @@ public class Contacto {
     
     public String toString(){
         return "contacto " + id + " Nombre: " + nombre +" " +apellido;
+    }
+    
+    public void setID(int id){
+        this.id = id;
     }
 }
