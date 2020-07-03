@@ -8,6 +8,7 @@ vista\VentanaVerContacto$1.class
 modelo\Cita.class
 vista\editarCita$3.class
 vista\CrearCita$12.class
+vista\editarCita$6.class
 edl\NodoSE.class
 edl\ColaPrioridad.class
 edl\ListaCDE.class
