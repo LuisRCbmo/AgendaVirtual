@@ -15,15 +15,16 @@ import java.util.Calendar;
  * @author hp
  */
 public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
-
+    private Agenda agenda;
     private Calendar calendario;
     private String hora,minuto,segundo,ampm;
     private Thread h1;
     /**
      * Creates new form VistaAgenda
      */
-    public VistaAgendaVirtual() {
+    public VistaAgendaVirtual(Agenda agenda) {
         initComponents();
+        this.agenda = agenda;
         this.setResizable(false);
         this.setLocationRelativeTo(null);      
         h1 = new Thread((Runnable) this);
@@ -136,7 +137,7 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        VistaAgenda va = new VistaAgenda();
+        VistaAgenda va = new VistaAgenda(agenda);
         va.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -149,7 +150,8 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     this.setVisible(false);
-    this.dispose();        // TODO add your handling code here:
+    this.dispose();
+    // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -182,8 +184,9 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VistaAgendaVirtual().setVisible(true);
+            public void run(){
+                Agenda agenda = new Agenda();
+                new VistaAgendaVirtual(agenda).setVisible(true);
             }
         });
     }
