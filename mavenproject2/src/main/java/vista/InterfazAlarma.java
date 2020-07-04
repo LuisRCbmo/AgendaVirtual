@@ -108,9 +108,8 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 510, 50));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\59165\\Desktop\\Taller\\Agenda\\imagenes\\fondo.jpeg")); // NOI18N
         jLabel5.setText("jLabel5");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, -6, 570, 290));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(534, -6, 30, 290));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

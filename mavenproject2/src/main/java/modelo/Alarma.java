@@ -1,5 +1,4 @@
 package modelo;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,25 +40,20 @@ public class Alarma {
         t.setMinutes(min);
         return t;
     }
-
     public Date getFechaActual() {
         return fechaActual;
     }
-
     public void ProgramarAlarma(Date t, String asunto) {
         this.asunto = asunto;
         fechaActual = t;
         timer.schedule(tarea, t);
     }
-
     public void desactivarAlarma() {
         timer.cancel();
     }
-
     public String dateAString(Date t) {
         return sdf.format(t);
     }
-
     public Date stringADate(String fechaCadena) {
         Date fecha = null;
         try {
@@ -69,13 +63,11 @@ public class Alarma {
         }
         return fecha;
     }
-
     public String obtenerFechaActual() {
         Date FA = new Date();
         SimpleDateFormat SDF = new SimpleDateFormat("dd/MM/yyyy");
         return SDF.format(FA);
     }
-
     public boolean equals(Object o) {
         Alarma am = (Alarma) o;
         return fechaActual.getTime() == am.getFechaActual().getTime();

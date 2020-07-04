@@ -28,6 +28,7 @@ public class Cita{
         this.asunto=asunto;
         this.duracion=duracion;
     }
+
     
     public void setDuracion(int duracion){
         this.duracion=duracion;
@@ -65,9 +66,14 @@ public class Cita{
     public void apagarAlarma(){
         alarma.desactivarAlarma();
     }
+<<<<<<< HEAD
+    public String toString(){
+        return "Asunto: " + asunto +" "+ "Nota:" + nota+" "+"Duracion:"+duracion;
+=======
     public String toString(int numero){
     return ""+numero+"";
             
+>>>>>>> 1ef35c8726adb5d578ec34a2caed67c25bd0ad6e
     }
     public void muestra(){
     mostrarCita muestra= new mostrarCita(this);

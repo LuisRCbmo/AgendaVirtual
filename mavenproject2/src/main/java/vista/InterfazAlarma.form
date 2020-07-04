@@ -209,14 +209,11 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\59165\Desktop\Taller\Agenda\imagenes\fondo.jpeg"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="jLabel5"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="-6" y="-6" width="570" height="290"/>
+          <AbsoluteConstraints x="534" y="-6" width="30" height="290"/>
         </Constraint>
       </Constraints>
     </Component>

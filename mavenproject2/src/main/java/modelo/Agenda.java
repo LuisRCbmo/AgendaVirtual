@@ -20,6 +20,10 @@ public class Agenda{
         return citas.eliminar(pos);
     }
     
+    public ListaSE getListaCitas(){
+        return citas;
+    }
+    
     public void mostrarCitas(){
         int i = 0;
         Cita aux = citas.acceder(i);
