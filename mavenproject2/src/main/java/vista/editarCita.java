@@ -125,8 +125,8 @@ public class editarCita extends javax.swing.JFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel8.setText("hrs.");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, -1, -1));
+        jLabel8.setText("minutos");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, -1, -1));
 
         contAsunto.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         getContentPane().add(contAsunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 430, 22));
@@ -138,8 +138,13 @@ public class editarCita extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 430, 50));
 
-        contDuracion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(contDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
+        contDuracion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "15", "20", "25", "30", "35", "40", "45", "50", "55", "60", "90", "120", "150", "180" }));
+        contDuracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contDuracionActionPerformed(evt);
+            }
+        });
+        getContentPane().add(contDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, -1, 20));
 
         contHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         contHora.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +169,7 @@ public class editarCita extends javax.swing.JFrame {
         jLabel9.setText(":");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
 
-        listaDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        listaDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28" }));
         listaDia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listaDiaActionPerformed(evt);
@@ -173,15 +178,20 @@ public class editarCita extends javax.swing.JFrame {
         getContentPane().add(listaDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, -1, -1));
 
         listaMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
-        getContentPane().add(listaMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
+        listaMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaMesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(listaMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, -1));
 
-        listaAnio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        listaAnio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029" }));
         listaAnio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listaAnioActionPerformed(evt);
             }
         });
-        getContentPane().add(listaAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, -1));
+        getContentPane().add(listaAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, -1, -1));
 
         botonCancelar.setBackground(new java.awt.Color(172, 96, 100));
         botonCancelar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -215,7 +225,11 @@ public class editarCita extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        // TODO add your handling code here:
+        int x=JOptionPane.showConfirmDialog(null, "¿Esta seguro que quiere descartar los cambio?", "Descartar cambios", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (x==0){
+            mostrar.setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_botonCancelarActionPerformed
  
     private void listaAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaAnioActionPerformed
@@ -232,6 +246,8 @@ public class editarCita extends javax.swing.JFrame {
         mostrar.setDuracion((String)contDuracion.getSelectedItem());
         mostrar.setHora((String)contHora.getSelectedItem(),(String)contMinuto.getSelectedItem());
         mostrar.setFecha((String)listaDia.getSelectedItem(),(String)listaMes.getSelectedItem(),(String)listaAnio.getSelectedItem());
+        mostrar.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void contMinutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contMinutoActionPerformed
@@ -241,6 +257,14 @@ public class editarCita extends javax.swing.JFrame {
     private void listaDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaDiaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_listaDiaActionPerformed
+
+    private void contDuracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contDuracionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contDuracionActionPerformed
+
+    private void listaMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaMesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listaMesActionPerformed
 
     /**
      * @param args the command line arguments

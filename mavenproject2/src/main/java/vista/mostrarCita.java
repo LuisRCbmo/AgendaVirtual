@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 package vista;
-import javax.swing.JOptionPane;
 import modelo.*;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Nath
@@ -57,6 +58,7 @@ public class mostrarCita extends javax.swing.JFrame {
         contAsunto = new javax.swing.JLabel();
         contNota = new javax.swing.JLabel();
         contDuracion = new javax.swing.JLabel();
+        botonEliminar = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -96,8 +98,8 @@ public class mostrarCita extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel6.setText("hrs.");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, -1, -1));
+        jLabel6.setText("minutos.");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel7.setText("Nota:");
@@ -112,7 +114,7 @@ public class mostrarCita extends javax.swing.JFrame {
                 botonEditarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, 150, 50));
+        getContentPane().add(botonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 150, 50));
 
         contFecha.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         contFecha.setPreferredSize(new java.awt.Dimension(22, 22));
@@ -138,10 +140,21 @@ public class mostrarCita extends javax.swing.JFrame {
         contNota.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         contNota.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         contNota.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(contNota, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 400, 60));
+        getContentPane().add(contNota, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 440, 60));
 
         contDuracion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        getContentPane().add(contDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
+        getContentPane().add(contDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 50, 20));
+
+        botonEliminar.setBackground(new java.awt.Color(172, 96, 100));
+        botonEliminar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        botonEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        botonEliminar.setText("Eliminar");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, 150, 50));
 
         jLabel10.setText("jLabel10");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
@@ -161,6 +174,13 @@ public class mostrarCita extends javax.swing.JFrame {
         edit.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonEditarActionPerformed
+
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        int x=JOptionPane.showConfirmDialog(null, "Realmente desea eliminar la cita?", "Eliminar cita", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (x==0){
+        //eliminar cita
+        }
+    }//GEN-LAST:event_botonEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,6 +231,7 @@ public class mostrarCita extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonEditar;
+    private javax.swing.JButton botonEliminar;
     private javax.swing.JLabel contAsunto;
     private javax.swing.JLabel contDuracion;
     private javax.swing.JLabel contFecha;

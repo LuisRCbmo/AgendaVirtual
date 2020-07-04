@@ -21,7 +21,9 @@ public class vcs extends javax.swing.JFrame {
     }
     
     public vcs(String[] data) {
+        if(data!=null){
         this.data = data;
+        }
         initComponents();
         this.setLocationRelativeTo(null);  
     }
