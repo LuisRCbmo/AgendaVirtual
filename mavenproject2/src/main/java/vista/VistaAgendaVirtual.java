@@ -1,35 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vista;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import modelo.*;
 import java.util.*;
 import javax.swing.JOptionPane;
-
 import java.util.Calendar;
-
+import javax.swing.DefaultListModel;
 /**
  *
  * @author hp
  */
 public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
-
+    //Atributos contenedores
+    private AgendaVirtual agendaVirtual;
+    //otros atributos
     private Calendar calendario;
     private String hora,minuto,segundo,ampm;
     private Thread h1;
-    /**
-     * Creates new form VistaAgenda
-     */
-    public VistaAgendaVirtual() {
+
+    public VistaAgendaVirtual(AgendaVirtual agendaVirtual){
         initComponents();
+        this.agendaVirtual = agendaVirtual;
         this.setResizable(false);
-        this.setLocationRelativeTo(null);      
+        this.setLocationRelativeTo(null);
         h1 = new Thread((Runnable) this);
         h1.start();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,7 +75,6 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 150, 50));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\59165\\Desktop\\Taller\\Agenda\\imagenes\\fondo.jpeg")); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 600, 400));
 
@@ -130,26 +125,43 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-    vcs vcs = new vcs();
+    vcs vcs = new vcs(agendaVirtual.getContactos());
     vcs.setVisible(true);
+    VistaAgendaVirtual padre = this;
+    vcs.addWindowListener(new WindowAdapter() {
+            public void windowClosed(WindowEvent e) {
+                padre.setVisible(true);
+            }
+        });
     this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        VistaAgenda va = new VistaAgenda();
+        VistaAgenda va = new VistaAgenda(agendaVirtual.getAgenda());
         va.setVisible(true);
+        VistaAgendaVirtual padre = this;
+        va.addWindowListener(new WindowAdapter() {
+            public void windowClosed(WindowEvent e) {
+                padre.setVisible(true);
+            }
+        });
         this.dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        VerMemos vm = new VerMemos();
+        VerMemos vm = new VerMemos(agendaVirtual.getlistamemo());
         vm.setVisible(true);
+        VistaAgendaVirtual padre = this;
+        vm.addWindowListener(new WindowAdapter() {
+            public void windowClosed(WindowEvent e) {
+                padre.setVisible(true);
+            }
+        });
         this.dispose();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    this.setVisible(false);
-    this.dispose();        // TODO add your handling code here:
+        System.exit(0); //Cierra todo el proceso desde el boton "Salir"
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -182,12 +194,14 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VistaAgendaVirtual().setVisible(true);
+            public void run(){
+                Agenda agenda = new Agenda();
+                Contactos contactos = new Contactos();
+                AgendaVirtual agendaVirtual = new AgendaVirtual(agenda,contactos);
+                new VistaAgendaVirtual(agendaVirtual).setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

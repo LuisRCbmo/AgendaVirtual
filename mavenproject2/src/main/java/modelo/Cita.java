@@ -5,17 +5,15 @@
  */
 package modelo;
 import vista.mostrarCita;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.util.*;
 public class Cita{
     private Alarma alarma;
     private String asunto;
     private String nota;
-    private LocalDate fecha;
-    private LocalTime hora;
+    private Date fechaHora;
     private int duracion;
     private boolean alarm;
-    
+    Calendar calendario;
     public Cita(String asunto, int duracion, boolean alarmar){
         if(alarmar){
             alarma= new Alarma();
@@ -24,6 +22,7 @@ public class Cita{
         this.asunto=asunto;
         this.duracion=duracion;
     }
+    //Aca nos falta un costructor con parametro de tipo Alarma :'v (para que pueda crear una cita ya incorporado con una alarma)
     public Cita(String asunto, int duracion){
 
         this.asunto=asunto;
@@ -38,12 +37,12 @@ public class Cita{
         return duracion;
     }
     
-     public void setHora(LocalTime hora){
-        this.hora=hora;
+     public void setHora(Date horaFecha){
+        fechaHora=horaFecha;
     }
     
-    public LocalTime getHora(){
-        return hora;
+    public Date getHoraFecha(){
+        return fechaHora;
     }
     
     public void setAsunto(String asunto){
@@ -53,13 +52,7 @@ public class Cita{
      public String getAsunto(){
         return asunto;
     }
-    
-    public void setFecha(LocalDate fecha){//Date
-        this.fecha=fecha;
-    }
-    public LocalDate getFecha(){
-        return fecha;
-    }
+   
     
     public void setNota(String nota){
     this.nota=nota;
@@ -70,12 +63,14 @@ public class Cita{
     }
     
     public void apagarAlarma(){
-        alarma.desactivarAlarma();
+        alarma.desactivar();
     }
-    public String toString(){
-    return "Asunto: " + asunto +" "+ "Nota:" + nota+" "+"Duracion:"+duracion;
+    //podrias hacermelo un toString() sin parametros porfavor? :3 Es para que se muestre en la lista de Agenda como se vera el contacto :c 
+    public String toString(int numero){
+        return ""+numero+"";
             
     }
+    
     public void muestra(){
     mostrarCita muestra= new mostrarCita(this);
     if(asunto!=null){
@@ -87,12 +82,13 @@ public class Cita{
     if(duracion!=0){
     muestra.setDuracion(""+duracion+"");
     }
-    if(fecha!=null){
-    muestra.setFecha(""+fecha.getDayOfMonth()+"/"+fecha.getMonth()+"/"+fecha.getYear()+"");
+   if(fechaHora!=null){
+    calendario.setTime(fechaHora);
+    muestra.setFecha(""+calendario.get(Calendar.DAY_OF_MONTH)+"/"+calendario.get(Calendar.MONTH)+1+"/"+calendario.get(Calendar.YEAR)+"");
+    calendario.setTime(fechaHora);
+    muestra.setHora(""+calendario.get(Calendar.HOUR)+":"+calendario.get(Calendar.MINUTE)+"");
     }
-    if(hora!=null){
-    muestra.setHora(""+ hora.getHour()+":"+hora.getMinute()+"");
-    }
+    
     if(alarm){
         
     }

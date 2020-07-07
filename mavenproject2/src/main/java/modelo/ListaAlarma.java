@@ -1,6 +1,9 @@
 package modelo;
-import edl.ListaSE;
 
+import modelo.Alarma;
+import modelo.Alarma;
+
+import edl.ListaSE;
 public class ListaAlarma {
     private ListaSE<Alarma> alarmas;
     public ListaAlarma(){
@@ -16,5 +19,7 @@ public class ListaAlarma {
             }
         }
     }
-    
+    public Alarma returnAlarma(int pos){
+        return alarmas.acceder(pos);
+    }
 }

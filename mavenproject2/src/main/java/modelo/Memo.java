@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package modelo;
 
 /**
  *
@@ -32,6 +32,10 @@ public class Memo{
     
     public void setNnota(String nota){
         this.nota = nota;
+    }
+    
+    public String toString(){
+        return "Asunto: "+asunto+" Nota: "+nota;
     }
 }
 

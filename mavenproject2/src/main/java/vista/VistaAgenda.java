@@ -1,21 +1,26 @@
-
 package vista;
-
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.Locale;
-
+import javax.swing.ListModel;
+import modelo.Cita;
+import javax.swing.DefaultListModel;   
+import modelo.*;
 /**
  *
  * @author Sergio Garcia
  */
 public class VistaAgenda extends javax.swing.JFrame {
-
-    public VistaAgenda() {
+    private Agenda agenda;
+    public VistaAgenda(Agenda agenda){
         initComponents();
+        this.agenda = agenda;//contiene los datos
         this.setResizable(false);
+        aniadirCitas();
         this.setLocationRelativeTo(null);
-        this.setTitle("Agenda");
+       // this.setTitle("Agenda");
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -24,7 +29,7 @@ public class VistaAgenda extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listaCitas = new javax.swing.JList();
         aniadirCita = new javax.swing.JButton();
         eliminarCita = new javax.swing.JButton();
         botonAtras = new javax.swing.JButton();
@@ -42,14 +47,15 @@ public class VistaAgenda extends javax.swing.JFrame {
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jList1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Lista Citas" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        listaCitas.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        listaCitas.setToolTipText("");
+        listaCitas.setVerifyInputWhenFocusTarget(false);
+        listaCitas.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                listaCitasComponentShown(evt);
+            }
         });
-        jList1.setToolTipText("");
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listaCitas);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 73, 319, 289));
 
@@ -92,8 +98,6 @@ public class VistaAgenda extends javax.swing.JFrame {
         jPanel2.add(jLabel2, java.awt.BorderLayout.CENTER);
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 550, 50));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\59165\\Desktop\\Taller\\Agenda\\imagenes\\fondo.jpeg")); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -109,43 +113,52 @@ public class VistaAgenda extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     private void aniadirCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aniadirCitaActionPerformed
-        CrearCita cita = new CrearCita();
-        cita.setVisible(true);
-        this.dispose();
+        CrearCita crearCita = new CrearCita(agenda);
+        crearCita.setVisible(true);
+        VistaAgenda padre = this;
+        crearCita.addWindowListener(new WindowAdapter() {
+            public void windowClosed(WindowEvent e) {
+                padre.setVisible(true);
+                padre.aniadirCitas();
+            }
+        });
+        this.setVisible(false);
     }//GEN-LAST:event_aniadirCitaActionPerformed
-
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
-        VistaAgendaVirtual va = new VistaAgendaVirtual();
-        va.setVisible(true);
+        //VistaAgendaVirtual va = new VistaAgendaVirtual(agendaVirtual);
+        //va.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonAtrasActionPerformed
 
-    public static void main(String args[]) {
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VistaAgenda().setVisible(true);
-            }
-        });
-    }
+    private void listaCitasComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_listaCitasComponentShown
+
+    }//GEN-LAST:event_listaCitasComponentShown
+
+//    public static void main(String args[]) {
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(VistaAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(VistaAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(VistaAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(VistaAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new VistaAgenda().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aniadirCita;
@@ -155,9 +168,19 @@ public class VistaAgenda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList listaCitas;
     // End of variables declaration//GEN-END:variables
+    private void aniadirCitas(){
+        DefaultListModel modeloLista = new DefaultListModel();
+        //agenda.getListaCitas();
+        for(int i = 0; i < agenda.getListaCitas().tamanio() ; i++){
+            Cita nueva = (Cita)agenda.getListaCitas().acceder(i);
+            modeloLista.addElement(nueva);
+        }
+        listaCitas.setModel(modeloLista);//le hace sett
+        listaCitas.updateUI();//sube la lista al jList
+    }
 }
