@@ -21,7 +21,7 @@ public class Alarma {
     private TimerTask replay;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     private String asunto;
-    private boolean cancel;
+    private boolean activo;
     private String [] botones ={"Apagar Alarma","Posponer"};
     private String[] sonds = {"TelefonoAntiguo.wav","TITITI.wav","Gallo.wav","AlarmaLoud.wav","AlarmaDeGuerra.wav","AlarmaDeCoche.wav"};
     private Calendar calendar;
@@ -32,14 +32,14 @@ public class Alarma {
         
         calendar = Calendar.getInstance();
         fechaActual = new Date();
-        cancel = true;
+        activo = true;
         play = true;
         timer = new Timer();
         timerPlay = new Timer();
         tarea = new TimerTask() {
             @Override
             public void run() {
-                if(cancel){
+                if(activo){
                     timerPlay.schedule(replay,0,establecerRepeticion());                   
                     JOptionPane.showMessageDialog(null, asunto+" A las: "+dateAStringFormat(fechaActual));                                       
                     int com = JOptionPane.showOptionDialog(null,"Apagar Alarma","Alarma",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,botones, botones[0]);                    
@@ -108,12 +108,15 @@ public class Alarma {
         am.ProgramarAlarma(calendar.getTime(), asunto);
         
     }
-            
+    public boolean getActivo(){
+        return activo;
+    }
+    
     public void desactivar(){
-        cancel = false;
+        activo = false;
     }
      public void activar(){
-        cancel = true;
+        activo = true;
     }
     
     public Date getFechaActual() {

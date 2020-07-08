@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package modelo;
 import vista.mostrarCita;
 import java.util.*;
@@ -14,11 +10,8 @@ public class Cita{
     private int duracion;
     private boolean alarm;
     Calendar calendario;
-    public Cita(String asunto, int duracion, boolean alarmar){
-        if(alarmar){
-            alarma= new Alarma();
-        }
-        alarm= alarmar;
+    public Cita(String asunto, int duracion, Alarma alarma){        
+        alarm = alarma.getActivo();
         this.asunto=asunto;
         this.duracion=duracion;
     }
@@ -65,10 +58,11 @@ public class Cita{
     public void apagarAlarma(){
         alarma.desactivar();
     }
+    
     //podrias hacermelo un toString() sin parametros porfavor? :3 Es para que se muestre en la lista de Agenda como se vera el contacto :c 
+   
     public String toString(int numero){
-        return ""+numero+"";
-            
+        return ""+numero+"";            
     }
     
     public void muestra(){

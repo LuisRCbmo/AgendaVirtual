@@ -245,13 +245,13 @@ public class CrearCita extends javax.swing.JFrame {
                 Date fecha = rSDateChooser1.getDatoFecha();
                 Alarma alarma1 = new Alarma();
                 alarma1.ProgramarAlarma(fecha,"");
-                Cita nueva = new Cita(asunto.getText(),Integer.parseInt(duracion.getItemAt(0)),true);
+                Cita nueva = new Cita(asunto.getText(),Integer.parseInt(duracion.getItemAt(0)),alarma1);
                 agenda.aniadirCita(nueva);
         
         }else{
             
             //Alarma a = new Alarma();
-            Cita nueva = new Cita(asunto.getText(),duracion.getSelectedIndex(),false);
+            Cita nueva = new Cita(asunto.getText(),duracion.getSelectedIndex());
             agenda.aniadirCita(nueva);
         
         }
