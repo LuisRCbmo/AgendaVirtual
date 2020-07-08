@@ -53,7 +53,7 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
 
         jlbReloj.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         jlbReloj.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(jlbReloj, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 280, 60));
+        getContentPane().add(jlbReloj, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 280, 60));
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "cita1", "cita2", "cita3" };
@@ -75,6 +75,7 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 150, 50));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 600, 400));
 
