@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package vista;
+import edl.*;
 import modelo.*;
 import java.util.*;
 /**
@@ -11,10 +12,12 @@ import java.util.*;
  * @author Luis
  */
 public class VentanaContacto extends javax.swing.JFrame{
-    private Contactos contactos;
-    public VentanaContacto(Contactos contactos) {
+    private ListaSE listaContactos;
+    public VentanaContacto(ListaSE listaContactos) {
         initComponents();
-        this.contactos = contactos;
+        this.listaContactos = listaContactos;
+        this.setTitle("Crear contacto");
+        this.setResizable(false);
         this.setLocationRelativeTo(null);
     }
 
@@ -28,7 +31,7 @@ public class VentanaContacto extends javax.swing.JFrame{
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        guardar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -62,16 +65,16 @@ public class VentanaContacto extends javax.swing.JFrame{
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
 
-        jButton2.setBackground(new java.awt.Color(172, 96, 100));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Guardar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        guardar.setBackground(new java.awt.Color(172, 96, 100));
+        guardar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        guardar.setForeground(new java.awt.Color(255, 255, 255));
+        guardar.setText("Guardar");
+        guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                guardarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 150, 50));
+        getContentPane().add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 150, 50));
 
         jPanel1.setBackground(new java.awt.Color(80, 83, 98));
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -136,22 +139,22 @@ public class VentanaContacto extends javax.swing.JFrame{
 
         txtcelular.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         getContentPane().add(txtcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 120, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\59165\\Desktop\\Taller\\Agenda\\imagenes\\fondo.jpeg")); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //vcs vcs = new vcs(contactos);
+        //vcs vcs = new vcs(agendavirtual);
         //vcs.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+        Contacto c = new Contacto(txtnombre.getText(),txtapellido.getText(),txtcelular.getText(),txtfijo.getText(),txtcorreo.getText(),txtdireccion.getText());
+        listaContactos.insertar(c);
+        this.dispose();
+    }//GEN-LAST:event_guardarActionPerformed
 
     private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
         // TODO add your handling code here:
@@ -197,8 +200,8 @@ public class VentanaContacto extends javax.swing.JFrame{
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton guardar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

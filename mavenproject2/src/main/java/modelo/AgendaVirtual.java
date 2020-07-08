@@ -10,13 +10,13 @@ import java.util.Date;
 public class AgendaVirtual {
     
     private Agenda agenda;
-    private Contactos contactos;
+    private ListaSE<Contacto> listaContactos;
     private Date calendario;
     private ListaSE<Memo> listamemo;
     
-    public AgendaVirtual(Agenda a, Contactos c) {
+    public AgendaVirtual(Agenda a) {
         agenda = a;
-        contactos = c;
+        listaContactos = new ListaSE();
         listamemo = new ListaSE();
     }
 
@@ -28,17 +28,12 @@ public class AgendaVirtual {
         return agenda;
     }
 
-    public Contactos getContactos() {
-        return contactos;
+    public ListaSE<Contacto> getContactos() {
+        return listaContactos;
     }
 
     public void agregarmemo(Memo m) {
         listamemo.insertar(m);
-    }
-
-    public void mostrarcontancto() {
-        contactos.MostrarContactos();
-
     }
 
     public void mostrarcita() {

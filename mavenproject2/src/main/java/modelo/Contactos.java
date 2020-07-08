@@ -19,8 +19,6 @@ public class Contactos {
     
     public void AddContacto(Contacto contacto){
         contactos.insertar(contacto);
-        int pos = contactos.tamanio();
-        contactos.acceder(pos - 1).setID(pos);
         
     }
     
@@ -31,20 +29,6 @@ public class Contactos {
     
     public ListaSE getContactos(){
     return contactos;
-    }
-    
-    public String[] toArray(){
-        String[] s;
-        if (contactos.tamanio() != 0){
-                s = new String[contactos.tamanio()];
-                for(int i = 0; i < contactos.tamanio();i++){
-                    s[i] = contactos.acceder(i).toString();
-            }
-        }
-        else{
-            s =  null;
-        }
-        return s;
     }
 }
     

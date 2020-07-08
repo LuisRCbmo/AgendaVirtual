@@ -197,7 +197,7 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
             public void run(){
                 Agenda agenda = new Agenda();
                 Contactos contactos = new Contactos();
-                AgendaVirtual agendaVirtual = new AgendaVirtual(agenda,contactos);
+                AgendaVirtual agendaVirtual = new AgendaVirtual(agenda);
                 new VistaAgendaVirtual(agendaVirtual).setVisible(true);
             }
         });

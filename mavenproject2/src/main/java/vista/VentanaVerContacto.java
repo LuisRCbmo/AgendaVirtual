@@ -5,14 +5,19 @@ import modelo.*;
  * @author luis
  */
 public class VentanaVerContacto extends javax.swing.JFrame {
-    private Contactos contactos; 
     /**
      * Creates new form VentanaVerContacto
      */
-
-    public VentanaVerContacto(Contactos contactos){
+    private int n;
+    public VentanaVerContacto(Contacto contacto,int n){
         initComponents();
-        this.contactos = contactos;
+        this.n = n;
+        txtnombre.setText(contacto.getNombre());
+        txtapellido.setText(contacto.getApellido());
+        txtfijo.setText(contacto.getFijo());
+        txtcelular.setText(contacto.getCelular());
+        txtcorreo.setText(contacto.getCorreo());
+        txtdireccion.setText(contacto.getDireccion());
         this.setLocationRelativeTo(null);
     }
     /**
@@ -32,18 +37,19 @@ public class VentanaVerContacto extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        txtnombre = new javax.swing.JLabel();
+        txtapellido = new javax.swing.JLabel();
+        txtfijo = new javax.swing.JLabel();
+        txtcorreo = new javax.swing.JLabel();
+        txtdireccion = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        txtcelular = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(149, 173, 177));
@@ -89,47 +95,52 @@ public class VentanaVerContacto extends javax.swing.JFrame {
         jLabel6.setText("Direccion:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel7.setText("Nombre contacto");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 120, -1));
+        txtnombre.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtnombre.setText("\"nombre\"");
+        getContentPane().add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 360, -1));
 
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel8.setText("Apellido contacto");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 110, -1));
+        txtapellido.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtapellido.setText("\"apellido\"");
+        getContentPane().add(txtapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 360, -1));
 
-        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel9.setText("#");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 70, -1));
+        txtfijo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtfijo.setText("\"fijo\"");
+        getContentPane().add(txtfijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 70, -1));
 
-        jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel10.setText("@");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 180, -1));
+        txtcorreo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtcorreo.setText("\"correo\"");
+        getContentPane().add(txtcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 360, -1));
 
-        jLabel11.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel11.setText("Su casa");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 180, -1));
+        txtdireccion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtdireccion.setText("\"direccion\"");
+        getContentPane().add(txtdireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 180, -1));
 
         jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel12.setText("Celular:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, -1, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, -1, -1));
 
-        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel13.setText("#");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, 70, -1));
+        txtcelular.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtcelular.setText("\"celular\"");
+        getContentPane().add(txtcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, 140, -1));
 
         jButton3.setBackground(new java.awt.Color(172, 96, 100));
         jButton3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Editar");
         jButton3.setBorderPainted(false);
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 150, 50));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 150, 50));
 
-        jButton4.setBackground(new java.awt.Color(172, 96, 100));
-        jButton4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Eliminar");
-        jButton4.setBorderPainted(false);
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 150, 50));
+        Eliminar.setBackground(new java.awt.Color(172, 96, 100));
+        Eliminar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        Eliminar.setForeground(new java.awt.Color(255, 255, 255));
+        Eliminar.setText("Eliminar");
+        Eliminar.setBorderPainted(false);
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, 150, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -139,10 +150,12 @@ public class VentanaVerContacto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        vcs vcs = new vcs(contactos);
-        vcs.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+    
+    }//GEN-LAST:event_EliminarActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -179,23 +192,23 @@ public class VentanaVerContacto extends javax.swing.JFrame {
 //    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Eliminar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel txtapellido;
+    private javax.swing.JLabel txtcelular;
+    private javax.swing.JLabel txtcorreo;
+    private javax.swing.JLabel txtdireccion;
+    private javax.swing.JLabel txtfijo;
+    private javax.swing.JLabel txtnombre;
     // End of variables declaration//GEN-END:variables
 }

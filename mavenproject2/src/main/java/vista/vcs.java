@@ -1,4 +1,5 @@
 package vista;
+import edl.ListaSE;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -19,10 +20,10 @@ import modelo.*;
 */
 
 public class vcs extends javax.swing.JFrame {
-    private Contactos contactos;    
-    public vcs(Contactos contactos) {
+    private ListaSE listaContactos;    
+    public vcs(ListaSE listaContactos) {
         initComponents();
-        this.contactos = contactos;
+        this.listaContactos = listaContactos;
         this.setLocationRelativeTo(null);
         addContacts();
     }
@@ -40,10 +41,10 @@ public class vcs extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listacontactos = new javax.swing.JList<String>();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jlistcontactos = new javax.swing.JList<String>();
+        añadir = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
+        mostrar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,43 +74,48 @@ public class vcs extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 550, 50));
 
-        listacontactos.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        listacontactos.setModel(new javax.swing.AbstractListModel<String>() {
+        jlistcontactos.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jlistcontactos.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = {};
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(listacontactos);
+        jScrollPane1.setViewportView(jlistcontactos);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 300, 250));
 
-        jButton2.setBackground(new java.awt.Color(172, 96, 100));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Añadir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        añadir.setBackground(new java.awt.Color(172, 96, 100));
+        añadir.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        añadir.setForeground(new java.awt.Color(255, 255, 255));
+        añadir.setText("Añadir");
+        añadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                añadirActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 150, 50));
+        getContentPane().add(añadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 150, 50));
 
-        jButton3.setBackground(new java.awt.Color(172, 96, 100));
-        jButton3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Eliminar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Eliminar.setBackground(new java.awt.Color(172, 96, 100));
+        Eliminar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        Eliminar.setForeground(new java.awt.Color(255, 255, 255));
+        Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                EliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 150, 50));
+        getContentPane().add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 150, 50));
 
-        jButton4.setBackground(new java.awt.Color(172, 96, 100));
-        jButton4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Mostrar");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 150, 50));
+        mostrar.setBackground(new java.awt.Color(172, 96, 100));
+        mostrar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        mostrar.setForeground(new java.awt.Color(255, 255, 255));
+        mostrar.setText("Mostrar");
+        mostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mostrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(mostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 150, 50));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
@@ -118,12 +124,14 @@ public class vcs extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        //contactos.add(nuevoContacto);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        int n = jlistcontactos.getSelectedIndex();
+        listaContactos.eliminar(n);
+        addContacts();
+    }//GEN-LAST:event_EliminarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    VentanaContacto vc = new VentanaContacto(contactos);
+    private void añadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirActionPerformed
+    VentanaContacto vc = new VentanaContacto(listaContactos);
     vc.setVisible(true);
     vcs padre = this;
     vc.addWindowListener(new WindowAdapter() {
@@ -133,13 +141,19 @@ public class vcs extends javax.swing.JFrame {
             }
         });
     this.setVisible(false);       // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_añadirActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    //VistaAgendaVirtual va = new VistaAgendaVirtual();
+    //VistaAgendaVirtual va = new VistaAgendaVirtual(agendaVirtual);
     //va.setVisible(true);
     this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void mostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarActionPerformed
+        int n = jlistcontactos.getSelectedIndex();
+        VentanaVerContacto vc = new VentanaVerContacto((Contacto)listaContactos.acceder(n),n);
+        vc.setVisible(true);
+    }//GEN-LAST:event_mostrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,25 +190,25 @@ public class vcs extends javax.swing.JFrame {
 //        });
 //    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Eliminar;
+    private javax.swing.JButton añadir;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> listacontactos;
+    private javax.swing.JList<String> jlistcontactos;
+    private javax.swing.JButton mostrar;
     // End of variables declaration//GEN-END:variables
 
     private void addContacts(){
         DefaultListModel modeloLista = new DefaultListModel();
-        for(int i = 0 ; i < contactos.getContactos().tamanio();i++){
-            Contacto nuevo =(Contacto)contactos.getContactos().acceder(i);
+        for(int i = 0 ; i < listaContactos.tamanio();i++){
+            Contacto nuevo =(Contacto)listaContactos.acceder(i);
             modeloLista.addElement(nuevo);
         }
-        listacontactos.setModel(modeloLista);//le hace sett
-        listacontactos.updateUI();//sube la lista al jList
+        jlistcontactos.setModel(modeloLista);//le hace sett
+        jlistcontactos.updateUI();//sube la lista al jList
         //return modeloLista;
     }
 }

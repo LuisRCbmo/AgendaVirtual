@@ -17,7 +17,6 @@ public class Contacto {
     private String fijo;
     private String correo;
     private String direccion;
-    private int id = 0;
     
     public Contacto(String nombre, String apellido, String celular, String fijo, String correo, String direccion){
         this.nombre = nombre;
@@ -36,11 +35,23 @@ public class Contacto {
         return apellido;
     }
     
-    public String toString(){
-        return "contacto " + id + " Nombre: " + nombre +" " +apellido;
+    public String getCelular(){
+        return celular;
     }
     
-    public void setID(int id){
-        this.id = id;
+    public String getFijo(){
+        return fijo;
+    }
+    
+    public String getCorreo(){
+        return correo;
+    }
+    
+    public String getDireccion(){
+        return direccion;
+    }
+    
+    public String toString(){
+        return " Contacto: " + nombre +" " +apellido;
     }
 }

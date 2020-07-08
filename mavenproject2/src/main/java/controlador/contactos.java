@@ -14,7 +14,7 @@ public class contactos {
     public static void main(String[] args) {
         Agenda agenda = new Agenda();
         Contactos contactos = new Contactos();
-        AgendaVirtual agendaVirtual = new AgendaVirtual(agenda,contactos);
+        AgendaVirtual agendaVirtual = new AgendaVirtual(agenda);
         VistaAgendaVirtual vistaAgendaVirtual = new VistaAgendaVirtual(agendaVirtual);
         vistaAgendaVirtual.setVisible(true);
     }
