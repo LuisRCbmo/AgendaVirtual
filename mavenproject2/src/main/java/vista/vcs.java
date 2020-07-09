@@ -106,7 +106,6 @@ public class vcs extends javax.swing.JFrame {
         });
         getContentPane().add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 150, 50));
 
-<<<<<<< HEAD
         mostrar.setBackground(new java.awt.Color(172, 96, 100));
         mostrar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         mostrar.setForeground(new java.awt.Color(255, 255, 255));
@@ -117,13 +116,6 @@ public class vcs extends javax.swing.JFrame {
             }
         });
         getContentPane().add(mostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 150, 50));
-=======
-        jButton4.setBackground(new java.awt.Color(172, 96, 100));
-        jButton4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Mostrar");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 200, 150, 50));
->>>>>>> ebf6959ab3f5684b8fe1b1d85a2dd725420cfcf4
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
