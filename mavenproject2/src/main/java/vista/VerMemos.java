@@ -9,6 +9,10 @@ import java.awt.event.WindowEvent;
 import javax.swing.DefaultListModel;
 import modelo.*;
 import edl.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Luis
@@ -25,6 +29,7 @@ public class VerMemos extends javax.swing.JFrame {
         this.listaMemo = listaMemo;
         this.setLocationRelativeTo(null);
         addMemos();
+        mouseListener();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -117,7 +122,16 @@ public class VerMemos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      
+        if(listaMemo.tamanio() == 0){
+            JOptionPane.showMessageDialog(null,"No tiene memos guardados");
+        }else{
+            int index = JOptionPane.showConfirmDialog(null, "¿Esta seguro que quiere eliminar el memo?", "Eliminar memo", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if(index == 0){
+                int pos = jList1.getSelectedIndex();
+                listaMemo.eliminar(pos);
+                addMemos();
+            }
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -179,7 +193,25 @@ public class VerMemos extends javax.swing.JFrame {
         }
         jList1.setModel(modeloLista);
         jList1.updateUI();
-        //return modeloLista
     }
-
+    
+    private void mouseListener(){
+        VerMemos padre = this;
+        jList1.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                JList list = (JList) evt.getSource();
+                if (evt.getClickCount() == 2) { // Doble Click
+                    int index = list.locationToIndex(evt.getPoint()); // retorna la posicion del elemento seleccionado
+                    MostrarMemo mostrar = new MostrarMemo((Memo) listaMemo.acceder(index));
+                    mostrar.setVisible(true);                    mostrar.addWindowListener(new WindowAdapter() {
+                        public void windowClosed(WindowEvent e){
+                            padre.setVisible(true);
+                            padre.addMemos();
+                        }
+                    });
+                    padre.setVisible(false);
+                }
+            }
+        });
+    }
 }

@@ -23,17 +23,8 @@ public class VistaAgenda extends javax.swing.JFrame {
         this.setResizable(false);
         actualizarCitas();
         this.setLocationRelativeTo(null);
-        listaCitas.addMouseListener(new MouseAdapter() {
-        public void mouseClicked(MouseEvent evt) {
-            JList list = (JList)evt.getSource();
-                if (evt.getClickCount() == 2) { // Doble Click
-                    int index = list.locationToIndex(evt.getPoint()); // retorna la posicion del elemento seleccionado
-                    mostrarCita mostrar = new mostrarCita((Cita) agenda.getListaCitas().acceder(index));
-                    mostrar.setVisible(true);
-                    //System.out.println("Apretaste dos veces en la posicion: "+ index); (prueba de accion de mouseListener)
-                }
-            }
-        });
+        mouseListener();
+        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -147,8 +138,6 @@ public class VistaAgenda extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_aniadirCitaActionPerformed
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
-        //VistaAgendaVirtual va = new VistaAgendaVirtual(agendaVirtual);
-        //va.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonAtrasActionPerformed
 
@@ -157,39 +146,17 @@ public class VistaAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_listaCitasComponentShown
 
     private void eliminarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarCitaActionPerformed
-        int index = JOptionPane.showConfirmDialog(null, "¿Esta seguro que quiere eliminar la cita?", "Eliminar cita", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-        if(index == 0){
-          int pos = listaCitas.getSelectedIndex();
-          agenda.getListaCitas().eliminar(pos);
-          actualizarCitas();
+        if(agenda.getListaCitas().tamanio() == 0){
+            JOptionPane.showMessageDialog(null,"No tiene citas guardadas");
+        }else{
+            int index = JOptionPane.showConfirmDialog(null, "¿Esta seguro que quiere eliminar la cita?", "Eliminar cita", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if(index == 0){
+                int pos = listaCitas.getSelectedIndex();
+                agenda.getListaCitas().eliminar(pos);
+                actualizarCitas();
+            }
         }
     }//GEN-LAST:event_eliminarCitaActionPerformed
-
-//    public static void main(String args[]) {
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(VistaAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(VistaAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(VistaAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(VistaAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new VistaAgenda().setVisible(true);
-//            }
-//        });
-//    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aniadirCita;
     private javax.swing.JButton botonAtras;
@@ -205,12 +172,32 @@ public class VistaAgenda extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private void actualizarCitas(){
         DefaultListModel modeloLista = new DefaultListModel();
-        //agenda.getListaCitas();
         for(int i = 0; i < agenda.getListaCitas().tamanio() ; i++){
             Cita nueva = (Cita)agenda.getListaCitas().acceder(i);
             modeloLista.addElement(nueva);
         }
-        listaCitas.setModel(modeloLista);//le hace sett
+        listaCitas.setModel(modeloLista);//le hace set
         listaCitas.updateUI();//sube la lista al jList
+    }
+    private void mouseListener() {
+        VistaAgenda padre = this;
+        listaCitas.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                JList list = (JList) evt.getSource();
+                if (evt.getClickCount() == 2) { // Doble Click
+                    int index = list.locationToIndex(evt.getPoint()); // retorna la posicion del elemento seleccionado
+                    mostrarCita mostrar = new mostrarCita((Cita) agenda.getListaCitas().acceder(index));
+                    mostrar.setVisible(true);
+                    padre.addWindowListener(new WindowAdapter() {
+                        public void windowClosed(WindowEvent e) {
+                            padre.setVisible(true);
+                            padre.actualizarCitas();
+                        }
+                    });
+                    padre.setVisible(false);
+                    //System.out.println("Apretaste dos veces en la posicion: "+ index); (prueba de accion de mouseListener)
+                }
+            }
+        });
     }
 }

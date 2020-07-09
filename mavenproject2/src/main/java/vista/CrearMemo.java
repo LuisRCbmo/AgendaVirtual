@@ -54,6 +54,7 @@ public class CrearMemo extends javax.swing.JFrame {
 
         txtAsunto.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         getContentPane().add(txtAsunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 340, -1));
+        txtAsunto.getAccessibleContext().setAccessibleName("");
 
         botonGuardar.setBackground(new java.awt.Color(172, 96, 100));
         botonGuardar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N

@@ -22,11 +22,19 @@ public class Memo{
         System.out.println("Nota: "+nota);
     }
     
+    public String getAsunto(){
+        return asunto;
+    }
+    
+    public String getNota(){
+        return nota;
+    }
+    
     public void setAsunto(String asunto){
         this.asunto = asunto;
     }
     
-    public void setNnota(String nota){
+    public void setNota(String nota){
         this.nota = nota;
     }
     
