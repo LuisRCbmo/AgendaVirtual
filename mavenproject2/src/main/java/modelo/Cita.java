@@ -30,8 +30,8 @@ public class Cita{
         return duracion;
     }
     
-     public void setHora(Date horaFecha){
-        fechaHora=horaFecha;
+    public void setFechaHora(Date fecha) {
+       fechaHora=fecha;
     }
     
     public Date getHoraFecha(){
@@ -59,7 +59,9 @@ public class Cita{
         alarma.desactivar();
     }
     
-    //podrias hacermelo un toString() sin parametros porfavor? :3 Es para que se muestre en la lista de Agenda como se vera el contacto :c 
+    public String toString(){
+    return ""+asunto+fechaHora+duracion+"";
+    }
    
     public String toString(int numero){
         return ""+numero+"";            

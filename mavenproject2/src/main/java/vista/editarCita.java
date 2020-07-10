@@ -62,11 +62,9 @@ public class editarCita extends javax.swing.JFrame {
         contMinuto = new javax.swing.JComboBox<>();
         amPm = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        listaDia = new javax.swing.JComboBox<>();
-        listaMes = new javax.swing.JComboBox<>();
-        listaAnio = new javax.swing.JComboBox<>();
         botonCancelar = new javax.swing.JButton();
         botonGuardar = new javax.swing.JButton();
+        rSDateChooser1 = new rojeru_san.componentes.RSDateChooser();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -114,7 +112,7 @@ public class editarCita extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel5.setText("Activar alarma:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, -1, 20));
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel6.setText("Nota:");
@@ -164,25 +162,6 @@ public class editarCita extends javax.swing.JFrame {
         jLabel9.setText(":");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
 
-        listaDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15" }));
-        listaDia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listaDiaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(listaDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, -1, -1));
-
-        listaMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
-        getContentPane().add(listaMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, -1));
-
-        listaAnio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2021", "2022", "2023", "2024", "2025", "2026", " " }));
-        listaAnio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listaAnioActionPerformed(evt);
-            }
-        });
-        getContentPane().add(listaAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, -1, -1));
-
         botonCancelar.setBackground(new java.awt.Color(172, 96, 100));
         botonCancelar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         botonCancelar.setText("Cancelar");
@@ -202,6 +181,13 @@ public class editarCita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 150, 50));
+
+        rSDateChooser1.setColorBackground(new java.awt.Color(0, 0, 0));
+        rSDateChooser1.setColorButtonHover(new java.awt.Color(0, 0, 0));
+        rSDateChooser1.setColorDiaActual(new java.awt.Color(0, 0, 0));
+        rSDateChooser1.setColorForeground(new java.awt.Color(102, 102, 102));
+        rSDateChooser1.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        getContentPane().add(rSDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 280, 30));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
         jLabel10.setText("jLabel10");
@@ -223,10 +209,6 @@ public class editarCita extends javax.swing.JFrame {
         }      
     }//GEN-LAST:event_botonCancelarActionPerformed
  
-    private void listaAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaAnioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_listaAnioActionPerformed
-
     private void contHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contHoraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_contHoraActionPerformed
@@ -236,7 +218,7 @@ public class editarCita extends javax.swing.JFrame {
         mostrar.setNota(contNota.getText());
         mostrar.setDuracion((String)contDuracion.getSelectedItem());
         mostrar.setHora((String)contHora.getSelectedItem(),(String)contMinuto.getSelectedItem());
-        mostrar.setFecha((String)listaDia.getSelectedItem(),(String)listaMes.getSelectedItem(),(String)listaAnio.getSelectedItem());
+        mostrar.setFecha(rSDateChooser1.getDatoFecha());
         mostrar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonGuardarActionPerformed
@@ -244,10 +226,6 @@ public class editarCita extends javax.swing.JFrame {
     private void contMinutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contMinutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_contMinutoActionPerformed
-
-    private void listaDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaDiaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_listaDiaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -288,8 +266,6 @@ public class editarCita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> listaAnio;
-    private javax.swing.JComboBox<String> listaDia;
-    private javax.swing.JComboBox<String> listaMes;
+    private rojeru_san.componentes.RSDateChooser rSDateChooser1;
     // End of variables declaration//GEN-END:variables
 }

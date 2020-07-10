@@ -6,6 +6,7 @@
 package vista;
 import javax.swing.JOptionPane;
 import modelo.*;
+import java.util.*;
 /**
  *
  * @author Nath
@@ -208,6 +209,11 @@ public class mostrarCita extends javax.swing.JFrame {
     }
     public void setFecha(String p){
     contFecha.setText(p);
+    }
+    public void setFecha(Date fecha){
+        cita.setFechaHora(fecha);
+      ///falta que se muestre en mostrar :vxd  
+        
     }
     public void setHora(String h, String m){
     contHora.setText(h+":"+m);
