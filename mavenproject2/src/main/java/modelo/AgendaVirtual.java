@@ -1,12 +1,15 @@
 package modelo;
 import modelo.*;
 import edl.*;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.Date;
 
 /**
  *
  * @author hp
  */
+
 public class AgendaVirtual {
     
     private Agenda agenda;
@@ -44,6 +47,22 @@ public class AgendaVirtual {
         int posicion = listamemo.indexOf(memo);
         return listamemo.eliminar(posicion);
     }
+
+
+
+public  void guardarCitas(){
+        try{
+            ObjectOutputStream escribir = new ObjectOutputStream(new FileOutputStream("Memosguardados"));
+            escribir.writeObject(listamemo);
+            escribir.close();
+        }
+        catch(Exception eGLD){}
+    }
+
+
+
+
+
 
 }
 

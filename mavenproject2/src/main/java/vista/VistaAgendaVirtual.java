@@ -13,13 +13,18 @@ import javax.swing.DefaultListModel;
 public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
     //Atributos contenedores
     private AgendaVirtual agendaVirtual;
+    private Cita cita;
     //otros atributos
     private Calendar calendario;
     private String hora,minuto,segundo,ampm;
     private Thread h1;
-
+   DefaultListModel modeloLista ;
     public VistaAgendaVirtual(AgendaVirtual agendaVirtual){
         initComponents();
+           
+    modeloLista = new DefaultListModel();
+     Lista.setModel(modeloLista);
+        
         this.agendaVirtual = agendaVirtual;
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -37,9 +42,11 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
 
         jlbReloj = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        Lista = new javax.swing.JList<>();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        calendar = new rojeru_san.componentes.RSCalendar();
+        jButton2 = new javax.swing.JButton();
         jMenuBar5 = new javax.swing.JMenuBar();
         jMenu16 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -53,16 +60,16 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
 
         jlbReloj.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         jlbReloj.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(jlbReloj, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 280, 60));
+        getContentPane().add(jlbReloj, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 390));
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        Lista.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "cita1", "cita2", "cita3" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(Lista);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 220, 280));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 220, 280));
 
         jButton1.setBackground(new java.awt.Color(172, 96, 100));
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -73,11 +80,20 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 150, 50));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 150, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 600, 400));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 600, 20));
+        getContentPane().add(calendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jButton2.setText("VerCitas");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 120, 50));
 
         jMenuBar5.setBackground(new java.awt.Color(255, 196, 190));
         jMenuBar5.setBorderPainted(false);
@@ -165,6 +181,41 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         System.exit(0); //Cierra todo el proceso desde el boton "Salir"
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+         if(calendar.getDatoFecha() == null){
+        
+        modeloLista.addElement("Seleccione una fecha");
+        
+        
+        
+        
+        
+        } else{
+         Date fechaactual=calendar.getDatoFecha();
+       if(fechaactual.equals(cita.getHoraFecha())){
+        
+           
+        modeloLista.addElement("la"+cita.getAsunto());
+        modeloLista.addElement("Cita"+cita.getNota());
+        
+        
+       }
+        else{
+        
+        
+        modeloLista.addElement("no hay citas");
+        
+        
+        }
+        
+        
+        
+        } 
+            // TODO add your handling code here:
+               
+       
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -204,9 +255,11 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> Lista;
+    private rojeru_san.componentes.RSCalendar calendar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu16;
     private javax.swing.JMenu jMenu17;
     private javax.swing.JMenuBar jMenuBar5;

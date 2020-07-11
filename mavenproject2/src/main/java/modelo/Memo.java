@@ -1,6 +1,8 @@
 
 package modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author hp
@@ -8,7 +10,7 @@ package modelo;
 
     
 
-public class Memo{
+public class Memo implements Comparable <Memo>, Serializable{
     private String asunto;
     private String nota;
     public Memo(String asunto, String nota){
@@ -40,6 +42,11 @@ public class Memo{
     
     public String toString(){
         return "Asunto: "+asunto+" Nota: "+nota;
+    }
+
+    @Override
+    public int compareTo(Memo o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
 

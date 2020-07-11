@@ -1,8 +1,9 @@
 
 package modelo;
+import java.io.Serializable;
 import vista.mostrarCita;
 import java.util.*;
-public class Cita{
+public class Cita implements Serializable{
     private Alarma alarma;
     private String asunto;
     private String nota;
@@ -91,5 +92,13 @@ public class Cita{
     muestra.setVisible(true);
     System.out.println(muestra.getComponentAt(duracion, duracion));
     }
+
+
+    //public int  compareTo(Cita otra){
+      //<  return fechaHora.compareTo(otra.fechaHora);
+    //}
+
+
+
 }
 

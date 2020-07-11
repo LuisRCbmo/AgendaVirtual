@@ -1,10 +1,14 @@
 package modelo;
 import edl.ListaSE;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 public class Agenda{
     private ListaSE<Cita> citas;
     
     public Agenda(){
-        citas = new ListaSE();
+        citas =new ListaSE();
     }
     
     public boolean vacio(){
@@ -40,4 +44,39 @@ public class Agenda{
             System.out.println("No tiene citas programadas.");
         }
     }
+
+
+
+
+
+ public  void guardarCitas(){
+        try{
+            ObjectOutputStream escribirfichero = new ObjectOutputStream(new FileOutputStream("listacitas"));
+            escribirfichero.writeObject(citas);
+            escribirfichero.close();
+        }
+        catch(Exception eGLD){}
+    }
+
+
+
+
+
+
+    public ListaSE<Cita> recuperarListaCitas(){
+        ListaSE<Cita> listaRecuperada = new ListaSE();
+        try{
+            ObjectInputStream leerFichero = new ObjectInputStream(new FileInputStream("listaCita"));
+            listaRecuperada = (ListaSE<Cita>)leerFichero.readObject();
+            leerFichero.close();
+            }
+            catch(Exception eRLC){
+                
+            }
+        return listaRecuperada;
+    }
+
+
+
+
 }
