@@ -1,4 +1,5 @@
 package vista;
+import edl.ListaSE;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import modelo.*;
@@ -18,18 +19,19 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
     private Calendar calendario;
     private String hora,minuto,segundo,ampm;
     private Thread h1;
-   DefaultListModel modeloLista ;
+    //DefaultListModel modeloLista ;
     public VistaAgendaVirtual(AgendaVirtual agendaVirtual){
         initComponents();
            
-    modeloLista = new DefaultListModel();
-     Lista.setModel(modeloLista);
+        //modeloLista = new DefaultListModel();
+        //Lista.setModel(modeloLista);
         
         this.agendaVirtual = agendaVirtual;
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         h1 = new Thread((Runnable) this);
         h1.start();
+        actualizarCitas();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,7 +44,7 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
 
         jlbReloj = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Lista = new javax.swing.JList<>();
+        Lista = new javax.swing.JList();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         calendar = new rojeru_san.componentes.RSCalendar();
@@ -60,13 +62,8 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
 
         jlbReloj.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         jlbReloj.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(jlbReloj, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 390));
+        getContentPane().add(jlbReloj, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 20, 390));
 
-        Lista.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "cita1", "cita2", "cita3" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(Lista);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 220, 280));
@@ -182,14 +179,14 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         if(calendar.getDatoFecha() == null){
-        
-        modeloLista.addElement("Seleccione una fecha");
-        
-        
-        
-        
-        
+        actualizarCitas();
+        /*
+        if(calendar.getDatoFecha() == null){
+            //modeloLista.addElement("Seleccione una fecha");
+            actualizarCitas();
+        }
+        */
+        /*
         } else{
          Date fechaactual=calendar.getDatoFecha();
        if(fechaactual.equals(cita.getHoraFecha())){
@@ -207,13 +204,10 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         
         
         }
+        */
         
         
         
-        } 
-            // TODO add your handling code here:
-               
-       
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -255,7 +249,7 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> Lista;
+    private javax.swing.JList Lista;
     private rojeru_san.componentes.RSCalendar calendar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -294,5 +288,26 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         }
         minuto = calendario.get(Calendar.MINUTE)>9?""+calendario.get(Calendar.MINUTE):"0"+calendario.get(Calendar.MINUTE);
         segundo = calendario.get(Calendar.SECOND)>9?""+calendario.get(Calendar.SECOND):"0"+calendario.get(Calendar.SECOND);
+    }
+    
+    private ListaSE<Cita> citasDia(ListaSE citas){
+        ListaSE<Cita> citasDelDia = new ListaSE();
+        for(int i = 0 ; i < citas.tamanio(); i++ ){
+            Cita citaActual = (Cita)citas.acceder(i);
+            if(calendar.getDatoFecha().equals(citaActual.getHoraFecha())){
+                citasDelDia.insertar(citaActual);
+            }
+        }
+        return citasDelDia;
+    }
+    private void actualizarCitas(){
+        ListaSE<Cita> citas = citasDia(agendaVirtual.getAgenda().getListaCitas());
+        DefaultListModel modeloLista = new DefaultListModel();
+        for(int i = 0; i < citas.tamanio(); i++){
+            Cita nueva = (Cita)citas.acceder(i);
+            modeloLista.addElement(nueva);
+        }
+        Lista.setModel(modeloLista);//le hace set
+        Lista.updateUI();//sube la lista al jList
     }
 }
