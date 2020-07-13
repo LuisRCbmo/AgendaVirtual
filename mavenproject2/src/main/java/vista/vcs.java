@@ -5,6 +5,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import modelo.*;
 
 /**
@@ -125,9 +126,13 @@ public class vcs extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-        int n = jlistcontactos.getSelectedIndex();
-        listaContactos.eliminar(n);
-        addContacts();
+        if (JOptionPane.showConfirmDialog(null, "¿Eliminar?", "WARNING",
+        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            int n = jlistcontactos.getSelectedIndex();
+            listaContactos.eliminar(n);
+            addContacts();
+        } else {    // no option
+        }
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void añadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirActionPerformed

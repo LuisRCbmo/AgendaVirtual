@@ -7,6 +7,7 @@ package vista;
 import edl.*;
 import modelo.*;
 import java.util.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Luis
@@ -153,9 +154,14 @@ public class VentanaContacto extends javax.swing.JFrame{
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        Contacto c = new Contacto(txtnombre.getText(),txtapellido.getText(),txtcelular.getText(),txtfijo.getText(),txtcorreo.getText(),txtdireccion.getText());
-        listaContactos.insertar(c);
-        this.dispose();
+    int dialogButton = JOptionPane.YES_NO_OPTION;
+    if (JOptionPane.showConfirmDialog(null, "¿Agregar contacto?", "WARNING",
+        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                Contacto c = new Contacto(txtnombre.getText(),txtapellido.getText(),txtcelular.getText(),txtfijo.getText(),txtcorreo.getText(),txtdireccion.getText());
+                listaContactos.insertar(c);
+                this.dispose();
+    } else {
+    }
     }//GEN-LAST:event_guardarActionPerformed
 
     private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
