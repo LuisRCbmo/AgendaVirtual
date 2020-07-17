@@ -1,4 +1,5 @@
 package vista;
+
 import modelo.Alarma;
 import modelo.ListaAlarma;
 import java.util.*;
@@ -7,26 +8,24 @@ import javax.sound.sampled.Clip;
 import javax.swing.JOptionPane;
 
 public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
-    
+
     private ListaAlarma LIAL;
     private Calendar calendario;
-    private String hora,minuto,segundo,ampm;
+    private String hora, minuto, segundo, ampm;
     private Thread h1;
     private Clip clip;
-    private String cancion="TelefonoAntiguo.wav";
-    private String[] sonds = {"TelefonoAntiguo.wav","TITITI.wav","Gallo.wav","AlarmaLoud.wav","AlarmaDeGuerra.wav","AlarmaDeCoche.wav"};
-    private String[] sondsFormat = {"Telefono Antiguo","TI TI TI","Gallo","Alarma Loud","Alarma De Guerra","Alarma De Coche"};
-    
+    private String cancion = "TelefonoAntiguo.wav";
+    private String[] sonds = {"TelefonoAntiguo.wav", "TITITI.wav", "Gallo.wav", "AlarmaLoud.wav", "AlarmaDeGuerra.wav", "AlarmaDeCoche.wav"};
+
     public InterfazAlarma() {
-        initComponents();      
+        initComponents();
         h1 = new Thread(this);
         h1.start();
         LIAL = new ListaAlarma();
         setLocationRelativeTo(null);
-        setTitle("Alarma");       
-   }
+        setTitle("Alarma");
+    }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -98,6 +97,11 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
                 jcbMusicasMouseClicked(evt);
             }
         });
+        jcbMusicas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbMusicasActionPerformed(evt);
+            }
+        });
         getContentPane().add(jcbMusicas, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 137, 30));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
@@ -110,38 +114,41 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
         Calendar fecha = Calendar.getInstance();
         fecha.add(Calendar.SECOND, 3);
         Date fechaA = fecha.getTime();
-        Alarma al = new Alarma();                       
-        al.setCancion(cancion);        
-        al.ProgramarAlarma(fechaA,"");
-        JOptionPane.showMessageDialog(null,"Añadido con exito");        
-        
+        Alarma al = new Alarma();
+        al.setCancion(cancion);
+        al.ProgramarAlarma(fechaA, "");
+        JOptionPane.showMessageDialog(null, "Añadido con exito");
+
     }//GEN-LAST:event_jbAnadirActionPerformed
 
-    
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int i =jcbMusicas.getSelectedIndex();
-        if(clip != null){
+        int i = jcbMusicas.getSelectedIndex();
+        if (clip != null) {
             clip.stop();
-        }       
+        }
         cancion = sonds[i];
-        JOptionPane.showMessageDialog(null,sondsFormat[i]);
-        
+        JOptionPane.showMessageDialog(null, "Seleccionado con exito");
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jcbMusicasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbMusicasItemStateChanged
-        int i =jcbMusicas.getSelectedIndex();
-        if(clip !=null){
+        int i = jcbMusicas.getSelectedIndex();
+        if (clip != null) {
             clip.stop();
-        }       
-         reproducir(sonds[i]);
-        
+        }
+        reproducir(sonds[i]);
+
     }//GEN-LAST:event_jcbMusicasItemStateChanged
 
     private void jcbMusicasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbMusicasMouseClicked
-     
+
     }//GEN-LAST:event_jcbMusicasMouseClicked
 
-    
+    private void jcbMusicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbMusicasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbMusicasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -159,12 +166,13 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
     @Override
     public void run() {
         Thread ct = Thread.currentThread();
-        while(ct==h1){
+        while (ct == h1) {
             calcula();
-            jlbReloj.setText(hora+":"+minuto+":"+segundo+" "+ampm);
-            try{
+            jlbReloj.setText(hora + ":" + minuto + ":" + segundo + " " + ampm);
+            try {
                 Thread.sleep(1000);
-            }catch(InterruptedException e){}
+            } catch (InterruptedException e) {
+            }
         }
     }
 
@@ -172,29 +180,31 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
         calendario = new GregorianCalendar();
         Date fechaHoraActual = new Date();
         calendario.setTime(fechaHoraActual);
-        ampm = calendario.get(Calendar.AM_PM)==Calendar.AM? "AM":"PM";
-        if(ampm.equals("PM")){
+        ampm = calendario.get(Calendar.AM_PM) == Calendar.AM ? "AM" : "PM";
+        if (ampm.equals("PM")) {
             int h = calendario.get(Calendar.HOUR_OF_DAY);//-12
-            hora = h>9?""+h:"0"+h;
-        }else{
-            hora = calendario.get(Calendar.HOUR_OF_DAY)>9?""+calendario.get(Calendar.HOUR_OF_DAY):"0"+calendario.get(Calendar.HOUR_OF_DAY);
+            hora = h > 9 ? "" + h : "0" + h;
+        } else {
+            hora = calendario.get(Calendar.HOUR_OF_DAY) > 9 ? "" + calendario.get(Calendar.HOUR_OF_DAY) : "0" + calendario.get(Calendar.HOUR_OF_DAY);
         }
-        minuto = calendario.get(Calendar.MINUTE)>9?""+calendario.get(Calendar.MINUTE):"0"+calendario.get(Calendar.MINUTE);
-        segundo = calendario.get(Calendar.SECOND)>9?""+calendario.get(Calendar.SECOND):"0"+calendario.get(Calendar.SECOND);
+        minuto = calendario.get(Calendar.MINUTE) > 9 ? "" + calendario.get(Calendar.MINUTE) : "0" + calendario.get(Calendar.MINUTE);
+        segundo = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND) : "0" + calendario.get(Calendar.SECOND);
     }
-      public Alarma getAlarmaCreada(){
+
+    public Alarma getAlarmaCreada() {
         Alarma res = LIAL.returnAlarma(0);
         LIAL.eliminarAlarma(res);
         return res;
     }
-      public void reproducir(String cancion){
-        try{
+
+    public void reproducir(String cancion) {
+        try {
             clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(getClass().getResource("/audios/"+cancion)));
+            clip.open(AudioSystem.getAudioInputStream(getClass().getResource("/audios/" + cancion))); //alarma
             clip.start();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
-    } 
-   
+    }
+
 }

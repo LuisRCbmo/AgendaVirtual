@@ -1,34 +1,23 @@
-
 package modelo;
 
 import Notificaciones.Notificacion;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
-
+import java.util.*;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-
-
-public class Alarma {
-    private Notificacion alert;
-    private Date fechaActual;
-    private Timer timer;
-    private Timer timerPlay;
-    private TimerTask tarea;
-    private TimerTask replay;
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-    private String asunto;
-    private boolean activo;
-    
-    private String[] sonds = {"TelefonoAntiguo.wav","TITITI.wav","Gallo.wav","AlarmaLoud.wav","AlarmaDeGuerra.wav","AlarmaDeCoche.wav"};
+public class Alarma{
+    private boolean activo,play;
     private Calendar calendar;
     private Clip clip;
-    private String cancion = "TelefonoAntiguo.wav";
-    private boolean play;
+    private Date fechaActual;
+    private String [] sonds = {"TelefonoAntiguo.wav","TITITI.wav","Gallo.wav","AlarmaLoud.wav","AlarmaDeGuerra.wav","AlarmaDeCoche.wav"};
+    private String asunto;
+    private String cancion = "TelefonoAntiguo.wav"; //falta
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    private Timer timer,timerPlay;
+    private TimerTask tarea,replay;
+    private Notificacion alert;
     
     public Alarma() {
         alert = new Notificacion();
@@ -75,7 +64,7 @@ public class Alarma {
             }
         };
     }
-    public long establecerRepeticion(){
+    private long establecerRepeticion(){
         long res = 0;
         if(cancion.equals(sonds[0])){
             res = 5000;
@@ -93,7 +82,7 @@ public class Alarma {
     public void setCancion(String cancion){
         this.cancion = cancion;
     } 
-    public void reproducir(){
+    private void reproducir(){
         try{
             clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(getClass().getResource("/audios/"+cancion)));
@@ -109,7 +98,6 @@ public class Alarma {
         Alarma am = new Alarma();
         am.setCancion(cancion);
         am.ProgramarAlarma(calendar.getTime(), asunto);
-        
     }
     public boolean getActivo(){
         return activo;
@@ -118,7 +106,7 @@ public class Alarma {
     public void desactivar(){
         activo = false;
     }
-     public void activar(){
+    public void activar(){
         activo = true;
     }
     
