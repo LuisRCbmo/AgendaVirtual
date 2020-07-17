@@ -1,19 +1,20 @@
 
 package modelo;
 
+import Notificaciones.Notificacion;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.swing.JOptionPane;
+
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 
 public class Alarma {
-
+    private Notificacion alert;
     private Date fechaActual;
     private Timer timer;
     private Timer timerPlay;
@@ -22,14 +23,16 @@ public class Alarma {
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     private String asunto;
     private boolean activo;
-    private String [] botones ={"Apagar Alarma","Posponer"};
+    
     private String[] sonds = {"TelefonoAntiguo.wav","TITITI.wav","Gallo.wav","AlarmaLoud.wav","AlarmaDeGuerra.wav","AlarmaDeCoche.wav"};
     private Calendar calendar;
     private Clip clip;
     private String cancion = "TelefonoAntiguo.wav";
     private boolean play;
+    
     public Alarma() {
-        
+        alert = new Notificacion();
+        Object [] botones = {"APAGAR","POSPONER"};
         calendar = Calendar.getInstance();
         fechaActual = new Date();
         activo = true;
@@ -41,8 +44,8 @@ public class Alarma {
             public void run() {
                 if(activo){
                     timerPlay.schedule(replay,0,establecerRepeticion());                   
-                    JOptionPane.showMessageDialog(null, asunto+" A las: "+dateAStringFormat(fechaActual));                                       
-                    int com = JOptionPane.showOptionDialog(null,"Apagar Alarma","Alarma",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,botones, botones[0]);                    
+                    alert.NotificacionEscrita(asunto+" A las: "+dateAStringFormat(fechaActual),"/Iconos/Alarma.jpg" );
+                    int com = alert.notificacionBotones("¿Que hacer con la alarma?","ALARMA", botones,"/Iconos/Interrogacion.png");
                     if(com == 0){
                         play = false;
                         clip.stop();
