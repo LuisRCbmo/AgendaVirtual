@@ -156,8 +156,18 @@ public class vcs extends javax.swing.JFrame {
 
     private void mostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarActionPerformed
         int n = jlistcontactos.getSelectedIndex();
-        VentanaVerContacto vc = new VentanaVerContacto((Contacto)listaContactos.acceder(n),n);
-        vc.setVisible(true);
+        if (n != -1){
+            VentanaVerContacto vc = new VentanaVerContacto(listaContactos,n);
+            vc.setVisible(true);
+            vcs padre = this;
+            vc.addWindowListener(new WindowAdapter() {
+                public void windowClosed(WindowEvent e) {
+                    padre.setVisible(true);
+                    padre.addContacts();
+                }
+            });
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_mostrarActionPerformed
 
     /**
