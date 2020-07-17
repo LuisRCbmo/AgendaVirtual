@@ -252,7 +252,9 @@ public class CrearCita extends javax.swing.JFrame {
         }else{
             
             //Alarma a = new Alarma();
-            Cita nueva = new Cita(asunto.getText(),duracion.getSelectedIndex());
+            String p =(String) duracion.getSelectedItem();
+            int dur=Integer.parseInt(p);
+            Cita nueva = new Cita(asunto.getText(), dur);
             Date fecha = rSDateChooser1.getDatoFecha();
             nueva.setFechaHora(fecha);
             nueva.setNota(jTextNota.getText());
