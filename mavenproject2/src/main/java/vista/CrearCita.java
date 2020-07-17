@@ -46,7 +46,7 @@ public class CrearCita extends javax.swing.JFrame {
         horario = new javax.swing.JComboBox<>();
         horas = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        jTextNota = new javax.swing.JTextArea();
         BotonGuardar = new javax.swing.JButton();
         botonAtras = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
@@ -106,7 +106,7 @@ public class CrearCita extends javax.swing.JFrame {
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel7.setText("hrs.");
+        jLabel7.setText("minutos.");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, -1, -1));
 
         asunto.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -156,10 +156,10 @@ public class CrearCita extends javax.swing.JFrame {
         });
         getContentPane().add(horas, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 75, 25));
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
+        jTextNota.setColumns(20);
+        jTextNota.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jTextNota.setRows(5);
+        jScrollPane3.setViewportView(jTextNota);
 
         getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 450, -1));
 
@@ -255,6 +255,7 @@ public class CrearCita extends javax.swing.JFrame {
             Cita nueva = new Cita(asunto.getText(),duracion.getSelectedIndex());
             Date fecha = rSDateChooser1.getDatoFecha();
             nueva.setFechaHora(fecha);
+            nueva.setNota(jTextNota.getText());
             agenda.aniadirCita(nueva);
         
         }
@@ -329,9 +330,9 @@ public class CrearCita extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextArea jTextNota;
     private javax.swing.JComboBox<String> minutosHora;
     private rojeru_san.componentes.RSDateChooser rSDateChooser1;
     // End of variables declaration//GEN-END:variables
@@ -362,12 +363,16 @@ public class CrearCita extends javax.swing.JFrame {
     }
     
     private void aniadirItemsDuracion(){
-        this.duracion.addItem("1");
-        this.duracion.addItem("2");
-        this.duracion.addItem("3");
-        this.duracion.addItem("4");
-        this.duracion.addItem("5");
-        this.duracion.addItem("6");
+        this.duracion.addItem("15");
+        this.duracion.addItem("20");
+        this.duracion.addItem("25");
+        this.duracion.addItem("30");
+        this.duracion.addItem("35");
+        this.duracion.addItem("40");
+        this.duracion.addItem("45");
+        this.duracion.addItem("50");
+        this.duracion.addItem("55");
+        this.duracion.addItem("60");
     }
 }
 

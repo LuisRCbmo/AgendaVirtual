@@ -16,7 +16,7 @@ public class Cita implements Serializable{
         this.asunto=asunto;
         this.duracion=duracion;
     }
-    //Aca nos falta un costructor con parametro de tipo Alarma :'v (para que pueda crear una cita ya incorporado con una alarma)
+    
     public Cita(String asunto, int duracion){
 
         this.asunto=asunto;
@@ -61,14 +61,25 @@ public class Cita implements Serializable{
     }
     
     public String toString(){
-    return ""+asunto+fechaHora+duracion+"";
+        String fechita=this.toStringFecha();
+    return "Asunto: "+asunto+" fecha: "+fechita+" Duracion: "+duracion+"";
     }
+    
    
     public String toString(int numero){
         return ""+numero+"";            
     }
+    public String toStringFecha(){
+        int anio=fechaHora.getYear()+1900;
+        int mes=fechaHora.getMonth()+1;
+        return ""+fechaHora.getDate()+"/"+mes+"/"+anio+"";       
+    }
+    public String toStringHora(){
+       calendario.setTime(fechaHora);
+        return ""+calendario.get(calendario.DAY_OF_MONTH)+"/"+calendario.get(calendario.MONTH)+1+"/"+calendario.get(calendario.YEAR)+"";
+    }    
     
-    public void muestra(){
+   /* public void muestra(){
     mostrarCita muestra= new mostrarCita(this);
     if(asunto!=null){
     muestra.setAsunto(asunto);
@@ -90,13 +101,13 @@ public class Cita implements Serializable{
         
     }
     muestra.setVisible(true);
-    System.out.println(muestra.getComponentAt(duracion, duracion));
+
     }
 
 
     //public int  compareTo(Cita otra){
       //<  return fechaHora.compareTo(otra.fechaHora);
-    //}
+    //}*/
 
 
 

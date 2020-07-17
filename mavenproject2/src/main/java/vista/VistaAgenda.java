@@ -186,7 +186,7 @@ public class VistaAgenda extends javax.swing.JFrame {
                 JList list = (JList) evt.getSource();
                 if (evt.getClickCount() == 2) { // Doble Click
                     int index = list.locationToIndex(evt.getPoint()); // retorna la posicion del elemento seleccionado
-                    mostrarCita mostrar = new mostrarCita((Cita) agenda.getListaCitas().acceder(index));
+                    mostrarCita mostrar = new mostrarCita((Cita) agenda.getListaCitas().acceder(index), padre);
                     mostrar.setVisible(true);
                     padre.addWindowListener(new WindowAdapter() {
                         public void windowClosed(WindowEvent e) {

@@ -17,9 +17,11 @@ public class mostrarCita extends javax.swing.JFrame {
      * Creates new form mostrarCita
      */
     public Cita cita;
-    public mostrarCita(Cita cita) {
-        initComponents();
+    private VistaAgenda padre;
+    public mostrarCita(Cita cita,VistaAgenda padre) {
+        this.padre=padre;
         this.cita=cita;
+        initComponents();
         this.setLocationRelativeTo(null);
         if(cita.getAsunto()!=null){
         this.setAsunto(cita.getAsunto());
@@ -29,8 +31,14 @@ public class mostrarCita extends javax.swing.JFrame {
         }
         if(cita.getDuracion()!=0){
         String duracion=cita.toString(cita.getDuracion());
-        this.setDuracion(duracion);
+        contDuracion.setText(duracion);
         }
+        if(cita.getHoraFecha()!=null){
+        String fecha= cita.toStringFecha();
+        contFecha.setText(fecha);
+        }
+        this.setVisible(true);
+        
     }
 
     /**
@@ -164,7 +172,8 @@ public class mostrarCita extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
-        // TODO add your handling code here:
+       padre.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
@@ -226,13 +235,6 @@ public class mostrarCita extends javax.swing.JFrame {
     public void activaAl(){
         //activacionAlarma.
     }
-    
-    public static void main(String args[]) {
-        Cita cita=new Cita("hola",2);
-       mostrarCita holi=new mostrarCita(cita);
-       holi.setVisible(true);
-    }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAtras;
