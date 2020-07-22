@@ -2,10 +2,10 @@ package modelo;
 
 import modelo.Alarma;
 import modelo.Alarma;
-
+import java.io.Serializable;
 import edl.ListaSE;
 
-public class ListaAlarma {
+public class ListaAlarma implements Serializable{
 
     private ListaSE<Alarma> alarmas;
 

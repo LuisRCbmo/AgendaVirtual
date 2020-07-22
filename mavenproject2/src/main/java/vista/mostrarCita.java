@@ -4,9 +4,13 @@
  * and open the template in the editor.
  */
 package vista;
+
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 import modelo.*;
 import java.util.*;
+
 /**
  *
  * @author Nath
@@ -18,27 +22,28 @@ public class mostrarCita extends javax.swing.JFrame {
      */
     public Cita cita;
     private VistaAgenda padre;
-    public mostrarCita(Cita cita,VistaAgenda padre) {
-        this.padre=padre;
-        this.cita=cita;
+
+    public mostrarCita(Cita cita, VistaAgenda padre) {
+        this.padre = padre;
+        this.cita = cita;
         initComponents();
         this.setLocationRelativeTo(null);
-        if(cita.getAsunto()!=null){
-        this.setAsunto(cita.getAsunto());
+        if (cita.getAsunto() != null) {
+            this.setAsunto(cita.getAsunto());
         }
-        if(cita.getNota()!=null){
-        this.setNota(cita.getNota());
+        if (cita.getNota() != null) {
+            this.setNota(cita.getNota());
         }
-        if(cita.getDuracion()!=0){
-        String duracion=cita.toString(cita.getDuracion());
-        contDuracion.setText(duracion);
+        if (cita.getDuracion() != 0) {
+            String duracion = cita.toString(cita.getDuracion());
+            contDuracion.setText(duracion);
         }
-        if(cita.getHoraFecha()!=null){
-        String fecha= cita.toStringFecha();
-        contFecha.setText(fecha);
+        if (cita.getHoraFecha() != null) {
+            String fecha = cita.toStringFecha();
+            contFecha.setText(fecha);
         }
         this.setVisible(true);
-        
+
     }
 
     /**
@@ -172,70 +177,73 @@ public class mostrarCita extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
-       padre.setVisible(true);
+        //padre.setVisible(true); //solo se vuelven invisibles las ventanas
         this.dispose();
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
-        editarCita edit=new editarCita(this,cita);
+        editarCita edit = new editarCita(this, cita);
         edit.setNota(cita.getNota());
         edit.setAsunto(cita.getAsunto());
-        //edit.setHora(""+cita.getHora().getHour()+"",""+cita.getHora().getMinute()+"");
         edit.setVisible(true);
+        mostrarCita padree = this;
+        edit.addWindowListener(new WindowAdapter() {
+            public void windowClosed(WindowEvent e) {
+                padree.setVisible(true);
+                //padre.actualizarCitas();
+            }
+        });
+        //this.setVisible(false);
+        //edit.setVisible(true);
+        //padre.setVisible(false);
         this.setVisible(false);
     }//GEN-LAST:event_botonEditarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        int res=JOptionPane.showConfirmDialog(null, "Esta seguro que quiere eliminar la cita?", "Eliminar cita", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-        if(res==0){
-        //eliminar cita
+        int res = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere eliminar la cita?", "Eliminar cita", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (res == 0) {
+            //eliminar cita
         }
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    
-    
-    public void setAsunto(String p){
-    contAsunto.setText(p);
-    cita.setAsunto(p);
-    }
-    
-    public void setNota(String p){
-    contNota.setText(p);
-    cita.setNota(p);
-    }
-    
-    public void setDuracion(String p){
-    contDuracion.setText(p);
-    int dur= Integer.parseInt(p);
-    cita.setDuracion(dur);
-    }
-    
-    public void setFecha(String d, String m, String a){
-    contFecha.setText(d+"/"+m+"/"+a);
-    }
-    public void setFecha(String p){
-    contFecha.setText(p);
-    }
-    public void setFecha(Date fecha){
-        cita.setFechaHora(fecha);
-      ///falta que se muestre en mostrar :vxd  
-        
-    }
-    public void setHora(String h, String m){
-    contHora.setText(h+":"+m);
-    }
-    
-    public void setHora(String p){
-    contHora.setText(p);
-    }
-    
-    public void activaAl(){
-        //activacionAlarma.
+    public void setAsunto(String p) {
+        contAsunto.setText(p);
+        cita.setAsunto(p);
     }
 
+    public void setNota(String p) {
+        contNota.setText(p);
+        cita.setNota(p);
+    }
+
+    public void setDuracion(String p) {
+        contDuracion.setText(p);
+        int dur = Integer.parseInt(p);
+        cita.setDuracion(dur);
+    }
+
+    public void setFecha(String d, String m, String a) {
+        contFecha.setText(d + "/" + m + "/" + a);
+    }
+
+    public void setFecha(String p) {
+        contFecha.setText(p);
+    }
+
+    public void setFecha(Date fecha) {
+        cita.setFechaHora(fecha);
+    }
+
+    public void setHora(String h, String m) {
+        contHora.setText(h + ":" + m);
+    }
+
+    public void setHora(String p) {
+        contHora.setText(p);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonEditar;
@@ -256,5 +264,4 @@ public class mostrarCita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
-
 }

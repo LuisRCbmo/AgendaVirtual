@@ -1,24 +1,25 @@
 package modelo;
+
 import modelo.*;
 import edl.*;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.Date;
+import java.io.Serializable;
 
 /**
  *
  * @author hp
  */
+public class AgendaVirtual implements Serializable {
 
-public class AgendaVirtual {
-    
     private Agenda agenda;
     private ListaSE<Contacto> listaContactos;
     private Date calendario;
     private ListaSE<Memo> listamemo;
-    
-    public AgendaVirtual(Agenda a) {
-        agenda = a;
+
+    public AgendaVirtual() {
+        agenda = new Agenda();
         listaContactos = new ListaSE();
         listamemo = new ListaSE();
     }
@@ -48,34 +49,13 @@ public class AgendaVirtual {
         return listamemo.eliminar(posicion);
     }
 
-
-
-public  void guardarCitas(){
-        try{
+    public void guardarCitas() {
+        try {
             ObjectOutputStream escribir = new ObjectOutputStream(new FileOutputStream("Memosguardados"));
             escribir.writeObject(listamemo);
             escribir.close();
+        } catch (Exception eGLD) {
         }
-        catch(Exception eGLD){}
     }
 
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

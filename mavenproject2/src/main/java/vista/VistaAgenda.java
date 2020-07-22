@@ -1,15 +1,10 @@
 package vista;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Locale;
 import javax.swing.ListModel;
 import modelo.Cita;
-import javax.swing.DefaultListModel;   
-import javax.swing.JList;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import modelo.*;
 /**
  *
@@ -188,7 +183,7 @@ public class VistaAgenda extends javax.swing.JFrame {
                     int index = list.locationToIndex(evt.getPoint()); // retorna la posicion del elemento seleccionado
                     mostrarCita mostrar = new mostrarCita((Cita) agenda.getListaCitas().acceder(index), padre);
                     mostrar.setVisible(true);
-                    padre.addWindowListener(new WindowAdapter() {
+                    mostrar.addWindowListener(new WindowAdapter() {
                         public void windowClosed(WindowEvent e) {
                             padre.setVisible(true);
                             padre.actualizarCitas();

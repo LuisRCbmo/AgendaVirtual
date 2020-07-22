@@ -14,16 +14,20 @@ import modelo.Contacto;
  * @author Luis
  */
 public class ec extends javax.swing.JFrame {
+
     private ListaSE<Contacto> listaContactos;
     private int n;
+    private Contacto contacto;
+
     /**
      * Creates new form ec
      */
-    public ec(ListaSE<Contacto> listaContactos,int n) {
+    public ec(Contacto contacto) {
         initComponents();
+        this.contacto = contacto;
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.setSize(600,400);
+        this.setSize(600, 400);
     }
 
     /**
@@ -136,20 +140,18 @@ public class ec extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
-
-        Contacto c = new Contacto(nombretxt.getText(),apellidotxt.getText(),celulartxt.getText(),fijotxt.getText(),correotxt.getText(),direcciontxt.getText());
-        listaContactos.reemplazar(n, c);
+        contacto.setApellido(apellidotxt.getText());
+        contacto.setCelular(celulartxt.getText());
+        contacto.setCorreo(correotxt.getText());
+        contacto.setDireccion(direcciontxt.getText());
+        contacto.setFijo(fijotxt.getText());
+        contacto.setNombre(nombretxt.getText());
         this.dispose();
     }//GEN-LAST:event_GuardarActionPerformed
 
     private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
         this.dispose();
     }//GEN-LAST:event_regresarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Guardar;
     private javax.swing.JTextField apellidotxt;

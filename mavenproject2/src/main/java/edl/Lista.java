@@ -5,11 +5,13 @@
  */
 package edl;
 
+import java.io.Serializable;
+
 /**
  *
  * @author luis
  */
-public interface Lista<T>{
+public interface Lista<T extends Serializable> extends Serializable{
     public boolean vacia();
     public void insertar(T dato);
     public T eliminar(int pos);

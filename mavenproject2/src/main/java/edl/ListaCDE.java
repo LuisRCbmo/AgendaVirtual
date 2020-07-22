@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 package edl;
-
+import java.io.Serializable;
 /**
  *
  * @author luis
  */
-public class ListaCDE<T> implements Lista<T>{
+public class ListaCDE<T extends Serializable> implements Lista<T>{
     private NodoDE<T> ini, fin;
     public ListaCDE(){
         ini = null;

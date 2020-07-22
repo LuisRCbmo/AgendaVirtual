@@ -6,22 +6,25 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-public class Alarma{
-    private boolean activo,play;
+import java.io.Serializable;
+
+public class Alarma implements Serializable {
+
+    private boolean activo, play;
     private Calendar calendar;
     private Clip clip;
     private Date fechaActual;
-    private String [] sonds = {"TelefonoAntiguo.wav","TITITI.wav","Gallo.wav","AlarmaLoud.wav","AlarmaDeGuerra.wav","AlarmaDeCoche.wav"};
+    private String[] sonds = {"TelefonoAntiguo.wav", "TITITI.wav", "Gallo.wav", "AlarmaLoud.wav", "AlarmaDeGuerra.wav", "AlarmaDeCoche.wav"};
     private String asunto;
     private String cancion = "TelefonoAntiguo.wav"; //falta
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-    private Timer timer,timerPlay;
-    private TimerTask tarea,replay;
+    private Timer timer, timerPlay;
+    private TimerTask tarea, replay;
     private Notificacion alert;
-    
+
     public Alarma() {
         alert = new Notificacion();
-        Object [] botones = {"APAGAR","POSPONER"};
+        Object[] botones = {"APAGAR", "POSPONER"};
         calendar = Calendar.getInstance();
         fechaActual = new Date();
         activo = true;
@@ -31,67 +34,71 @@ public class Alarma{
         tarea = new TimerTask() {
             @Override
             public void run() {
-                if(activo){
-                    timerPlay.schedule(replay,0,establecerRepeticion());                   
-                    alert.NotificacionEscrita(asunto+" A las: "+dateAStringFormat(fechaActual),"/Iconos/Alarma.jpg" );
-                    int com = alert.notificacionBotones("¿Que hacer con la alarma?","ALARMA", botones,"/Iconos/Interrogacion.png");
-                    if(com == 0){
+                if (activo) {
+                    timerPlay.schedule(replay, 0, establecerRepeticion());
+                    alert.NotificacionEscrita(asunto + " A las: " + dateAStringFormat(fechaActual), "/Iconos/Alarma.jpg");
+                    int com = alert.notificacionBotones("¿Que hacer con la alarma?", "ALARMA", botones, "/Iconos/Interrogacion.png");
+                    if (com == 0) {
                         play = false;
                         clip.stop();
                         timer.cancel();
-                        
-                    }else{                                                         
+
+                    } else {
                         play = false;
                         clip.stop();
                         Posponer(fechaActual);
                         timer.cancel();
                     }
-                }else{
-                   timer.cancel(); 
+                } else {
+                    timer.cancel();
                 }
-                
+
             }
-        };       
+        };
         replay = new TimerTask() {
             @Override
             public void run() {
-                if(play){
+                if (play) {
                     reproducir();
-                }else{
+                } else {
                     replay.cancel();
                 }
-                
+
             }
         };
     }
-    private long establecerRepeticion(){
+
+    private long establecerRepeticion() {
         long res = 0;
-        if(cancion.equals(sonds[0])){
+        if (cancion.equals(sonds[0])) {
             res = 5000;
-        }else if(cancion.equals(sonds[1])){
+        } else if (cancion.equals(sonds[1])) {
             res = 45000;
-        }else if(cancion.equals(sonds[2])){
+        } else if (cancion.equals(sonds[2])) {
             res = 3000;
-        }else if(cancion.equals(sonds[3])|| cancion.equals(sonds[5])){
+        } else if (cancion.equals(sonds[3]) || cancion.equals(sonds[5])) {
             res = 29000;
-        }else if(cancion.equals(sonds[4])){
+        } else if (cancion.equals(sonds[4])) {
             res = 99000;
         }
         return res;
     }
-    public void setCancion(String cancion){
+
+    public void setCancion(String cancion) {
         this.cancion = cancion;
-    } 
-    private void reproducir(){
-        try{
+    }
+
+    private void reproducir() {
+        try {
             clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(getClass().getResource("/audios/"+cancion)));
+            clip.open(AudioSystem.getAudioInputStream(getClass().getResource("/audios/" + cancion)));
             clip.start();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("ERROR");
         }
-    } 
-    private void Posponer(Date t){
+    }
+
+    private void Posponer(Date t) {
         calendar.setTime(t);
         calendar.add(Calendar.MINUTE, 10);
         fechaActual = calendar.getTime();
@@ -99,17 +106,19 @@ public class Alarma{
         am.setCancion(cancion);
         am.ProgramarAlarma(calendar.getTime(), asunto);
     }
-    public boolean getActivo(){
+
+    public boolean getActivo() {
         return activo;
     }
-    
-    public void desactivar(){
+
+    public void desactivar() {
         activo = false;
     }
-    public void activar(){
+
+    public void activar() {
         activo = true;
     }
-    
+
     public Date getFechaActual() {
         return fechaActual;
     }
@@ -117,20 +126,22 @@ public class Alarma{
     public void ProgramarAlarma(Date t, String asunto) {
         this.asunto = asunto;
         Date aux = new Date();
-        if(t.getTime()<aux.getTime()){
+        if (t.getTime() < aux.getTime()) {
             calendar.setTime(t);
-            calendar.add(Calendar.DATE,1);
+            calendar.add(Calendar.DATE, 1);
             fechaActual = calendar.getTime();
-            timer.schedule(tarea,calendar.getTime());
-        }else{
+            timer.schedule(tarea, calendar.getTime());
+        } else {
             fechaActual = t;
             timer.schedule(tarea, t);
         }
-    }      
+    }
+
     private String dateAStringFormat(Date t) {
         SimpleDateFormat sdff = new SimpleDateFormat("HH:mm");
         return sdff.format(t);
     }
+
     public String dateAString(Date t) {
         return sdf.format(t);
     }
@@ -143,7 +154,8 @@ public class Alarma{
             System.out.println("error en la conversion");
         }
         return fecha;
-    }   
+    }
+
     public boolean equals(Object o) {
         Alarma am = (Alarma) o;
         return fechaActual.getTime() == am.getFechaActual().getTime();

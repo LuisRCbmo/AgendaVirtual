@@ -19,6 +19,7 @@ public class VentanaVerContacto extends javax.swing.JFrame {
         this.n = n;
         this.listaContactos = listaContactos;
         this.contacto = this.listaContactos.acceder(n);
+        //this.contacto = contacto;
         txtnombre.setText(contacto.getNombre());
         txtapellido.setText(contacto.getApellido());
         txtfijo.setText(contacto.getFijo());
@@ -171,7 +172,7 @@ public class VentanaVerContacto extends javax.swing.JFrame {
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
-        ec ec = new ec(listaContactos,n);
+        ec ec = new ec(contacto);
         ec.setVisible(true);
         VentanaVerContacto padre = this;
         ec.addWindowListener(new WindowAdapter() {
@@ -180,7 +181,6 @@ public class VentanaVerContacto extends javax.swing.JFrame {
                 }
             });
         this.setVisible(false);
-
     }//GEN-LAST:event_editarActionPerformed
     /**
      * @param args the command line arguments

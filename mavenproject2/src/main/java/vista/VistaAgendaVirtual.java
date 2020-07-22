@@ -1,31 +1,31 @@
 package vista;
+
+import controlador.SerializarProyecto;
 import edl.ListaSE;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.SimpleDateFormat;
 import modelo.*;
 import java.util.*;
 import javax.swing.JOptionPane;
 import java.util.Calendar;
 import javax.swing.DefaultListModel;
+
 /**
  *
  * @author hp
  */
 public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
+
     //Atributos contenedores
     private AgendaVirtual agendaVirtual;
-    private Cita cita;
     //otros atributos
     private Calendar calendario;
-    private String hora,minuto,segundo,ampm;
+    private String hora, minuto, segundo, ampm;
     private Thread h1;
-    //DefaultListModel modeloLista ;
-    public VistaAgendaVirtual(AgendaVirtual agendaVirtual){
+
+    public VistaAgendaVirtual(AgendaVirtual agendaVirtual) {
         initComponents();
-           
-        //modeloLista = new DefaultListModel();
-        //Lista.setModel(modeloLista);
-        
         this.agendaVirtual = agendaVirtual;
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -33,6 +33,7 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         h1.start();
         actualizarCitas();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -139,19 +140,19 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-    vcs vcs = new vcs(agendaVirtual.getContactos());
-    vcs.setVisible(true);
-    VistaAgendaVirtual padre = this;
-    vcs.addWindowListener(new WindowAdapter() {
+        vcs vcs = new vcs(agendaVirtual.getContactos());
+        vcs.setVisible(true);
+        VistaAgendaVirtual padre = this;
+        vcs.addWindowListener(new WindowAdapter() {
             public void windowClosed(WindowEvent e) {
                 padre.setVisible(true);
             }
         });
-    this.dispose();        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        VistaAgenda va = new VistaAgenda(agendaVirtual.getAgenda());
+        VistaAgenda va  = new VistaAgenda(agendaVirtual.getAgenda());
         va.setVisible(true);
         VistaAgendaVirtual padre = this;
         va.addWindowListener(new WindowAdapter() {
@@ -175,83 +176,58 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.out.println("guardando!!!");
+        SerializarProyecto serialProyecto = new SerializarProyecto();
+        serialProyecto.guardarProyecto(agendaVirtual);
         System.exit(0); //Cierra todo el proceso desde el boton "Salir"
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         actualizarCitas();
-        /*
-        if(calendar.getDatoFecha() == null){
-            //modeloLista.addElement("Seleccione una fecha");
-            actualizarCitas();
-        }
-        */
-        /*
-        } else{
-         Date fechaactual=calendar.getDatoFecha();
-       if(fechaactual.equals(cita.getHoraFecha())){
-        
-           
-        modeloLista.addElement("la"+cita.getAsunto());
-        modeloLista.addElement("Cita"+cita.getNota());
-        
-        
-       }
-        else{
-        
-        
-        modeloLista.addElement("no hay citas");
-        
-        
-        }
-        */
-        
-        
-        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaAgendaVirtual.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaAgendaVirtual.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaAgendaVirtual.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaAgendaVirtual.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run(){
-                Agenda agenda = new Agenda();
-                Contactos contactos = new Contactos();
-                AgendaVirtual agendaVirtual = new AgendaVirtual(agenda);
-                new VistaAgendaVirtual(agendaVirtual).setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(VistaAgendaVirtual.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(VistaAgendaVirtual.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(VistaAgendaVirtual.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(VistaAgendaVirtual.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                //Agenda agenda = new Agenda();
+//                AgendaVirtual agendaVirtual = new AgendaVirtual();
+//                new VistaAgendaVirtual(agendaVirtual).setVisible(true);
+//            }
+//        });
+//    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList Lista;
     private rojeru_san.componentes.RSCalendar calendar;
-    private javax.swing.JButton jButton1;
+    public javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu16;
@@ -266,12 +242,13 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
     @Override
     public void run() {
         Thread ct = Thread.currentThread();
-        while(ct==h1){
+        while (ct == h1) {
             calcula();
-            jlbReloj.setText(hora+":"+minuto+":"+segundo+" "+ampm);
-            try{
+            jlbReloj.setText(hora + ":" + minuto + ":" + segundo + " " + ampm);
+            try {
                 Thread.sleep(1000);
-            }catch(InterruptedException e){}
+            } catch (InterruptedException e) {
+            }
         }
     }
 
@@ -279,35 +256,53 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         calendario = new GregorianCalendar();
         Date fechaHoraActual = new Date();
         calendario.setTime(fechaHoraActual);
-        ampm = calendario.get(Calendar.AM_PM)==Calendar.AM? "AM":"PM";
-        if(ampm.equals("PM")){
+        ampm = calendario.get(Calendar.AM_PM) == Calendar.AM ? "AM" : "PM";
+        if (ampm.equals("PM")) {
             int h = calendario.get(Calendar.HOUR_OF_DAY);//-12
-            hora = h>9?""+h:"0"+h;
-        }else{
-            hora = calendario.get(Calendar.HOUR_OF_DAY)>9?""+calendario.get(Calendar.HOUR_OF_DAY):"0"+calendario.get(Calendar.HOUR_OF_DAY);
+            hora = h > 9 ? "" + h : "0" + h;
+        } else {
+            hora = calendario.get(Calendar.HOUR_OF_DAY) > 9 ? "" + calendario.get(Calendar.HOUR_OF_DAY) : "0" + calendario.get(Calendar.HOUR_OF_DAY);
         }
-        minuto = calendario.get(Calendar.MINUTE)>9?""+calendario.get(Calendar.MINUTE):"0"+calendario.get(Calendar.MINUTE);
-        segundo = calendario.get(Calendar.SECOND)>9?""+calendario.get(Calendar.SECOND):"0"+calendario.get(Calendar.SECOND);
+        minuto = calendario.get(Calendar.MINUTE) > 9 ? "" + calendario.get(Calendar.MINUTE) : "0" + calendario.get(Calendar.MINUTE);
+        segundo = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND) : "0" + calendario.get(Calendar.SECOND);
     }
-    
-    private ListaSE<Cita> citasDia(ListaSE citas){
+
+    private ListaSE<Cita> citasDia(ListaSE<Cita> citas) {
         ListaSE<Cita> citasDelDia = new ListaSE();
-        for(int i = 0 ; i < citas.tamanio(); i++ ){
-            Cita citaActual = (Cita)citas.acceder(i);
-            if(calendar.getDatoFecha().equals(citaActual.getHoraFecha())){
-                citasDelDia.insertar(citaActual);
+        Date hoy = new Date();
+        for (int i = 0; i < citas.tamanio(); i++) {
+            Cita citaActual = citas.acceder(i);
+            //System.out.println(hoy+ "date");
+            //System.out.println(citaActual.getHoraFecha());
+            //if (calendar.getDatoFecha().equals(citaActual.getHoraFecha())) {
+            try {
+                if(calendar.getDatoFecha().equals(citaActual.getHoraFecha())){
+                    citasDelDia.insertar(citaActual);
+                }
+            } catch (NullPointerException e) {
+                if (hoy.getDay() == citaActual.getHoraFecha().getDay() && hoy.getMonth() == citaActual.getHoraFecha().getMonth() && hoy.getYear() == citaActual.getHoraFecha().getYear()) {
+                    citasDelDia.insertar(citaActual);
+                }
+
             }
+            //if (hoy.getDay() == citaActual.getHoraFecha().getDay() && hoy.getMonth() == citaActual.getHoraFecha().getMonth() && hoy.getYear() == citaActual.getHoraFecha().getYear()) {
+            //   citasDelDia.insertar(citaActual);
+            //}
+            //if(hoy.equals(citaActual.getHoraFecha())){
+            //    citasDelDia.insertar(citaActual);
+            //}
         }
         return citasDelDia;
     }
-    private void actualizarCitas(){
+
+    private void actualizarCitas() {
         ListaSE<Cita> citas = citasDia(agendaVirtual.getAgenda().getListaCitas());
         DefaultListModel modeloLista = new DefaultListModel();
-        for(int i = 0; i < citas.tamanio(); i++){
-            Cita nueva = (Cita)citas.acceder(i);
+        for (int i = 0; i < citas.tamanio(); i++) {
+            Cita nueva = (Cita) citas.acceder(i);
             modeloLista.addElement(nueva);
         }
-        Lista.setModel(modeloLista);//le hace set
-        Lista.updateUI();//sube la lista al jList
+        Lista.setModel(modeloLista);
+        Lista.updateUI();
     }
 }

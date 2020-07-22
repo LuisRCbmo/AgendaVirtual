@@ -5,11 +5,12 @@
  */
 package edl;
 
+import java.io.Serializable;
 /**
  *
  * @author luis
  */
-public class ListaDE<T> implements Lista<T>{
+public class ListaDE<T extends Serializable> implements Lista<T>{
     private NodoDE<T> ini;
     public ListaDE(){
         ini = null;

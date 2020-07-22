@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 package edl;
-
+import java.io.Serializable;
 /**
  *
  * @author luis
  */
-public class ColaPrioridad<T extends Comparable<T>>{
+public class ColaPrioridad<T extends Comparable<T>> implements Serializable{
     private NodoSE<T> frente;
     private NodoSE<T> fin;
     public ColaPrioridad(){

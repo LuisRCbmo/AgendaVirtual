@@ -4,14 +4,14 @@
  * and open the template in the editor.
  */
 package vista;
+
 import modelo.*;
-
-
 import javax.swing.JOptionPane;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import javax.swing.*;
 import java.awt.Dimension;
+
 /**
  *
  * @author Nath
@@ -23,16 +23,17 @@ public class editarCita extends javax.swing.JFrame {
      * Creates new form editarCita
      */
     private mostrarCita mostrar;
-    private String[]meses={"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
+    private String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};//borrar
     private Cita cita;
+
     public editarCita(mostrarCita mostrar, Cita cita) {
-        this.cita=cita;
-        this.mostrar=mostrar;
+        this.cita = cita;
+        this.mostrar = mostrar;
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        this.setPreferredSize(new Dimension(600,400));
-        
+        this.setPreferredSize(new Dimension(600, 400));
+
     }
 
     /**
@@ -197,18 +198,20 @@ public class editarCita extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
-        mostrar.setVisible(true);
-        this.setVisible(false);
+        //mostrar.setVisible(true); //solo se vuelve invisible e invisible las ventanas
+        //this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-    int res=JOptionPane.showConfirmDialog(null, "Esta seguro que quiere descartar los cambios?", "Descartar cambios", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-        if(res==0){
-            mostrar.setVisible(true);
-            this.setVisible(false);
-        }      
+        int res = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere descartar los cambios?", "Descartar cambios", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (res == 0) {
+            //mostrar.setVisible(true);
+            //this.setVisible(false);
+            this.dispose();
+        }
     }//GEN-LAST:event_botonCancelarActionPerformed
- 
+
     private void contHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contHoraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_contHoraActionPerformed
@@ -216,11 +219,12 @@ public class editarCita extends javax.swing.JFrame {
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
         mostrar.setAsunto(contAsunto.getText());
         mostrar.setNota(contNota.getText());
-        mostrar.setDuracion((String)contDuracion.getSelectedItem());
-        mostrar.setHora((String)contHora.getSelectedItem(),(String)contMinuto.getSelectedItem());
+        mostrar.setDuracion((String) contDuracion.getSelectedItem());
+        mostrar.setHora((String) contHora.getSelectedItem(), (String) contMinuto.getSelectedItem());
         mostrar.setFecha(rSDateChooser1.getDatoFecha());
-        mostrar.setVisible(true);
-        this.setVisible(false);
+        //mostrar.setVisible(true);
+        //this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void contMinutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contMinutoActionPerformed
@@ -230,20 +234,20 @@ public class editarCita extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public void setHora(String h, String m){
-    contHora.setSelectedItem(h);
-    contMinuto.setSelectedItem(m);
-    
+    public void setHora(String h, String m) {
+        contHora.setSelectedItem(h);
+        contMinuto.setSelectedItem(m);
+
     }
-    
-    public void setAsunto(String p){
-    contAsunto.setText(p);
+
+    public void setAsunto(String p) {
+        contAsunto.setText(p);
     }
-    
-    public void setNota(String p){
-    contNota.setText(p);
+
+    public void setNota(String p) {
+        contNota.setText(p);
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> amPm;
     private javax.swing.JButton botonAtras;

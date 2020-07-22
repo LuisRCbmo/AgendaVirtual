@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 package edl;
+import java.io.Serializable;
+import modelo.Contacto;
 
 /**
  *
  * @author luis
  */
-public class ListaSE<T> implements Lista<T>{
+public class ListaSE<T extends Serializable> implements Lista<T>{
     private NodoSE<T> ini;
     public ListaSE(){
         ini = null;
