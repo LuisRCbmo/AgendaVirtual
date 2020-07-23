@@ -190,7 +190,6 @@ public class VistaAgenda extends javax.swing.JFrame {
                         }
                     });
                     padre.setVisible(false);
-                    //System.out.println("Apretaste dos veces en la posicion: "+ index); (prueba de accion de mouseListener)
                 }
             }
         });

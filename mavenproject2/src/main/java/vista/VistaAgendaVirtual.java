@@ -180,7 +180,6 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         SerializarProyecto serialProyecto = new SerializarProyecto();
         serialProyecto.guardarProyecto(agendaVirtual);
         System.exit(0); //Cierra todo el proceso desde el boton "Salir"
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -272,25 +271,20 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         Date hoy = new Date();
         for (int i = 0; i < citas.tamanio(); i++) {
             Cita citaActual = citas.acceder(i);
-            //System.out.println(hoy+ "date");
-            //System.out.println(citaActual.getHoraFecha());
-            //if (calendar.getDatoFecha().equals(citaActual.getHoraFecha())) {
+            /**
+             * Compara la fecha marcada en el calendario visual, y si hay citas en esa fecha, las guarda y las muestra.
+             * El objeto calendario(RSCalendar) no podia retornar la fecha actual del sistema, por lo tanto, se aplicó una Excepcion 
+             * que al ingresar, agrega las citas de la fecha actual del sistema y las muestra. 
+             */
             try {
-                if(calendar.getDatoFecha().equals(citaActual.getHoraFecha())){
+                if (calendar.getDatoFecha().equals(citaActual.getHoraFecha())) {
                     citasDelDia.insertar(citaActual);
                 }
             } catch (NullPointerException e) {
                 if (hoy.getDay() == citaActual.getHoraFecha().getDay() && hoy.getMonth() == citaActual.getHoraFecha().getMonth() && hoy.getYear() == citaActual.getHoraFecha().getYear()) {
                     citasDelDia.insertar(citaActual);
                 }
-
             }
-            //if (hoy.getDay() == citaActual.getHoraFecha().getDay() && hoy.getMonth() == citaActual.getHoraFecha().getMonth() && hoy.getYear() == citaActual.getHoraFecha().getYear()) {
-            //   citasDelDia.insertar(citaActual);
-            //}
-            //if(hoy.equals(citaActual.getHoraFecha())){
-            //    citasDelDia.insertar(citaActual);
-            //}
         }
         return citasDelDia;
     }

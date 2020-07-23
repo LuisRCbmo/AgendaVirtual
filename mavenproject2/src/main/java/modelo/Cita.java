@@ -33,11 +33,11 @@ public class Cita implements Serializable {
         return duracion;
     }
 
-    public void setFechaHora(Date fecha) {//puede ser solamente fecha y se puede crear uno aparte para hora.
+    public void setFechaHora(Date fecha) {
         fechaHora = fecha;
     }
 
-    public Date getHoraFecha() {//lo mismo del de arriba
+    public Date getHoraFecha() {
         return fechaHora;
     }
 
@@ -66,7 +66,7 @@ public class Cita implements Serializable {
         return "Asunto: " + asunto + " fecha: " + fechita + " Duracion: " + duracion + "";
     }
 
-    public String toString(int numero) { //Esto que hace? o donde lo usas xd
+    public String toString(int numero) {
         return "" + numero + "";
     }
 
