@@ -38,8 +38,6 @@ public class VentanaVerContacto extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -54,6 +52,8 @@ public class VentanaVerContacto extends javax.swing.JFrame {
         txtcelular = new javax.swing.JLabel();
         editar = new javax.swing.JButton();
         Eliminar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,26 +62,14 @@ public class VentanaVerContacto extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(149, 173, 177));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("<");
-        jButton1.setBorderPainted(false);
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
+        jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 2, 2, new java.awt.Color(255, 255, 255)));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
-
-        jPanel1.setBackground(new java.awt.Color(80, 83, 98));
-        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new java.awt.BorderLayout());
-
-        jLabel14.setBackground(new java.awt.Color(0, 153, 153));
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("CONTACTOS");
-        jPanel1.add(jLabel14, java.awt.BorderLayout.CENTER);
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 550, 50));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setText("Nombre:");
@@ -131,11 +119,10 @@ public class VentanaVerContacto extends javax.swing.JFrame {
         txtcelular.setText("\"celular\"");
         getContentPane().add(txtcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 150, -1));
 
-        editar.setBackground(new java.awt.Color(172, 96, 100));
-        editar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        editar.setForeground(new java.awt.Color(255, 255, 255));
+        editar.setBackground(new java.awt.Color(255, 255, 255));
+        editar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         editar.setText("Editar");
-        editar.setBorderPainted(false);
+        editar.setBorder(null);
         editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editarActionPerformed(evt);
@@ -143,17 +130,26 @@ public class VentanaVerContacto extends javax.swing.JFrame {
         });
         getContentPane().add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 150, 50));
 
-        Eliminar.setBackground(new java.awt.Color(172, 96, 100));
-        Eliminar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        Eliminar.setForeground(new java.awt.Color(255, 255, 255));
+        Eliminar.setBackground(new java.awt.Color(255, 255, 255));
+        Eliminar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         Eliminar.setText("Eliminar");
-        Eliminar.setBorderPainted(false);
+        Eliminar.setBorder(null);
         Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EliminarActionPerformed(evt);
             }
         });
         getContentPane().add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 150, 50));
+
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("CONTACTOS");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 330, 30));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/panel.png"))); // NOI18N
+        jLabel7.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(255, 255, 255)));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 560, 50));
+        jLabel7.getAccessibleContext().setAccessibleDescription("");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -223,13 +219,13 @@ public class VentanaVerContacto extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel txtapellido;
     private javax.swing.JLabel txtcelular;
     private javax.swing.JLabel txtcorreo;

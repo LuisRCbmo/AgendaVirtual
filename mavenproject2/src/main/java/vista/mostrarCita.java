@@ -10,6 +10,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 import modelo.*;
 import java.util.*;
+import Notificaciones.Notificacion;
 
 /**
  *
@@ -22,6 +23,7 @@ public class mostrarCita extends javax.swing.JFrame {
      */
     public Cita cita;
     private VistaAgenda padre;
+    private Notificacion notificacion;
 
     public mostrarCita(Cita cita, VistaAgenda padre) {
         this.padre = padre;
@@ -43,7 +45,7 @@ public class mostrarCita extends javax.swing.JFrame {
             contFecha.setText(fecha);
         }
         this.setVisible(true);
-
+        notificacion = new Notificacion();
     }
 
     /**
@@ -55,8 +57,6 @@ public class mostrarCita extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -72,23 +72,12 @@ public class mostrarCita extends javax.swing.JFrame {
         contNota = new javax.swing.JLabel();
         contDuracion = new javax.swing.JLabel();
         botonEliminar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel1.setBackground(new java.awt.Color(80, 83, 98));
-        jPanel1.setPreferredSize(new java.awt.Dimension(460, 22));
-        jPanel1.setLayout(new java.awt.BorderLayout());
-
-        jLabel8.setBackground(new java.awt.Color(80, 83, 98));
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("AGENDA");
-        jPanel1.add(jLabel8, java.awt.BorderLayout.CENTER);
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 0, 550, 50));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setText("Activar alarma:");
@@ -118,10 +107,10 @@ public class mostrarCita extends javax.swing.JFrame {
         jLabel7.setText("Nota:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
 
-        botonEditar.setBackground(new java.awt.Color(172, 96, 100));
-        botonEditar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        botonEditar.setForeground(new java.awt.Color(255, 255, 255));
+        botonEditar.setBackground(new java.awt.Color(255, 255, 255));
+        botonEditar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         botonEditar.setText("Editar");
+        botonEditar.setBorder(null);
         botonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEditarActionPerformed(evt);
@@ -139,7 +128,8 @@ public class mostrarCita extends javax.swing.JFrame {
         botonAtras.setBackground(new java.awt.Color(149, 173, 177));
         botonAtras.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         botonAtras.setForeground(new java.awt.Color(255, 255, 255));
-        botonAtras.setText("<");
+        botonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
+        botonAtras.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 2, 2, new java.awt.Color(255, 255, 255)));
         botonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAtrasActionPerformed(evt);
@@ -158,16 +148,25 @@ public class mostrarCita extends javax.swing.JFrame {
         contDuracion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         getContentPane().add(contDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 30, 30));
 
-        botonEliminar.setBackground(new java.awt.Color(172, 96, 100));
-        botonEliminar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        botonEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        botonEliminar.setBackground(new java.awt.Color(255, 255, 255));
+        botonEliminar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         botonEliminar.setText("Eliminar");
+        botonEliminar.setBorder(null);
         botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEliminarActionPerformed(evt);
             }
         });
         getContentPane().add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, 150, 50));
+
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("AGENDA");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 280, 30));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/panel.png"))); // NOI18N
+        jLabel9.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(255, 255, 255)));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 560, 50));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
         jLabel10.setText("jLabel10");
@@ -200,7 +199,9 @@ public class mostrarCita extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEditarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        int res = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere eliminar la cita?", "Eliminar cita", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        Object [] botones = {"  SI  ","  NO  "};
+        int res = notificacion.notificacionBotones("¿ Esta seguro que quiere eliminar la cita ?","Eliminar cita", botones,"/Iconos/Negacion.png");
+        //int res = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere eliminar la cita?", "Eliminar cita", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         if (res == 0) {
             //eliminar cita
         }
@@ -262,6 +263,6 @@ public class mostrarCita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 }

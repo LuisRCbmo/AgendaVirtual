@@ -6,19 +6,22 @@
 package vista;
 import edl.*;
 import modelo.*;
-import java.util.*;
-import javax.swing.JOptionPane;
+//import java.util.*;
+//import javax.swing.JOptionPane;
+import Notificaciones.Notificacion;
 /**
  *
  * @author Luis
  */
 public class VentanaContacto extends javax.swing.JFrame{
     private ListaSE listaContactos;
+    private Notificacion notificacion;
     public VentanaContacto(ListaSE listaContactos) {
         initComponents();
         this.listaContactos = listaContactos;
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        notificacion = new Notificacion();
     }
 
     /**
@@ -32,8 +35,6 @@ public class VentanaContacto extends javax.swing.JFrame{
 
         jButton1 = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -46,6 +47,8 @@ public class VentanaContacto extends javax.swing.JFrame{
         txtcorreo = new javax.swing.JTextField();
         txtdireccion = new javax.swing.JTextField();
         txtcelular = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,9 +58,9 @@ public class VentanaContacto extends javax.swing.JFrame{
         jButton1.setBackground(new java.awt.Color(149, 173, 177));
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("<");
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.setBorderPainted(false);
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
+        jButton1.setActionCommand("");
+        jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 2, 2, new java.awt.Color(255, 255, 255)));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -65,27 +68,16 @@ public class VentanaContacto extends javax.swing.JFrame{
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
 
-        guardar.setBackground(new java.awt.Color(172, 96, 100));
-        guardar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        guardar.setForeground(new java.awt.Color(255, 255, 255));
+        guardar.setBackground(new java.awt.Color(255, 255, 255));
+        guardar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         guardar.setText("Guardar");
+        guardar.setBorder(null);
         guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarActionPerformed(evt);
             }
         });
         getContentPane().add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 150, 50));
-
-        jPanel1.setBackground(new java.awt.Color(80, 83, 98));
-        jPanel1.setLayout(new java.awt.BorderLayout());
-
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("CONTACTOS");
-        jPanel1.add(jLabel2, java.awt.BorderLayout.CENTER);
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 0, 550, 50));
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setText("Nombre:");
@@ -109,7 +101,7 @@ public class VentanaContacto extends javax.swing.JFrame{
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel8.setText("Celular:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, -1, 20));
 
         txtnombre.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtnombre.setToolTipText("");
@@ -140,6 +132,15 @@ public class VentanaContacto extends javax.swing.JFrame{
         txtcelular.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         getContentPane().add(txtcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 120, -1));
 
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("CONTACTOS");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 360, 30));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/panel.png"))); // NOI18N
+        jLabel9.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(255, 255, 255)));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 560, 50));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
 
@@ -151,13 +152,20 @@ public class VentanaContacto extends javax.swing.JFrame{
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-    int dialogButton = JOptionPane.YES_NO_OPTION;
-    if (JOptionPane.showConfirmDialog(null, "¿Agregar contacto?", "WARNING",
+    //int dialogButton = JOptionPane.YES_NO_OPTION;
+    /*if (JOptionPane.showConfirmDialog(null, "¿Agregar contacto?", "WARNING",
         JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 Contacto c = new Contacto(txtnombre.getText(),txtapellido.getText(),txtcelular.getText(),txtfijo.getText(),txtcorreo.getText(),txtdireccion.getText());
                 listaContactos.insertar(c);
                 this.dispose();
     } else {
+    }*/
+    Object [] botones = {"  SI  ","  NO  "};
+    int res  = notificacion.notificacionBotones("¿ Agregar contacto ?", "Contacto", botones,"/Iconos/Interrogacion.png");
+    if (res == 0) {
+                Contacto c = new Contacto(txtnombre.getText(),txtapellido.getText(),txtcelular.getText(),txtfijo.getText(),txtcorreo.getText(),txtdireccion.getText());
+                listaContactos.insertar(c);
+                this.dispose();
     }
     }//GEN-LAST:event_guardarActionPerformed
 
@@ -180,7 +188,7 @@ public class VentanaContacto extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField txtapellido;
     private javax.swing.JTextField txtcelular;
     private javax.swing.JTextField txtcorreo;

@@ -6,7 +6,7 @@
 package vista;
 
 import edl.ListaSE;
-import javax.swing.JOptionPane;
+//import javax.swing.JOptionPane;
 import modelo.Contacto;
 
 /**
@@ -53,7 +53,8 @@ public class ec extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         celulartxt = new javax.swing.JTextField();
         regresar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -95,11 +96,10 @@ public class ec extends javax.swing.JFrame {
         direcciontxt.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         getContentPane().add(direcciontxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 320, -1));
 
-        Guardar.setBackground(new java.awt.Color(172, 96, 100));
-        Guardar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        Guardar.setForeground(new java.awt.Color(255, 255, 255));
+        Guardar.setBackground(new java.awt.Color(255, 255, 255));
+        Guardar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         Guardar.setText("Guardar");
-        Guardar.setBorderPainted(false);
+        Guardar.setBorder(null);
         Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GuardarActionPerformed(evt);
@@ -109,7 +109,7 @@ public class ec extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel6.setText("Celular:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, 20));
 
         celulartxt.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         getContentPane().add(celulartxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 130, -1));
@@ -117,7 +117,8 @@ public class ec extends javax.swing.JFrame {
         regresar.setBackground(new java.awt.Color(149, 173, 177));
         regresar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         regresar.setForeground(new java.awt.Color(255, 255, 255));
-        regresar.setText("<");
+        regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
+        regresar.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 2, 2, new java.awt.Color(255, 255, 255)));
         regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regresarActionPerformed(evt);
@@ -125,16 +126,17 @@ public class ec extends javax.swing.JFrame {
         });
         getContentPane().add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
 
-        jPanel1.setBackground(new java.awt.Color(80, 83, 98));
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("EDITAR CONTACTO");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 360, 30));
 
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Editar Contacto");
-        jPanel1.add(jLabel7, java.awt.BorderLayout.CENTER);
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/panel.png"))); // NOI18N
+        jLabel8.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(255, 255, 255)));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 560, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 550, 50));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -166,7 +168,8 @@ public class ec extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField nombretxt;
     private javax.swing.JButton regresar;
     // End of variables declaration//GEN-END:variables

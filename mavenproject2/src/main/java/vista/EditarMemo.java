@@ -1,19 +1,22 @@
 package vista;
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
+//import javax.swing.JDialog;
+//import javax.swing.JOptionPane;
 import modelo.Memo;
+import Notificaciones.Notificacion;
 /**
  *
  * @author Sergio Garcia
  */
 public class EditarMemo extends javax.swing.JFrame {
     private Memo memo;
+    private Notificacion notificacion;
     public EditarMemo(Memo memo) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.memo = memo;
         txtAsunto.setText(memo.getAsunto());
         txtAreaNota.setText(memo.getNota());
+        notificacion = new Notificacion();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -22,104 +25,86 @@ public class EditarMemo extends javax.swing.JFrame {
         editButton = new javax.swing.JButton();
         nota = new javax.swing.JLabel();
         txtAsunto = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaNota = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(600, 400));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        editButton.setBackground(new java.awt.Color(172, 96, 100));
+        editButton.setBackground(new java.awt.Color(255, 255, 255));
         editButton.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        editButton.setForeground(new java.awt.Color(255, 255, 255));
         editButton.setText("Guardar");
+        editButton.setBorder(null);
         editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(editButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 150, 50));
 
         nota.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         nota.setText("Nota");
-
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Editar Memo");
+        getContentPane().add(nota, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 57, 26));
+        getContentPane().add(txtAsunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 340, 28));
 
         backButton.setBackground(new java.awt.Color(149, 173, 177));
         backButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        backButton.setText("<");
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
+        backButton.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 2, 2, new java.awt.Color(255, 255, 255)));
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("EDITAR MEMO");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 310, 30));
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/panel.png"))); // NOI18N
+        jLabel1.setText("Editar Memo");
+        jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(255, 255, 255)));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 560, 50));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setText("Asunto");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, -1));
 
         txtAreaNota.setColumns(20);
         txtAreaNota.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtAreaNota.setRows(5);
         jScrollPane1.setViewportView(txtAreaNota);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(nota, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
-                    .addComponent(txtAsunto))
-                .addGap(102, 102, 102))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(218, 218, 218)
-                .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtAsunto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nota, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 340, 134));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        int res=JOptionPane.showConfirmDialog(null, "¿Esta seguro que quiere editar el memo?", "Editar memo", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        Object [] botones = {"  SI  ","  NO  "};
+        //int res=JOptionPane.showConfirmDialog(null, "¿Esta seguro que quiere editar el memo?", "Editar memo", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        int res = notificacion.notificacionBotones("¿ Esta seguro que quiere editar el memo ?", "Editar Memo", botones,"/Iconos/Advertencia.png");
         if(res==0){
             memo.setAsunto(txtAsunto.getText());
             memo.setNota(txtAreaNota.getText());
             this.dispose();
-            JOptionPane.showMessageDialog(null,"¡Se editó el memo exitosamente!");
+            //JOptionPane.showMessageDialog(null,"¡Se editó el memo exitosamente!");
+            notificacion.NotificacionEscrita("EDITADO","¡ Se editó el memo exitosamente !","/Iconos/Aprobacion.png");
         }
     }//GEN-LAST:event_editButtonActionPerformed
 
@@ -132,6 +117,8 @@ public class EditarMemo extends javax.swing.JFrame {
     private javax.swing.JButton editButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nota;
     private javax.swing.JTextArea txtAreaNota;

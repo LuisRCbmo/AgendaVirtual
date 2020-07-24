@@ -13,7 +13,8 @@ import edl.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
+//import javax.swing.JOptionPane;
+import Notificaciones.Notificacion;
 
 /**
  *
@@ -22,7 +23,7 @@ import javax.swing.JOptionPane;
 public class VerMemos extends javax.swing.JFrame {
 
     private ListaSE listaMemo;
-
+    private Notificacion notificacion;
     /**
      * Creates new form VerMemos
      */
@@ -34,6 +35,7 @@ public class VerMemos extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         addMemos();
         mouseListener();
+        notificacion = new Notificacion();
     }
 
     /**
@@ -50,8 +52,8 @@ public class VerMemos extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,7 +63,9 @@ public class VerMemos extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(149, 173, 177));
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("<");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
+        jButton1.setToolTipText("");
+        jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 2, 2, new java.awt.Color(255, 255, 255)));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -69,14 +73,15 @@ public class VerMemos extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
 
+        jList1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jScrollPane1.setViewportView(jList1);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 300, 250));
 
-        jButton2.setBackground(new java.awt.Color(172, 96, 100));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton2.setText("Añadir");
+        jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -84,27 +89,26 @@ public class VerMemos extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 150, 50));
 
-        jButton3.setBackground(new java.awt.Color(172, 96, 100));
-        jButton3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton3.setText("Eliminar");
+        jButton3.setBorder(null);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 150, 50));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 150, 50));
 
-        jPanel2.setBackground(new java.awt.Color(80, 83, 98));
-        jPanel2.setLayout(new java.awt.BorderLayout());
-
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Memos");
-        jPanel2.add(jLabel1, java.awt.BorderLayout.CENTER);
+        jLabel1.setText("MEMOS");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 300, 30));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 550, 50));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/panel.png"))); // NOI18N
+        jLabel3.setToolTipText("");
+        jLabel3.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(255, 255, 255)));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 560, 50));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -127,10 +131,13 @@ public class VerMemos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Object [] botones = {"  SI  ","  NO  "};
         if (listaMemo.tamanio() == 0) {
-            JOptionPane.showMessageDialog(null, "No tiene memos guardados");
+            //JOptionPane.showMessageDialog(null, "No tiene memos guardados");
+            notificacion.NotificacionEscrita("Memos","No tiene memos guardados","/Iconos/Advertencia.png");
         } else {
-            int index = JOptionPane.showConfirmDialog(null, "¿Esta seguro que quiere eliminar el memo?", "Eliminar memo", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            //int index = JOptionPane.showConfirmDialog(null, "¿Esta seguro que quiere eliminar el memo?", "Eliminar memo", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            int index = notificacion.notificacionBotones("¿ Esta seguro que quiere eliminar el memo ?","Eliminar memo", botones,"/Iconos/Negacion.png");
             if (index == 0) {
                 int pos = jList1.getSelectedIndex();
                 listaMemo.eliminar(pos);
@@ -186,8 +193,8 @@ public class VerMemos extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JList<String> jList1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
     private void addMemos() {

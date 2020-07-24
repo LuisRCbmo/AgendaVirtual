@@ -38,8 +38,8 @@ public class CrearMemo extends javax.swing.JFrame {
         asunto = new javax.swing.JLabel();
         nota = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
@@ -53,13 +53,13 @@ public class CrearMemo extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtAsunto.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        getContentPane().add(txtAsunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 340, -1));
+        getContentPane().add(txtAsunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 340, 30));
         txtAsunto.getAccessibleContext().setAccessibleName("");
 
-        botonGuardar.setBackground(new java.awt.Color(172, 96, 100));
+        botonGuardar.setBackground(new java.awt.Color(255, 255, 255));
         botonGuardar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        botonGuardar.setForeground(new java.awt.Color(255, 255, 255));
         botonGuardar.setText("Guardar");
+        botonGuardar.setBorder(null);
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonGuardarActionPerformed(evt);
@@ -84,7 +84,8 @@ public class CrearMemo extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(149, 173, 177));
         jButton2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton2.setText("<");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
+        jButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 2, 2, new java.awt.Color(255, 255, 255)));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -92,16 +93,15 @@ public class CrearMemo extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
 
-        jPanel1.setBackground(new java.awt.Color(80, 83, 98));
-        jPanel1.setLayout(new java.awt.BorderLayout());
-
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Crear Memo");
-        jPanel1.add(jLabel1, java.awt.BorderLayout.CENTER);
+        jLabel1.setText("CREAR MEMO");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 300, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 550, 50));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/panel.png"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        jLabel4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(255, 255, 255)));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 560, 50));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
         jLabel3.setText("jLabel3");
@@ -165,7 +165,7 @@ public class CrearMemo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel nota;

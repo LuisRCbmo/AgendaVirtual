@@ -6,12 +6,14 @@ import javax.swing.ListModel;
 import modelo.Cita;
 import javax.swing.*;
 import modelo.*;
+import Notificaciones.Notificacion;
 /**
  *
  * @author Sergio Garcia
  */
 public class VistaAgenda extends javax.swing.JFrame {
     private Agenda agenda;
+    private Notificacion notificacion;
     public VistaAgenda(Agenda agenda){
         initComponents();
         this.agenda = agenda;//contiene los datos
@@ -19,7 +21,7 @@ public class VistaAgenda extends javax.swing.JFrame {
         actualizarCitas();
         this.setLocationRelativeTo(null);
         mouseListener();
-        
+        notificacion = new Notificacion();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -33,8 +35,8 @@ public class VistaAgenda extends javax.swing.JFrame {
         aniadirCita = new javax.swing.JButton();
         eliminarCita = new javax.swing.JButton();
         botonAtras = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
@@ -59,32 +61,33 @@ public class VistaAgenda extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 73, 319, 289));
 
-        aniadirCita.setBackground(new java.awt.Color(172, 96, 100));
-        aniadirCita.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        aniadirCita.setForeground(new java.awt.Color(255, 255, 255));
+        aniadirCita.setBackground(new java.awt.Color(255, 255, 255));
+        aniadirCita.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         aniadirCita.setText("Añadir cita");
+        aniadirCita.setBorder(null);
         aniadirCita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aniadirCitaActionPerformed(evt);
             }
         });
-        jPanel1.add(aniadirCita, new org.netbeans.lib.awtextra.AbsoluteConstraints(411, 73, 140, 50));
+        jPanel1.add(aniadirCita, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 140, 50));
 
-        eliminarCita.setBackground(new java.awt.Color(172, 96, 100));
-        eliminarCita.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        eliminarCita.setForeground(new java.awt.Color(255, 255, 255));
+        eliminarCita.setBackground(new java.awt.Color(255, 255, 255));
+        eliminarCita.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         eliminarCita.setText("Eliminar cita");
+        eliminarCita.setBorder(null);
         eliminarCita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eliminarCitaActionPerformed(evt);
             }
         });
-        jPanel1.add(eliminarCita, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 140, 50));
+        jPanel1.add(eliminarCita, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, 140, 50));
 
         botonAtras.setBackground(new java.awt.Color(148, 173, 177));
         botonAtras.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         botonAtras.setForeground(new java.awt.Color(255, 255, 255));
-        botonAtras.setText("<");
+        botonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
+        botonAtras.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 2, 2, new java.awt.Color(255, 255, 255)));
         botonAtras.setPreferredSize(new java.awt.Dimension(43, 22));
         botonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,16 +96,15 @@ public class VistaAgenda extends javax.swing.JFrame {
         });
         jPanel1.add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
 
-        jPanel2.setBackground(new java.awt.Color(80, 83, 98));
-        jPanel2.setLayout(new java.awt.BorderLayout());
-
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Agenda");
-        jPanel2.add(jLabel2, java.awt.BorderLayout.CENTER);
+        jLabel2.setText("AGENDA");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 280, 30));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 550, 50));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/panel.png"))); // NOI18N
+        jLabel4.setToolTipText("");
+        jLabel4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(255, 255, 255)));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 560, 50));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
@@ -141,10 +143,13 @@ public class VistaAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_listaCitasComponentShown
 
     private void eliminarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarCitaActionPerformed
+        Object [] botones = {"  SI  ","  NO  "};
         if(agenda.getListaCitas().tamanio() == 0){
-            JOptionPane.showMessageDialog(null,"No tiene citas guardadas");
+            //JOptionPane.showMessageDialog(null,"No tiene citas guardadas");
+            notificacion.NotificacionEscrita("Cita","No tiene citas guardadas","/Iconos/Advertencia.png");
         }else{
-            int index = JOptionPane.showConfirmDialog(null, "¿Esta seguro que quiere eliminar la cita?", "Eliminar cita", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            //int index = JOptionPane.showConfirmDialog(null, "¿Esta seguro que quiere eliminar la cita?", "Eliminar cita", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            int index = notificacion.notificacionBotones("¿ Esta seguro que quiere eliminar la cita ?","Eliminar cita", botones,"/Iconos/Negacion.png");
             if(index == 0){
                 int pos = listaCitas.getSelectedIndex();
                 agenda.getListaCitas().eliminar(pos);
@@ -160,8 +165,8 @@ public class VistaAgenda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList listaCitas;
     // End of variables declaration//GEN-END:variables

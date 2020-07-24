@@ -4,10 +4,10 @@ import controlador.SerializarProyecto;
 import edl.ListaSE;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.text.SimpleDateFormat;
+//import java.text.SimpleDateFormat;
 import modelo.*;
 import java.util.*;
-import javax.swing.JOptionPane;
+//import javax.swing.JOptionPane;
 import java.util.Calendar;
 import javax.swing.DefaultListModel;
 
@@ -50,6 +50,7 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         jLabel1 = new javax.swing.JLabel();
         calendar = new rojeru_san.componentes.RSCalendar();
         jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar5 = new javax.swing.JMenuBar();
         jMenu16 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -61,40 +62,51 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jlbReloj.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        jlbReloj.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jlbReloj.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(jlbReloj, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 20, 390));
+        getContentPane().add(jlbReloj, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 220, 40));
 
         jScrollPane1.setViewportView(Lista);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 220, 280));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 220, 280));
 
-        jButton1.setBackground(new java.awt.Color(172, 96, 100));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton1.setText("Salir");
+        jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 150, 50));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, 120, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 600, 20));
-        getContentPane().add(calendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        calendar.setColorDiaActual(new java.awt.Color(123, 188, 218));
+        getContentPane().add(calendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 320, -1));
+
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton2.setText("VerCitas");
+        jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 120, 50));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, 120, 40));
 
-        jMenuBar5.setBackground(new java.awt.Color(255, 196, 190));
-        jMenuBar5.setBorderPainted(false);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
+        jLabel2.setToolTipText("");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jMenuBar5.setBackground(new java.awt.Color(123, 188, 218));
+        jMenuBar5.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        jMenuBar5.setToolTipText("");
+        jMenuBar5.setRequestFocusEnabled(false);
 
         jMenu16.setBackground(new java.awt.Color(255, 196, 190));
         jMenu16.setText("             Menu                                                                               ");
@@ -229,6 +241,7 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
     public javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu16;
     private javax.swing.JMenu jMenu17;
     private javax.swing.JMenuBar jMenuBar5;

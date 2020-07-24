@@ -6,11 +6,12 @@
 package vista;
 
 import modelo.*;
-import javax.swing.JOptionPane;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import javax.swing.*;
+//import javax.swing.JOptionPane;
+//import java.time.LocalDate;
+//import java.time.LocalTime;
+//import javax.swing.*;
 import java.awt.Dimension;
+import Notificaciones.Notificacion;
 
 /**
  *
@@ -25,7 +26,7 @@ public class editarCita extends javax.swing.JFrame {
     private mostrarCita mostrar;
     private String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};//borrar
     private Cita cita;
-
+    private Notificacion notificacion;
     public editarCita(mostrarCita mostrar, Cita cita) {
         this.cita = cita;
         this.mostrar = mostrar;
@@ -33,7 +34,7 @@ public class editarCita extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setPreferredSize(new Dimension(600, 400));
-
+        notificacion = new Notificacion();
     }
 
     /**
@@ -45,8 +46,6 @@ public class editarCita extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         botonAtras = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -66,31 +65,21 @@ public class editarCita extends javax.swing.JFrame {
         botonCancelar = new javax.swing.JButton();
         botonGuardar = new javax.swing.JButton();
         rSDateChooser1 = new rojeru_san.componentes.RSDateChooser();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 580, 326));
         setMinimumSize(new java.awt.Dimension(600, 400));
-        setPreferredSize(new java.awt.Dimension(606, 366));
         setSize(new java.awt.Dimension(580, 326));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel1.setBackground(new java.awt.Color(80, 83, 98));
-        jPanel1.setPreferredSize(new java.awt.Dimension(256, 22));
-        jPanel1.setLayout(new java.awt.BorderLayout());
-
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("EDITAR CITA");
-        jPanel1.add(jLabel1, java.awt.BorderLayout.CENTER);
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 550, 50));
 
         botonAtras.setBackground(new java.awt.Color(149, 173, 177));
         botonAtras.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         botonAtras.setForeground(new java.awt.Color(255, 255, 255));
-        botonAtras.setText("<");
+        botonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
+        botonAtras.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 2, 2, new java.awt.Color(255, 255, 255)));
         botonAtras.setPreferredSize(new java.awt.Dimension(43, 22));
         botonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,11 +110,11 @@ public class editarCita extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel7.setText("Duracion:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, -1, 30));
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel8.setText("minutos.");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, 60, 30));
 
         contAsunto.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         getContentPane().add(contAsunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 430, 22));
@@ -137,18 +126,24 @@ public class editarCita extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 430, 50));
 
+        contDuracion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         contDuracion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "15", "20", "25", "30", "35", "40", "45", "50", "55", "60" }));
-        getContentPane().add(contDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, -1, -1));
+        contDuracion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(contDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, -1, -1));
 
+        contHora.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         contHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+        contHora.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         contHora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contHoraActionPerformed(evt);
             }
         });
-        getContentPane().add(contHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, -1, -1));
+        getContentPane().add(contHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
 
+        contMinuto.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         contMinuto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "15", "30", "45" }));
+        contMinuto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         contMinuto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contMinutoActionPerformed(evt);
@@ -156,16 +151,19 @@ public class editarCita extends javax.swing.JFrame {
         });
         getContentPane().add(contMinuto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, -1, -1));
 
+        amPm.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         amPm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "am", "pm" }));
+        amPm.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(amPm, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setText(":");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
 
-        botonCancelar.setBackground(new java.awt.Color(172, 96, 100));
-        botonCancelar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        botonCancelar.setBackground(new java.awt.Color(255, 255, 255));
+        botonCancelar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         botonCancelar.setText("Cancelar");
+        botonCancelar.setBorder(null);
         botonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonCancelarActionPerformed(evt);
@@ -173,9 +171,10 @@ public class editarCita extends javax.swing.JFrame {
         });
         getContentPane().add(botonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, 150, 50));
 
-        botonGuardar.setBackground(new java.awt.Color(172, 96, 100));
-        botonGuardar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        botonGuardar.setBackground(new java.awt.Color(255, 255, 255));
+        botonGuardar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         botonGuardar.setText("Guardar");
+        botonGuardar.setBorder(null);
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonGuardarActionPerformed(evt);
@@ -185,10 +184,19 @@ public class editarCita extends javax.swing.JFrame {
 
         rSDateChooser1.setColorBackground(new java.awt.Color(0, 0, 0));
         rSDateChooser1.setColorButtonHover(new java.awt.Color(0, 0, 0));
-        rSDateChooser1.setColorDiaActual(new java.awt.Color(0, 0, 0));
+        rSDateChooser1.setColorDiaActual(new java.awt.Color(123, 188, 218));
         rSDateChooser1.setColorForeground(new java.awt.Color(102, 102, 102));
         rSDateChooser1.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         getContentPane().add(rSDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 280, 30));
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("EDITAR CITA");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 260, 30));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/panel.png"))); // NOI18N
+        jLabel11.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(255, 255, 255)));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 570, 50));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
         jLabel10.setText("jLabel10");
@@ -204,7 +212,9 @@ public class editarCita extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        int res = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere descartar los cambios?", "Descartar cambios", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        Object [] botones = {"  SI  ","  NO  "};
+        //int res = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere descartar los cambios?", "Descartar cambios", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        int res = notificacion.notificacionBotones("¿ Esta seguro que quiere descartar los cambios ?","Descartar cambios",botones,"/Iconos/Advertencia.png");
         if (res == 0) {
             //mostrar.setVisible(true);
             //this.setVisible(false);
@@ -260,6 +270,7 @@ public class editarCita extends javax.swing.JFrame {
     private javax.swing.JTextArea contNota;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -268,7 +279,6 @@ public class editarCita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private rojeru_san.componentes.RSDateChooser rSDateChooser1;
     // End of variables declaration//GEN-END:variables

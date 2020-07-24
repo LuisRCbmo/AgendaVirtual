@@ -20,10 +20,10 @@ public class Alarma implements Serializable {
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     private Timer timer, timerPlay;
     private TimerTask tarea, replay;
-    private Notificacion alert;
+    private Notificacion notificacion;
 
     public Alarma() {
-        alert = new Notificacion();
+        notificacion = new Notificacion();
         Object[] botones = {"APAGAR", "POSPONER"};
         calendar = Calendar.getInstance();
         fechaActual = new Date();
@@ -36,8 +36,8 @@ public class Alarma implements Serializable {
             public void run() {
                 if (activo) {
                     timerPlay.schedule(replay, 0, establecerRepeticion());
-                    alert.NotificacionEscrita(asunto + " A las: " + dateAStringFormat(fechaActual), "/Iconos/Alarma.jpg");
-                    int com = alert.notificacionBotones("¿Que hacer con la alarma?", "ALARMA", botones, "/Iconos/Interrogacion.png");
+                    notificacion.NotificacionEscrita("¡ Alarma !",asunto + " A las: " + dateAStringFormat(fechaActual), "/Iconos/Alarma.jpg");
+                    int com = notificacion.notificacionBotones("¿Que hacer con la alarma?", "Alarma", botones, "/Iconos/Interrogacion.png");
                     if (com == 0) {
                         play = false;
                         clip.stop();
