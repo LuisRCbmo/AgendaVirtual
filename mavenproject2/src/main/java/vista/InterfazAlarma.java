@@ -2,6 +2,7 @@ package vista;
 
 import modelo.Alarma;
 import modelo.ListaAlarma;
+import modelo.Cita;
 import java.util.*;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -18,9 +19,10 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
     private Clip clip;
     private String cancion = "TelefonoAntiguo.wav";
     private String[] sonds = {"TelefonoAntiguo.wav", "TITITI.wav", "Gallo.wav", "AlarmaLoud.wav", "AlarmaDeGuerra.wav", "AlarmaDeCoche.wav"};
-
-    public InterfazAlarma() {
+    private Cita cita;
+    public InterfazAlarma(Cita cita) {
         initComponents();
+        this.cita = cita;
         h1 = new Thread(this);
         h1.start();
         LIAL = new ListaAlarma();
@@ -152,13 +154,14 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
 
     private void jbAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAnadirActionPerformed
         Calendar fecha = Calendar.getInstance();
-        fecha.add(Calendar.SECOND, 3);
+        fecha.setTime(cita.getHoraFecha());
+        int minutos = Integer.parseInt((String)jcbMinutos.getSelectedItem());
+        fecha.add(Calendar.MINUTE, minutos);
         Date fechaA = fecha.getTime();
-        Alarma al = new Alarma();
-        al.setCancion(cancion);
-        al.ProgramarAlarma(fechaA, "");
-        //JOptionPane.showMessageDialog(null, "Añadido con exito");
+        cita.getAlarma().setCancion(cancion);
+        cita.getAlarma().ProgramarAlarma(fechaA, "");
         notificacion.NotificacionEscrita("Añadido","! Alarma añadida exitosamente ¡","/Iconos/Aprobacion.png");
+        this.dispose();
     }//GEN-LAST:event_jbAnadirActionPerformed
 
 
@@ -168,7 +171,6 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
             clip.stop();
         }
         cancion = sonds[i];
-        //JOptionPane.showMessageDialog(null, "Seleccionado con exito");
         notificacion.NotificacionEscrita("Seleccionado","! Musica seleccionada exitosamente ¡","/Iconos/Aprobacion.png");
         
     }//GEN-LAST:event_jButton1ActionPerformed

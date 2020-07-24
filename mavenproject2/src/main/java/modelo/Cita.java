@@ -15,7 +15,8 @@ public class Cita implements Serializable {
     Calendar calendario;
 
     public Cita(String asunto, int duracion, Alarma alarma) {
-        alarm = alarma.getActivo();
+        this.alarma = alarma;
+        //alarm = alarma.getActivo();
         this.asunto = asunto;
         this.duracion = duracion;
     }
@@ -56,8 +57,16 @@ public class Cita implements Serializable {
     public String getNota() {
         return nota;
     }
+    
+    public void setAlarma(Alarma alarma){
+        this.alarma = alarma;
+    }
+    
+    public Alarma getAlarma(){
+        return alarma;
+    }
 
-    public void apagarAlarma() {
+    public void apagarAlarma(){
         alarma.desactivar();
     }
 

@@ -3,6 +3,8 @@ package vista;
 import java.util.Date;
 import modelo.*;
 import Notificaciones.Notificacion;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  *
@@ -252,15 +254,22 @@ public class CrearCita extends javax.swing.JFrame {
         Object[] botones = {"  SI  ", "  NO  "};
         int num = notificacion.notificacionBotones("¿ Quisiera crear una alarma ?", "Crear Alarma", botones, "/Iconos/Interrogacion.png");
         if (num == 0) {
-            InterfazAlarma alarma = new InterfazAlarma();
-            alarma.setVisible(true);
+            Cita nueva = new Cita(asunto.getText(), Integer.parseInt(duracion.getItemAt(0)), new Alarma());
             Date fecha = rSDateChooser1.getDatoFecha();
-            Alarma alarma1 = new Alarma();
-            alarma1.ProgramarAlarma(fecha, "");
-            Cita nueva = new Cita(asunto.getText(), Integer.parseInt(duracion.getItemAt(0)), alarma1);
             nueva.setFechaHora(fecha);
+            InterfazAlarma alarma = new InterfazAlarma((Cita) nueva);
+            alarma.setVisible(true);
+            //falta interraccion entre ventanas
+            alarma.addWindowListener(new WindowAdapter() {
+                public void windowClosed(WindowEvent e) {
+                    //padre.setVisible(true);
+                    //padre.actualizarCitas();
+                    alarma.dispose();
+                }
+            });
+            //this.setVisible(false);
+            //falta interraccion entre ventanas
             agenda.aniadirCita(nueva);
-
         } else if (num == 1) {
             String p = (String) duracion.getSelectedItem();
             int dur = Integer.parseInt(p);
@@ -269,7 +278,6 @@ public class CrearCita extends javax.swing.JFrame {
             nueva.setFechaHora(fecha);
             nueva.setNota(jTextNota.getText());
             agenda.aniadirCita(nueva);
-
         }
         this.dispose();
     }//GEN-LAST:event_BotonGuardarActionPerformed
@@ -288,11 +296,10 @@ public class CrearCita extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_asuntoKeyTyped
-    
+
     /**
      * @param args the command line arguments
      */
-
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
