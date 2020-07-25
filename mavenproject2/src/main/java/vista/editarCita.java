@@ -50,7 +50,6 @@ public class editarCita extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -67,6 +66,7 @@ public class editarCita extends javax.swing.JFrame {
         rSDateChooser1 = new rojeru_san.componentes.RSDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        EditarAlarma = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -100,10 +100,6 @@ public class editarCita extends javax.swing.JFrame {
         jLabel4.setText("Fecha:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel5.setText("Activar alarma:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, -1, 20));
-
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel6.setText("Nota:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
@@ -127,12 +123,12 @@ public class editarCita extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 430, 50));
 
         contDuracion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        contDuracion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "15", "20", "25", "30", "35", "40", "45", "50", "55", "60" }));
+        contDuracion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60" }));
         contDuracion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(contDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, -1, -1));
 
         contHora.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        contHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+        contHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "14" }));
         contHora.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         contHora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,7 +138,7 @@ public class editarCita extends javax.swing.JFrame {
         getContentPane().add(contHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
 
         contMinuto.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        contMinuto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "15", "30", "45" }));
+        contMinuto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "15", "30", "45", "40" }));
         contMinuto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         contMinuto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,7 +150,7 @@ public class editarCita extends javax.swing.JFrame {
         amPm.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         amPm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "am", "pm" }));
         amPm.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(amPm, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, -1, -1));
+        getContentPane().add(amPm, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setText(":");
@@ -198,6 +194,17 @@ public class editarCita extends javax.swing.JFrame {
         jLabel11.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(255, 255, 255)));
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 570, 50));
 
+        EditarAlarma.setBackground(new java.awt.Color(255, 255, 255));
+        EditarAlarma.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        EditarAlarma.setText("Editar Alarma");
+        EditarAlarma.setBorder(null);
+        EditarAlarma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarAlarmaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(EditarAlarma, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 100, 30));
+
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
         jLabel10.setText("jLabel10");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 380));
@@ -230,8 +237,9 @@ public class editarCita extends javax.swing.JFrame {
         mostrar.setAsunto(contAsunto.getText());
         mostrar.setNota(contNota.getText());
         mostrar.setDuracion((String) contDuracion.getSelectedItem());
-        mostrar.setHora((String) contHora.getSelectedItem(), (String) contMinuto.getSelectedItem());
         mostrar.setFecha(rSDateChooser1.getDatoFecha());
+        mostrar.setHora((String)contHora.getSelectedItem(),(String)contMinuto.getSelectedItem());
+        
         //mostrar.setVisible(true);
         //this.setVisible(false);
         this.dispose();
@@ -240,6 +248,21 @@ public class editarCita extends javax.swing.JFrame {
     private void contMinutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contMinutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_contMinutoActionPerformed
+
+    private void EditarAlarmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarAlarmaActionPerformed
+        mostrar.setAsunto(contAsunto.getText());
+        mostrar.setNota(contNota.getText());
+        mostrar.setDuracion((String) contDuracion.getSelectedItem());
+        mostrar.setHora((String)contHora.getSelectedItem(),(String)contMinuto.getSelectedItem());
+        mostrar.setFecha(rSDateChooser1.getDatoFecha());
+        if(cita.getAlarma() == null){
+            InterfazAlarma ia = new InterfazAlarma(cita);       
+            ia.setVisible(true);   
+        }else{
+            EditarAlarma EA = new EditarAlarma(cita);       
+            EA.setVisible(true);  
+        }
+    }//GEN-LAST:event_EditarAlarmaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,6 +282,7 @@ public class editarCita extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton EditarAlarma;
     private javax.swing.JComboBox<String> amPm;
     private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonCancelar;
@@ -274,7 +298,6 @@ public class editarCita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

@@ -13,6 +13,8 @@ public class Cita implements Serializable {
     private int duracion;
     private boolean alarm;
     Calendar calendario;
+    private int indiceMin = 0;
+    private int indiceMus = 0;
 
     public Cita(String asunto, int duracion, Alarma alarma) {
         this.alarma = alarma;
@@ -20,7 +22,22 @@ public class Cita implements Serializable {
         this.asunto = asunto;
         this.duracion = duracion;
     }
-
+    public void setHora(int hora,int minuto){
+        fechaHora.setHours(hora); 
+        fechaHora.setMinutes(minuto); 
+    }
+    public int getIndiceMin(){
+        return indiceMin;
+    }
+    public int getIndiceMus(){
+        return indiceMus;
+    }
+    public void setIndiceMin(int indiceMin){
+        this.indiceMin = indiceMin;
+    }
+    public void setIndiceMus(int indiceMus){
+        this.indiceMus = indiceMus;
+    }
     public Cita(String asunto, int duracion) {
         this.asunto = asunto;
         this.duracion = duracion;

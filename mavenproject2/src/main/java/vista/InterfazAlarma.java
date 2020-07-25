@@ -6,13 +6,14 @@ import modelo.Cita;
 import java.util.*;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-//import javax.swing.JOptionPane;
 import Notificaciones.Notificacion;
+/* 
+    autor emerson
+*/
 
 public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
 
     private Notificacion notificacion;
-    private ListaAlarma LIAL;
     private Calendar calendario;
     private String hora, minuto, segundo, ampm;
     private Thread h1;
@@ -20,14 +21,15 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
     private String cancion = "TelefonoAntiguo.wav";
     private String[] sonds = {"TelefonoAntiguo.wav", "TITITI.wav", "Gallo.wav", "AlarmaLoud.wav", "AlarmaDeGuerra.wav", "AlarmaDeCoche.wav"};
     private Cita cita;
+    
     public InterfazAlarma(Cita cita) {
         initComponents();
         this.cita = cita;
         h1 = new Thread(this);
-        h1.start();
-        LIAL = new ListaAlarma();
+        h1.start();        
         setLocationRelativeTo(null);       
         notificacion = new Notificacion();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -38,14 +40,14 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jlbReloj = new javax.swing.JLabel();
-        jbAnadir = new javax.swing.JButton();
+        crear = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jcbMinutos = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        seleccionar = new javax.swing.JButton();
         jcbMusicas = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
+        titulo = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -55,34 +57,36 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setResizable(false);
+        setSize(new java.awt.Dimension(560, 260));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Minutos");
+        jLabel2.setText("Minutos.");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 71, 30));
 
         jlbReloj.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jlbReloj.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         getContentPane().add(jlbReloj, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 446, 50));
 
-        jbAnadir.setBackground(new java.awt.Color(255, 255, 255));
-        jbAnadir.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jbAnadir.setText("Añadir");
-        jbAnadir.setBorder(null);
-        jbAnadir.addActionListener(new java.awt.event.ActionListener() {
+        crear.setBackground(new java.awt.Color(255, 255, 255));
+        crear.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        crear.setText("Crear");
+        crear.setBorder(null);
+        crear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbAnadirActionPerformed(evt);
+                crearActionPerformed(evt);
             }
         });
-        getContentPane().add(jbAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 90, 30));
+        getContentPane().add(crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 90, 30));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Tiempo de Anticipacion ");
+        jLabel1.setText("Tiempo de Anticipacion :");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 170, 30));
 
-        jcbMinutos.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jcbMinutos.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jcbMinutos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60" }));
         jcbMinutos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jcbMinutos.addActionListener(new java.awt.event.ActionListener() {
@@ -90,25 +94,25 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
                 jcbMinutosActionPerformed(evt);
             }
         });
-        getContentPane().add(jcbMinutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 60, -1));
+        getContentPane().add(jcbMinutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 50, 30));
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Musica de Alarma");
+        jLabel3.setText("Musica de Alarma :");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 150, 30));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton1.setText("Seleccionar");
-        jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        seleccionar.setBackground(new java.awt.Color(255, 255, 255));
+        seleccionar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        seleccionar.setText("Seleccionar");
+        seleccionar.setBorder(null);
+        seleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                seleccionarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 90, 30));
+        getContentPane().add(seleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 90, 30));
 
-        jcbMusicas.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jcbMusicas.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jcbMusicas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Telefono Antiguo", "TI TI TI ", "Gallo", "Alarma Loud", "Alarma de Guerra", "Alarma De Coche" }));
         jcbMusicas.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jcbMusicas.addItemListener(new java.awt.event.ItemListener() {
@@ -126,7 +130,7 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
                 jcbMusicasActionPerformed(evt);
             }
         });
-        getContentPane().add(jcbMusicas, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 137, 30));
+        getContentPane().add(jcbMusicas, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 150, 30));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
         jButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 2, 2, new java.awt.Color(255, 255, 255)));
@@ -137,10 +141,10 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
 
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("CREA ALARMA");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 340, 30));
+        titulo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titulo.setText("CREAR ALARMA");
+        getContentPane().add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 340, 30));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/panel.png"))); // NOI18N
         jLabel7.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -151,21 +155,24 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+ 
 
-    private void jbAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAnadirActionPerformed
+    private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
         Calendar fecha = Calendar.getInstance();
         fecha.setTime(cita.getHoraFecha());
         int minutos = Integer.parseInt((String)jcbMinutos.getSelectedItem());
-        fecha.add(Calendar.MINUTE, minutos);
+        fecha.add(Calendar.MINUTE,(minutos*-1));       
         Date fechaA = fecha.getTime();
         cita.getAlarma().setCancion(cancion);
-        cita.getAlarma().ProgramarAlarma(fechaA, "");
+        cita.getAlarma().ProgramarAlarma(fechaA,cita.getAsunto());
+        cita.setIndiceMin(jcbMinutos.getSelectedIndex());
+        cita.setIndiceMus(jcbMusicas.getSelectedIndex()); 
         notificacion.NotificacionEscrita("Añadido","! Alarma añadida exitosamente ¡","/Iconos/Aprobacion.png");
         this.dispose();
-    }//GEN-LAST:event_jbAnadirActionPerformed
+    }//GEN-LAST:event_crearActionPerformed
 
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void seleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarActionPerformed
         int i = jcbMusicas.getSelectedIndex();
         if (clip != null) {
             clip.stop();
@@ -173,15 +180,16 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
         cancion = sonds[i];
         notificacion.NotificacionEscrita("Seleccionado","! Musica seleccionada exitosamente ¡","/Iconos/Aprobacion.png");
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_seleccionarActionPerformed
 
     private void jcbMusicasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbMusicasItemStateChanged
+       
         int i = jcbMusicas.getSelectedIndex();
         if (clip != null) {
             clip.stop();
-        }
-        reproducir(sonds[i]);
-
+        }      
+            reproducir(sonds[i]);       
+        
     }//GEN-LAST:event_jcbMusicasItemStateChanged
 
     private void jcbMusicasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbMusicasMouseClicked
@@ -197,12 +205,15 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jcbMinutosActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (clip != null) {
+            clip.stop();
+        }
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton crear;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -211,11 +222,11 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JButton jbAnadir;
     private javax.swing.JComboBox<String> jcbMinutos;
     private javax.swing.JComboBox<String> jcbMusicas;
     private javax.swing.JLabel jlbReloj;
+    private javax.swing.JButton seleccionar;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -245,13 +256,7 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
         minuto = calendario.get(Calendar.MINUTE) > 9 ? "" + calendario.get(Calendar.MINUTE) : "0" + calendario.get(Calendar.MINUTE);
         segundo = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND) : "0" + calendario.get(Calendar.SECOND);
     }
-
-    public Alarma getAlarmaCreada() {
-        Alarma res = LIAL.returnAlarma(0);
-        LIAL.eliminarAlarma(res);
-        return res;
-    }
-
+    
     public void reproducir(String cancion) {
         try {
             clip = AudioSystem.getClip();

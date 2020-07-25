@@ -240,6 +240,9 @@ public class mostrarCita extends javax.swing.JFrame {
 
     public void setHora(String h, String m) {
         contHora.setText(h + ":" + m);
+        int hora = Integer.parseInt(h);
+        int minuto = Integer.parseInt(m);
+        cita.setHora(hora,minuto);
     }
 
     public void setHora(String p) {

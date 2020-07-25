@@ -4,14 +4,18 @@ package Notificaciones;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.io.Serializable;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import java.io.Serializable;
+/*
+    autor emerson
+*/
 
-
-public class Notificacion {
+public class Notificacion implements Serializable{
     
     
     private int Ancho = 53;

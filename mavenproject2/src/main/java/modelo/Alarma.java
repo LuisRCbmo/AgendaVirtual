@@ -7,6 +7,9 @@ import java.util.*;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.Serializable;
+/*
+    autor emerson
+*/
 
 public class Alarma implements Serializable {
 
@@ -126,7 +129,7 @@ public class Alarma implements Serializable {
     public void ProgramarAlarma(Date t, String asunto) {
         this.asunto = asunto;
         Date aux = new Date();
-        if (t.getTime() < aux.getTime()) {
+        if (t.getTime() == aux.getTime()) {
             calendar.setTime(t);
             calendar.add(Calendar.DATE, 1);
             fechaActual = calendar.getTime();
