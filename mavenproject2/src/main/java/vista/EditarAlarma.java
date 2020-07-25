@@ -177,7 +177,7 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
             int resta = (cita.getIndiceMin() + 1)*5;
             Calendar anticipacion = Calendar.getInstance();
             anticipacion.setTime(cita.getHoraFecha()); 
-            anticipacion.add(Calendar.MINUTE,resta);           
+            anticipacion.add(Calendar.MINUTE,resta);
             int aumento =Integer.parseInt((String)minutos.getSelectedItem());
             anticipacion.add(Calendar.MINUTE,(aumento * -1));
             cita.setIndiceMin(minutos.getSelectedIndex()); 

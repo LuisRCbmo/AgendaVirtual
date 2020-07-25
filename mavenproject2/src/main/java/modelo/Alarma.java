@@ -6,12 +6,11 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import java.io.Serializable;
 /*
     autor emerson
 */
 
-public class Alarma implements Serializable {
+public class Alarma implements java.io.Serializable {
 
     private boolean activo, play;
     private Calendar calendar;
@@ -19,10 +18,10 @@ public class Alarma implements Serializable {
     private Date fechaActual;
     private String[] sonds = {"TelefonoAntiguo.wav", "TITITI.wav", "Gallo.wav", "AlarmaLoud.wav", "AlarmaDeGuerra.wav", "AlarmaDeCoche.wav"};
     private String asunto;
-    private String cancion = "TelefonoAntiguo.wav"; //falta
+    private String cancion = "TelefonoAntiguo.wav";
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-    private Timer timer, timerPlay;
-    private TimerTask tarea, replay;
+    transient private Timer timer, timerPlay; //transient hace que no se guarde esta clase.
+    transient private TimerTask tarea, replay; //transient hace que no se guarde esta clase.
     private Notificacion notificacion;
 
     public Alarma() {
