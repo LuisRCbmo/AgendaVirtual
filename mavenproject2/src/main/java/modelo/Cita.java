@@ -91,6 +91,10 @@ public class Cita implements Serializable {
         String fechita = this.toStringFecha();
         return "Asunto: " + asunto + " fecha: " + fechita + " Duracion: " + duracion + "";
     }
+    public String toStringFormat() {
+        String fechita = this.toStringFechaFormat();
+        return "Asunto: " + asunto + " fecha: " + fechita + " Duracion: " + duracion + "";
+    }
 
     public String toString(int numero) {
         return "" + numero + "";
@@ -101,7 +105,11 @@ public class Cita implements Serializable {
         int mes = fechaHora.getMonth() + 1;
         return "" + fechaHora.getDate() + "/" + mes + "/" + anio + "";
     }
-
+    public String toStringFechaFormat() {
+        Alarma aux = new Alarma();
+        return aux.dateAString(fechaHora);
+    }
+ 
     public String toStringHora() {
         calendario.setTime(fechaHora);
         return "" + calendario.get(calendario.DAY_OF_MONTH) + "/" + calendario.get(calendario.MONTH) + 1 + "/" + calendario.get(calendario.YEAR) + "";

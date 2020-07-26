@@ -89,7 +89,9 @@ public class Alarma implements java.io.Serializable {
     public void setCancion(String cancion) {
         this.cancion = cancion;
     }
-
+    public String getCancion(){
+        return cancion;
+    }
     private void reproducir() {
         try {
             clip = AudioSystem.getClip();
@@ -115,10 +117,12 @@ public class Alarma implements java.io.Serializable {
 
     public void desactivar() {
         activo = false;
+        System.out.println("Alarma Desactivada");
     }
 
     public void activar() {
         activo = true;
+        System.out.println("Alarma Activada");
     }
 
     public Date getFechaActual() {
@@ -128,14 +132,12 @@ public class Alarma implements java.io.Serializable {
     public void ProgramarAlarma(Date t, String asunto) {
         this.asunto = asunto;
         Date aux = new Date();
-        if (t.getTime() == aux.getTime()) {
-            calendar.setTime(t);
-            calendar.add(Calendar.DATE, 1);
-            fechaActual = calendar.getTime();
-            timer.schedule(tarea, calendar.getTime());
-        } else {
+        if ((t.getTime()-60000) < aux.getTime()) {
+            System.out.println("Esta alarma no sonara");
+        } else if ((t.getTime()-60000) >= aux.getTime()){           
             fechaActual = t;
             timer.schedule(tarea, t);
+            System.out.println("Esta alarma si sonara");
         }
     }
 

@@ -7,9 +7,10 @@ import java.util.*;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import Notificaciones.Notificacion;
+
 /* 
     autor emerson
-*/
+ */
 
 public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
 
@@ -21,15 +22,15 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
     private String cancion = "TelefonoAntiguo.wav";
     private String[] sonds = {"TelefonoAntiguo.wav", "TITITI.wav", "Gallo.wav", "AlarmaLoud.wav", "AlarmaDeGuerra.wav", "AlarmaDeCoche.wav"};
     private Cita cita;
-    
+
     public InterfazAlarma(Cita cita) {
         initComponents();
         this.cita = cita;
         h1 = new Thread(this);
-        h1.start();        
-        setLocationRelativeTo(null);       
+        h1.start();
+        setLocationRelativeTo(null);
         notificacion = new Notificacion();
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -155,19 +156,36 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
- 
+
 
     private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
         Calendar fecha = Calendar.getInstance();
         fecha.setTime(cita.getHoraFecha());
-        int minutos = Integer.parseInt((String)jcbMinutos.getSelectedItem());
-        fecha.add(Calendar.MINUTE,(minutos*-1));       
+
+        Date p = fecha.getTime();//
+        Alarma prueba = new Alarma();//
+        System.out.println(prueba.dateAString(p));//
+
+        int minutos = Integer.parseInt((String) jcbMinutos.getSelectedItem());
+        fecha.add(Calendar.MINUTE, (minutos * -1));
         Date fechaA = fecha.getTime();
-        cita.getAlarma().setCancion(cancion);
-        cita.getAlarma().ProgramarAlarma(fechaA,cita.getAsunto());
+        if (cita.getAlarma() == null) {
+            Alarma nueva = new Alarma();
+            nueva.setCancion(cancion);
+            nueva.ProgramarAlarma(fechaA, cita.getAsunto());
+            cita.setFechaHora(fechaA); 
+            cita.setAlarma(nueva); 
+        } else {
+            cita.getAlarma().setCancion(cancion);
+            cita.setFechaHora(fechaA);
+            cita.getAlarma().ProgramarAlarma(fechaA, cita.getAsunto());
+        }
+        
+        System.out.println(prueba.dateAString(cita.getHoraFecha())); //
+
         cita.setIndiceMin(jcbMinutos.getSelectedIndex());
-        cita.setIndiceMus(jcbMusicas.getSelectedIndex()); 
-        notificacion.NotificacionEscrita("Añadido","! Alarma añadida exitosamente ¡","/Iconos/Aprobacion.png");
+        cita.setIndiceMus(jcbMusicas.getSelectedIndex());
+        notificacion.NotificacionEscrita("Añadido", "! Alarma añadida exitosamente ¡", "/Iconos/Aprobacion.png");
         this.dispose();
     }//GEN-LAST:event_crearActionPerformed
 
@@ -178,18 +196,18 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
             clip.stop();
         }
         cancion = sonds[i];
-        notificacion.NotificacionEscrita("Seleccionado","! Musica seleccionada exitosamente ¡","/Iconos/Aprobacion.png");
-        
+        notificacion.NotificacionEscrita("Seleccionado", "! Musica seleccionada exitosamente ¡", "/Iconos/Aprobacion.png");
+
     }//GEN-LAST:event_seleccionarActionPerformed
 
     private void jcbMusicasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbMusicasItemStateChanged
-       
+
         int i = jcbMusicas.getSelectedIndex();
         if (clip != null) {
             clip.stop();
-        }      
-            reproducir(sonds[i]);       
-        
+        }
+        reproducir(sonds[i]);
+
     }//GEN-LAST:event_jcbMusicasItemStateChanged
 
     private void jcbMusicasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbMusicasMouseClicked
@@ -256,7 +274,7 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
         minuto = calendario.get(Calendar.MINUTE) > 9 ? "" + calendario.get(Calendar.MINUTE) : "0" + calendario.get(Calendar.MINUTE);
         segundo = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND) : "0" + calendario.get(Calendar.SECOND);
     }
-    
+
     public void reproducir(String cancion) {
         try {
             clip = AudioSystem.getClip();

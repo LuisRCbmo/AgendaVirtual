@@ -12,12 +12,13 @@ import modelo.*;
 //import javax.swing.*;
 import java.awt.Dimension;
 import Notificaciones.Notificacion;
+import java.util.Date;
 
 /**
  *
  * @author Nath
  */
-
+// se nesecita que los datos previamente guardados aparescan en este frame
 public class editarCita extends javax.swing.JFrame {
 
     /**
@@ -27,6 +28,9 @@ public class editarCita extends javax.swing.JFrame {
     private String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};//borrar
     private Cita cita;
     private Notificacion notificacion;
+    private Date fechaC = new Date();
+    private String asuntoC = "";
+    private Alarma bb = new Alarma();
     public editarCita(mostrarCita mostrar, Cita cita) {
         this.cita = cita;
         this.mostrar = mostrar;
@@ -35,6 +39,10 @@ public class editarCita extends javax.swing.JFrame {
         this.setVisible(true);
         this.setPreferredSize(new Dimension(600, 400));
         notificacion = new Notificacion();
+        fechaC = cita.getHoraFecha();
+        asuntoC = cita.getAsunto();
+        bb = cita.getAlarma();
+        
     }
 
     /**
@@ -225,7 +233,27 @@ public class editarCita extends javax.swing.JFrame {
         if (res == 0) {
             //mostrar.setVisible(true);
             //this.setVisible(false);
-            this.dispose();
+            if(bb != null){
+            cita.setFechaHora(fechaC);
+            cita.setAsunto(asuntoC);
+            Alarma nueva = new Alarma();
+            
+            System.out.println("Fecha de cita cuando cancelo se la edicion: "+nueva.dateAString(cita.getHoraFecha()));//
+            System.out.println("Asunto de la cita cuando se calcelo la edicion: "+cita.getAsunto());
+            
+            cita.apagarAlarma();
+            String cancion = bb.getCancion();
+            nueva.setCancion(cancion); 
+            nueva.ProgramarAlarma(fechaC,asuntoC);
+            cita.setAlarma(nueva);            
+        }else{
+             cita.setFechaHora(fechaC);
+             cita.setAsunto(asuntoC);
+             cita.apagarAlarma();
+             cita.setAlarma(null); 
+             System.out.println("si no tenia alarma");
+        }     
+        this.dispose();
         }
     }//GEN-LAST:event_botonCancelarActionPerformed
 
@@ -236,13 +264,17 @@ public class editarCita extends javax.swing.JFrame {
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
         mostrar.setAsunto(contAsunto.getText());
         mostrar.setNota(contNota.getText());
-        mostrar.setDuracion((String) contDuracion.getSelectedItem());
-        mostrar.setFecha(rSDateChooser1.getDatoFecha());
+        mostrar.setDuracion((String) contDuracion.getSelectedItem());       
         mostrar.setHora((String)contHora.getSelectedItem(),(String)contMinuto.getSelectedItem());
+        if(rSDateChooser1.getDatoFecha() != null){
+            mostrar.setFecha(rSDateChooser1.getDatoFecha());
+            this.dispose();
+        }else{
+            notificacion.NotificacionEscrita("Error","Se necesita una fecha","/Iconos/Negacion.png");           
+        }
         
         //mostrar.setVisible(true);
-        //this.setVisible(false);
-        this.dispose();
+        //this.setVisible(false);                                                   
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void contMinutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contMinutoActionPerformed
@@ -250,18 +282,34 @@ public class editarCita extends javax.swing.JFrame {
     }//GEN-LAST:event_contMinutoActionPerformed
 
     private void EditarAlarmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarAlarmaActionPerformed
+       
+        /*fechaC = cita.getHoraFecha();
+        asuntoC = cita.getAsunto();
+        bb = cita.getAlarma();
         mostrar.setAsunto(contAsunto.getText());
         mostrar.setNota(contNota.getText());
         mostrar.setDuracion((String) contDuracion.getSelectedItem());
-        mostrar.setHora((String)contHora.getSelectedItem(),(String)contMinuto.getSelectedItem());
-        mostrar.setFecha(rSDateChooser1.getDatoFecha());
-        if(cita.getAlarma() == null){
-            InterfazAlarma ia = new InterfazAlarma(cita);       
-            ia.setVisible(true);   
+        mostrar.setHora((String)contHora.getSelectedItem(),(String)contMinuto.getSelectedItem());*/
+        if(rSDateChooser1.getDatoFecha() != null){
+            mostrar.setFecha(rSDateChooser1.getDatoFecha());
+            mostrar.setAsunto(contAsunto.getText());
+            mostrar.setNota(contNota.getText());
+            mostrar.setDuracion((String) contDuracion.getSelectedItem());
+            mostrar.setHora((String)contHora.getSelectedItem(),(String)contMinuto.getSelectedItem());
+                if(cita.getAlarma() == null){
+                    InterfazAlarma ia = new InterfazAlarma(cita);       
+                    ia.setVisible(true);   
+                }else{                     
+                    EditarAlarma EA = new EditarAlarma(cita);       
+                    EA.setVisible(true);         
+                }
+            Alarma a = new Alarma();//
+            System.out.println("Fecha de cita por si el usuario cancela: "+a.dateAString(fechaC));//
+            System.out.println("Asunto de la cita por si el usuario cancela: "+asuntoC);//
+            System.out.println("Fecha de cita segun el rsDateChooser1: "+a.dateAString(cita.getHoraFecha()));//
         }else{
-            EditarAlarma EA = new EditarAlarma(cita);       
-            EA.setVisible(true);  
-        }
+            notificacion.NotificacionEscrita("Error","Se necesita una fecha","/Iconos/Negacion.png");
+        }                          
     }//GEN-LAST:event_EditarAlarmaActionPerformed
 
     /**

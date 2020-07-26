@@ -264,9 +264,18 @@ public class CrearCita extends javax.swing.JFrame {
             }else{
                 hora = (Integer.parseInt((String)horas.getSelectedItem()));
             }           
-            int minuto = Integer.parseInt((String)minutos.getSelectedItem());
+            int minuto = Integer.parseInt((String)minutos.getSelectedItem());           
             Date res = establecerFecha(fecha,hora,minuto);
-            nueva.setFechaHora(res);           
+            
+            //System.out.println("hora "+hora+" minutos "+minuto);//
+            
+            nueva.setFechaHora(res);  
+            
+            //System.out.println(nueva.toString());//
+            //Alarma a =new Alarma();//
+            //String fechas = a.dateAString(res);//
+            //System.out.println("fecha : "+fechas);//
+            
             InterfazAlarma alarma = new InterfazAlarma((Cita) nueva);
             alarma.setVisible(true);
             //falta interraccion entre ventanas
@@ -411,8 +420,8 @@ public class CrearCita extends javax.swing.JFrame {
     }
     private Date establecerFecha(Date fecha,int hora,int minutos){
         int anio = fecha.getYear() +1900;
-        int mes = fecha.getMonth() +1;
-        int dia = fecha.getDay();
+        int mes = fecha.getMonth();
+        int dia = fecha.getDate();
         Calendar aux = Calendar.getInstance();
         aux.set(anio,mes,dia,hora,minutos);
         return aux.getTime();
