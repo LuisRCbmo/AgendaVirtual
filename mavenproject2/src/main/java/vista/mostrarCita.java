@@ -43,6 +43,8 @@ public class mostrarCita extends javax.swing.JFrame {
         if (cita.getHoraFecha() != null) {
             String fecha = cita.toStringFecha();
             contFecha.setText(fecha);
+            String hora= cita.getHora();
+            contHora.setText(hora);
         }
         this.setVisible(true);
         notificacion = new Notificacion();
@@ -123,7 +125,7 @@ public class mostrarCita extends javax.swing.JFrame {
         getContentPane().add(contFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 154, -1));
 
         contHora.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        getContentPane().add(contHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 164, 22));
+        getContentPane().add(contHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 182, 164, 20));
 
         botonAtras.setBackground(new java.awt.Color(149, 173, 177));
         botonAtras.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -184,6 +186,7 @@ public class mostrarCita extends javax.swing.JFrame {
         editarCita edit = new editarCita(this, cita);
         edit.setNota(cita.getNota());
         edit.setAsunto(cita.getAsunto());
+        edit.setFecha(cita.getHoraFecha());
         edit.setVisible(true);
         mostrarCita padree = this;
         edit.addWindowListener(new WindowAdapter() {
@@ -238,11 +241,8 @@ public class mostrarCita extends javax.swing.JFrame {
         cita.setFechaHora(fecha);
     }
 
-    public void setHora(String h, String m) {
-        contHora.setText(h + ":" + m);
-        int hora = Integer.parseInt(h);
-        int minuto = Integer.parseInt(m);
-        cita.setHora(hora,minuto);
+    public void setFechaHora(Date fecha){
+        cita.setFechaHora(fecha);
     }
 
     public void setHora(String p) {

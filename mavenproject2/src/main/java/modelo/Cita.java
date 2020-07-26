@@ -58,7 +58,21 @@ public class Cita implements Serializable {
     public Date getHoraFecha() {
         return fechaHora;
     }
-
+    public String getHora(){
+        String res;
+        int h= fechaHora.getHours();
+        int m= fechaHora.getMinutes();
+        if(h>12){
+            h=h-12;
+            res= ""+h+" : "+m+" pm";
+        }else{
+            res= ""+h+" : "+m+" am";
+        }
+        System.out.println(res);
+        System.out.println(fechaHora);
+        return res;
+        
+    }
     public void setAsunto(String asunto) {
         this.asunto = asunto;
     }

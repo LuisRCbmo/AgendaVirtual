@@ -12,6 +12,8 @@ import modelo.*;
 //import javax.swing.*;
 import java.awt.Dimension;
 import Notificaciones.Notificacion;
+import java.awt.event.ItemListener;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -25,7 +27,6 @@ public class editarCita extends javax.swing.JFrame {
      * Creates new form editarCita
      */
     private mostrarCita mostrar;
-    private String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};//borrar
     private Cita cita;
     private Notificacion notificacion;
     private Date fechaC = new Date();
@@ -35,6 +36,7 @@ public class editarCita extends javax.swing.JFrame {
         this.cita = cita;
         this.mostrar = mostrar;
         initComponents();
+        contDuracion.setSelectedIndex(3);//poner index de duracion
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setPreferredSize(new Dimension(600, 400));
@@ -71,7 +73,7 @@ public class editarCita extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         botonCancelar = new javax.swing.JButton();
         botonGuardar = new javax.swing.JButton();
-        rSDateChooser1 = new rojeru_san.componentes.RSDateChooser();
+        contFecha = new rojeru_san.componentes.RSDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         EditarAlarma = new javax.swing.JButton();
@@ -158,6 +160,11 @@ public class editarCita extends javax.swing.JFrame {
         amPm.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         amPm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "am", "pm" }));
         amPm.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        amPm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amPmActionPerformed(evt);
+            }
+        });
         getContentPane().add(amPm, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -186,12 +193,12 @@ public class editarCita extends javax.swing.JFrame {
         });
         getContentPane().add(botonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 150, 50));
 
-        rSDateChooser1.setColorBackground(new java.awt.Color(0, 0, 0));
-        rSDateChooser1.setColorButtonHover(new java.awt.Color(0, 0, 0));
-        rSDateChooser1.setColorDiaActual(new java.awt.Color(123, 188, 218));
-        rSDateChooser1.setColorForeground(new java.awt.Color(102, 102, 102));
-        rSDateChooser1.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
-        getContentPane().add(rSDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 280, 30));
+        contFecha.setColorBackground(new java.awt.Color(0, 0, 0));
+        contFecha.setColorButtonHover(new java.awt.Color(0, 0, 0));
+        contFecha.setColorDiaActual(new java.awt.Color(123, 188, 218));
+        contFecha.setColorForeground(new java.awt.Color(102, 102, 102));
+        contFecha.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        getContentPane().add(contFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 280, 30));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -264,10 +271,20 @@ public class editarCita extends javax.swing.JFrame {
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
         mostrar.setAsunto(contAsunto.getText());
         mostrar.setNota(contNota.getText());
-        mostrar.setDuracion((String) contDuracion.getSelectedItem());       
-        mostrar.setHora((String)contHora.getSelectedItem(),(String)contMinuto.getSelectedItem());
-        if(rSDateChooser1.getDatoFecha() != null){
-            mostrar.setFecha(rSDateChooser1.getDatoFecha());
+        mostrar.setDuracion((String) contDuracion.getSelectedItem());
+        Date fecha=contFecha.getDatoFecha();
+         String aux = (String)amPm.getSelectedItem();
+            int hora = 0;
+            if(aux.equals("pm")){ 
+                hora = (Integer.parseInt((String)contHora.getSelectedItem()))+12;
+            }else{
+                hora = (Integer.parseInt((String)contHora.getSelectedItem()));
+            }           
+            int minuto = Integer.parseInt((String)contMinuto.getSelectedItem());           
+            Date res = establecerFecha(fecha,hora,minuto);
+            mostrar.setFechaHora(res);
+        if(contFecha.getDatoFecha() != null){
+            mostrar.setFecha(contFecha.getDatoFecha());
             this.dispose();
         }else{
             notificacion.NotificacionEscrita("Error","Se necesita una fecha","/Iconos/Negacion.png");           
@@ -290,12 +307,12 @@ public class editarCita extends javax.swing.JFrame {
         mostrar.setNota(contNota.getText());
         mostrar.setDuracion((String) contDuracion.getSelectedItem());
         mostrar.setHora((String)contHora.getSelectedItem(),(String)contMinuto.getSelectedItem());*/
-        if(rSDateChooser1.getDatoFecha() != null){
-            mostrar.setFecha(rSDateChooser1.getDatoFecha());
+        if(contFecha.getDatoFecha() != null){
+            mostrar.setFecha(contFecha.getDatoFecha());
             mostrar.setAsunto(contAsunto.getText());
             mostrar.setNota(contNota.getText());
             mostrar.setDuracion((String) contDuracion.getSelectedItem());
-            mostrar.setHora((String)contHora.getSelectedItem(),(String)contMinuto.getSelectedItem());
+            mostrar.setHora("" +contHora.getSelectedItem()+ " : "+ contMinuto.getSelectedItem()+ " "+ amPm.getSelectedItem()+"");
                 if(cita.getAlarma() == null){
                     InterfazAlarma ia = new InterfazAlarma(cita);       
                     ia.setVisible(true);   
@@ -311,6 +328,10 @@ public class editarCita extends javax.swing.JFrame {
             notificacion.NotificacionEscrita("Error","Se necesita una fecha","/Iconos/Negacion.png");
         }                          
     }//GEN-LAST:event_EditarAlarmaActionPerformed
+
+    private void amPmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amPmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amPmActionPerformed
 
     /**
      * @param args the command line arguments
@@ -337,6 +358,7 @@ public class editarCita extends javax.swing.JFrame {
     private javax.swing.JButton botonGuardar;
     private javax.swing.JTextField contAsunto;
     private javax.swing.JComboBox<String> contDuracion;
+    private rojeru_san.componentes.RSDateChooser contFecha;
     private javax.swing.JComboBox<String> contHora;
     private javax.swing.JComboBox<String> contMinuto;
     private javax.swing.JTextArea contNota;
@@ -351,6 +373,17 @@ public class editarCita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private rojeru_san.componentes.RSDateChooser rSDateChooser1;
     // End of variables declaration//GEN-END:variables
+
+    void setFecha(Date horaFecha) {
+        contFecha.setDatoFecha(horaFecha);
+    }
+    private Date establecerFecha(Date fecha,int hora,int minutos){
+        int anio = fecha.getYear() +1900;
+        int mes = fecha.getMonth();
+        int dia = fecha.getDate();
+        Calendar aux = Calendar.getInstance();
+        aux.set(anio,mes,dia,hora,minutos);
+        return aux.getTime();
+    }
 }
