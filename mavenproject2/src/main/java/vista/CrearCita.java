@@ -267,14 +267,14 @@ public class CrearCita extends javax.swing.JFrame {
             int minuto = Integer.parseInt((String)minutos.getSelectedItem());           
             Date res = establecerFecha(fecha,hora,minuto);
             
-            //System.out.println("hora "+hora+" minutos "+minuto);//
+            System.out.println("hora "+hora+" minutos "+minuto);//
             
             nueva.setFechaHora(res);  
             
-            //System.out.println(nueva.toString());//
-            //Alarma a =new Alarma();//
-            //String fechas = a.dateAString(res);//
-            //System.out.println("fecha : "+fechas);//
+            System.out.println(nueva.toString());//
+            Alarma a =new Alarma();//
+            String fechas = a.dateAString(res);//
+            System.out.println("fecha : "+fechas);//
             
             InterfazAlarma alarma = new InterfazAlarma((Cita) nueva);
             alarma.setVisible(true);
@@ -289,12 +289,21 @@ public class CrearCita extends javax.swing.JFrame {
             //this.setVisible(false);
             //falta interraccion entre ventanas
             agenda.aniadirCita(nueva);
-        } else if (num == 1) {
+        } else if (num == 1) {            
             String p = (String) duracion.getSelectedItem();
             int dur = Integer.parseInt(p);
             Cita nueva = new Cita(asunto.getText(), dur);
             Date fecha = rSDateChooser1.getDatoFecha();
-            nueva.setFechaHora(fecha);
+            String aux = (String)ampm.getSelectedItem();
+            int hora = 0;
+            if(aux.equals("pm")){ 
+                hora = (Integer.parseInt((String)horas.getSelectedItem()))+12;
+            }else{
+                hora = (Integer.parseInt((String)horas.getSelectedItem()));
+            }           
+            int minuto = Integer.parseInt((String)minutos.getSelectedItem());           
+            Date res = establecerFecha(fecha,hora,minuto);
+            nueva.setFechaHora(res);
             nueva.setNota(jTextNota.getText());
             agenda.aniadirCita(nueva);
         }

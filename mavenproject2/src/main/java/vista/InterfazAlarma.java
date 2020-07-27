@@ -162,9 +162,9 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
         Calendar fecha = Calendar.getInstance();
         fecha.setTime(cita.getHoraFecha());
 
-        Date p = fecha.getTime();//
-        Alarma prueba = new Alarma();//
-        System.out.println(prueba.dateAString(p));//
+        //Date p = fecha.getTime();//
+        //Alarma prueba = new Alarma();//
+        //System.out.println(prueba.dateAString(p));//
 
         int minutos = Integer.parseInt((String) jcbMinutos.getSelectedItem());
         fecha.add(Calendar.MINUTE, (minutos * -1));
@@ -181,7 +181,7 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
             cita.getAlarma().ProgramarAlarma(fechaA, cita.getAsunto());
         }
         
-        System.out.println(prueba.dateAString(cita.getHoraFecha())); //
+        //System.out.println(prueba.dateAString(cita.getHoraFecha())); //
 
         cita.setIndiceMin(jcbMinutos.getSelectedIndex());
         cita.setIndiceMus(jcbMusicas.getSelectedIndex());

@@ -82,6 +82,7 @@ public class editarCita extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 580, 326));
         setMinimumSize(new java.awt.Dimension(600, 400));
+        setUndecorated(true);
         setSize(new java.awt.Dimension(580, 326));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -133,12 +134,12 @@ public class editarCita extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 430, 50));
 
         contDuracion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        contDuracion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60" }));
+        contDuracion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "15", "20", "25", "30", "35", "40", "45", "50", "55", "60" }));
         contDuracion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(contDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, -1, -1));
 
         contHora.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        contHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "14" }));
+        contHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         contHora.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         contHora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,8 +246,8 @@ public class editarCita extends javax.swing.JFrame {
             cita.setAsunto(asuntoC);
             Alarma nueva = new Alarma();
             
-            System.out.println("Fecha de cita cuando cancelo se la edicion: "+nueva.dateAString(cita.getHoraFecha()));//
-            System.out.println("Asunto de la cita cuando se calcelo la edicion: "+cita.getAsunto());
+             //System.out.println("Fecha de cita cuando cancelo se la edicion: "+nueva.dateAString(cita.getHoraFecha()));//
+            //System.out.println("Asunto de la cita cuando se calcelo la edicion: "+cita.getAsunto());
             
             cita.apagarAlarma();
             String cancion = bb.getCancion();
@@ -321,9 +322,9 @@ public class editarCita extends javax.swing.JFrame {
                     EA.setVisible(true);         
                 }
             Alarma a = new Alarma();//
-            System.out.println("Fecha de cita por si el usuario cancela: "+a.dateAString(fechaC));//
-            System.out.println("Asunto de la cita por si el usuario cancela: "+asuntoC);//
-            System.out.println("Fecha de cita segun el rsDateChooser1: "+a.dateAString(cita.getHoraFecha()));//
+            //System.out.println("Fecha de cita por si el usuario cancela: "+a.dateAString(fechaC));//
+            //System.out.println("Asunto de la cita por si el usuario cancela: "+asuntoC);//
+            //System.out.println("Fecha de cita segun el rsDateChooser1: "+a.dateAString(cita.getHoraFecha()));//
         }else{
             notificacion.NotificacionEscrita("Error","Se necesita una fecha","/Iconos/Negacion.png");
         }                          
@@ -341,7 +342,6 @@ public class editarCita extends javax.swing.JFrame {
         contMinuto.setSelectedItem(m);
 
     }
-
     public void setAsunto(String p) {
         contAsunto.setText(p);
     }
@@ -375,7 +375,7 @@ public class editarCita extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    void setFecha(Date horaFecha) {
+    public void setFecha(Date horaFecha) {
         contFecha.setDatoFecha(horaFecha);
     }
     private Date establecerFecha(Date fecha,int hora,int minutos){

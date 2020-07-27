@@ -177,8 +177,8 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_musicasItemStateChanged
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        Alarma aux = new Alarma();//
-        Date aux1 = new Date();//
+        //Alarma aux = new Alarma();//
+        //Date aux1 = new Date();//
         Object [] botones = {"  SI  ","  NO  "};
         int res = notificacion.notificacionBotones("¿ Esta seguro que quiere guardar los cambios ?","Editar Alarma",botones,"/Iconos/Interrogacion.png");
         if (res == 0){
@@ -186,21 +186,20 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
             Calendar anticipacion = Calendar.getInstance();
             anticipacion.setTime(cita.getHoraFecha()); 
             
-            aux1 = anticipacion.getTime();
-            System.out.println("Fecha de la cita: "+aux.dateAString(cita.getHoraFecha()));// 
-            System.out.println("Fecha de la cita despues de interractuar con calendar: "+aux.dateAString(aux1)); //
-            
-            
+            //aux1 = anticipacion.getTime();
+            //System.out.println("Fecha de la cita: "+aux.dateAString(cita.getHoraFecha()));// 
+            //System.out.println("Fecha de la cita despues de interractuar con calendar: "+aux.dateAString(aux1)); //
+                       
             anticipacion.add(Calendar.MINUTE,resta);
             
-            aux1 = anticipacion.getTime();
-            System.out.println("Fecha de la cita despues de aumentarle el tiempo restado: "+aux.dateAString(aux1));//
+            //aux1 = anticipacion.getTime();
+            //System.out.println("Fecha de la cita despues de aumentarle el tiempo restado: "+aux.dateAString(aux1));//
             
             int decremento =Integer.parseInt((String)minutos.getSelectedItem());
             anticipacion.add(Calendar.MINUTE,(decremento * -1));
             
-            aux1 = anticipacion.getTime();//
-            System.out.println("Fecha de la cita despues de restarle el tiempo de anticipacion seleccionado: "+aux.dateAString(aux1));//
+            //aux1 = anticipacion.getTime();//
+            //System.out.println("Fecha de la cita despues de restarle el tiempo de anticipacion seleccionado: "+aux.dateAString(aux1));//
             
             cita.setIndiceMin(minutos.getSelectedIndex()); 
             cita.setIndiceMus(musicas.getSelectedIndex());
