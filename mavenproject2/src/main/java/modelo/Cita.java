@@ -10,19 +10,35 @@ public class Cita implements Serializable {
     private String asunto,nota,musica; 
     private Date fechaHora;
     private int duracion,anticipacion;
-    private boolean TieneAlarma= false;
-    private Calendar calendario;
+    private boolean TieneAlarma= false;   
     private int indiceMin,indiceMus,indHoras,indMinutos,indAmPm,indDuracion= 0;
-   
+    
     public Cita(String asunto, int duracion, Alarma alarma) {
         this.alarma = alarma;       
         this.asunto = asunto;
         this.duracion = duracion;
-    }   
-    public Cita(String asunto, int duracion) {
+       
+    }
+    /*public Cita(String asunto, int duracion) {
         this.asunto = asunto;
         this.duracion = duracion;
+    }*/
+    public Cita clone(){
+        Cita res = new Cita(asunto,duracion,alarma);
+        res.setNota(nota); 
+        res.setMusica(musica); 
+        res.setFechaHora(fechaHora); 
+        res.setTieneAlarma(TieneAlarma); 
+        res.setIndiceMin(indiceMin); 
+        res.setIndiceMus(indiceMus); 
+        res.setIndHoras(indHoras);
+        res.setIndMinutos(indMinutos); 
+        res.setIndAmPm(indAmPm);
+        res.setIndDuracion(indDuracion); 
+        res.setAnticipacion(anticipacion); 
+        return res ;
     }
+    
     public void setHora(int hora,int minuto){
         fechaHora.setHours(hora); 
         fechaHora.setMinutes(minuto); 
@@ -78,7 +94,7 @@ public class Cita implements Serializable {
     public Date getHoraFecha() {
         return fechaHora;
     }
-    public String getHora(){
+    /*public String getHora(){
         String res;
         int h= fechaHora.getHours();
         int m= fechaHora.getMinutes();
@@ -92,7 +108,7 @@ public class Cita implements Serializable {
         System.out.println(fechaHora);
         return res;
         
-    }
+    }*/
     public void setAsunto(String asunto) {
         this.asunto = asunto;
     }
@@ -118,7 +134,7 @@ public class Cita implements Serializable {
     }
 
     public void apagarAlarma(){
-        alarma.desactivar();      
+        alarma.desactivar();        
     }
     public void activarAlarma(){
         alarma.activar();        

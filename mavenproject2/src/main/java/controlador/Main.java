@@ -21,6 +21,7 @@ public class Main {
         SerializarProyecto serialProyect = new SerializarProyecto();
         AgendaVirtual agendaVirtual = serialProyect.recuperarProyecto();
         VistaAgendaVirtual vistaAgendaVirtual = new VistaAgendaVirtual(agendaVirtual);
-        vistaAgendaVirtual.setVisible(true);                                    
+        vistaAgendaVirtual.setVisible(true); 
+        
     }
 }

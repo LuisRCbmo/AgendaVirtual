@@ -82,7 +82,7 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
         minutos.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         minutos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60" }));
         minutos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(minutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 60, 30));
+        getContentPane().add(minutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 60, 30));
 
         musicas.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         musicas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Telefono Antiguo", "TI TI TI ", "Gallo", "Alarma Loud", "Alarma de Guerra", "Alarma De Coche" }));
@@ -92,7 +92,7 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
                 musicasItemStateChanged(evt);
             }
         });
-        getContentPane().add(musicas, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 150, 30));
+        getContentPane().add(musicas, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 150, 30));
 
         guardar.setBackground(new java.awt.Color(255, 255, 255));
         guardar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -103,7 +103,7 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
                 guardarActionPerformed(evt);
             }
         });
-        getContentPane().add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 90, 30));
+        getContentPane().add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 90, 30));
 
         eliminar.setBackground(new java.awt.Color(255, 255, 255));
         eliminar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -114,24 +114,24 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
                 eliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 90, 30));
+        getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 90, 30));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Tiempo de Anticipacion :");
         jLabel1.setToolTipText("");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, 30));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, 30));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Musica de la Alarma :");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 140, 30));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 140, 30));
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Minutos.");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, 60, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 60, 30));
 
         jlbReloj.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jlbReloj.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -150,7 +150,7 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
                 cancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 90, 30));
+        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 90, 30));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 340));

@@ -230,7 +230,9 @@ public class mostrarCita extends javax.swing.JFrame {
         edit.setNota(cita.getNota());
         edit.setAsunto(cita.getAsunto());
         //edit.setFecha(cita.getHoraFecha());
+        edit.recuperarDatos(cita);
         edit.setVisible(true);
+        
         mostrarCita padree = this;
         edit.addWindowListener(new WindowAdapter() {
             public void windowClosed(WindowEvent e) {
@@ -284,17 +286,17 @@ public class mostrarCita extends javax.swing.JFrame {
         cita.setDuracion(dur);
     }
 
-    public void setFecha(String d, String m, String a) {
+    /*public void setFecha(String d, String m, String a) {
         contFecha.setText(d + "/" + m + "/" + a);
-    }
+    }*/
 
-    public void setFecha(String p) {
+    /*public void setFecha(String p) {
         contFecha.setText(p);
-    }
+    }*/
 
-    public void setFecha(Date fecha) {
+    /*public void setFecha(Date fecha) {
         cita.setFechaHora(fecha);
-    }
+    }*/
 
     public void setFechaHora(Date fecha){
         cita.setFechaHora(fecha);
@@ -302,11 +304,12 @@ public class mostrarCita extends javax.swing.JFrame {
         contFecha.setText(sdf.format(fecha)); 
         sdf = new SimpleDateFormat("HH:mm  a");
         contHora.setText(sdf.format(fecha)); 
+        cita.setFechaHora(fecha); 
     }
 
-    public void setHora(String p) {
+    /*public void setHora(String p) {
         contHora.setText(p);
-    }
+    }*/
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonEditar;
