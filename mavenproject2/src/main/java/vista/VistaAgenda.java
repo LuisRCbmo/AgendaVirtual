@@ -152,7 +152,11 @@ public class VistaAgenda extends javax.swing.JFrame {
             int index = notificacion.notificacionBotones("¿ Esta seguro que quiere eliminar la cita ?","Eliminar cita", botones,"/Iconos/Negacion.png");
             if(index == 0){
                 int pos = listaCitas.getSelectedIndex();
-                agenda.getListaCitas().eliminar(pos);
+                Cita eliminada = (Cita)agenda.getListaCitas().acceder(pos); 
+                if(eliminada.getTieneAlarma()){
+                    eliminada.apagarAlarma();
+                }
+                agenda.getListaCitas().eliminar(pos); 
                 actualizarCitas();
             }
         }

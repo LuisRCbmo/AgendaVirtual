@@ -49,13 +49,6 @@ public class AgendaVirtual implements Serializable {
         return listamemo.eliminar(posicion);
     }
 
-    public void guardarCitas() {
-        try {
-            ObjectOutputStream escribir = new ObjectOutputStream(new FileOutputStream("Memosguardados"));
-            escribir.writeObject(listamemo);
-            escribir.close();
-        } catch (Exception eGLD) {
-        }
-    }
+   
 
 }

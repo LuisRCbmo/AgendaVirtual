@@ -7,18 +7,19 @@ import java.util.*;
 public class Cita implements Serializable {
 
     private Alarma alarma;
-    private String asunto;
-    private String nota;
+    private String asunto,nota,musica; 
     private Date fechaHora;
-    private int duracion;
-    private boolean alarm;
-    Calendar calendario;
-    private int indiceMin = 0;
-    private int indiceMus = 0;
-
+    private int duracion,anticipacion;
+    private boolean TieneAlarma= false;
+    private Calendar calendario;
+    private int indiceMin,indiceMus,indHoras,indMinutos,indAmPm,indDuracion= 0;
+   
     public Cita(String asunto, int duracion, Alarma alarma) {
-        this.alarma = alarma;
-        //alarm = alarma.getActivo();
+        this.alarma = alarma;       
+        this.asunto = asunto;
+        this.duracion = duracion;
+    }   
+    public Cita(String asunto, int duracion) {
         this.asunto = asunto;
         this.duracion = duracion;
     }
@@ -32,17 +33,36 @@ public class Cita implements Serializable {
     public int getIndiceMus(){
         return indiceMus;
     }
+    public int getIndMinutos(){
+        return indMinutos;
+    }
+    public int getIndHoras(){
+        return indHoras;
+    }
+    public int getIndAmPm(){
+        return indAmPm;
+    } 
+    public int getIndDuracion(){
+        return indDuracion;
+    }
     public void setIndiceMin(int indiceMin){
         this.indiceMin = indiceMin;
     }
     public void setIndiceMus(int indiceMus){
         this.indiceMus = indiceMus;
     }
-    public Cita(String asunto, int duracion) {
-        this.asunto = asunto;
-        this.duracion = duracion;
+    public void setIndMinutos(int indMinutos){
+        this.indMinutos = indMinutos;
     }
-
+    public void setIndHoras(int indHoras){
+        this.indHoras = indHoras;
+    }
+    public void setIndAmPm(int indAmPm){
+        this.indAmPm = indAmPm;
+    }
+    public void setIndDuracion(int indDuracion){
+        this.indDuracion = indDuracion;
+    }
     public void setDuracion(int duracion) {
         this.duracion = duracion;
     }
@@ -98,9 +118,29 @@ public class Cita implements Serializable {
     }
 
     public void apagarAlarma(){
-        alarma.desactivar();
+        alarma.desactivar();      
     }
-
+    public void activarAlarma(){
+        alarma.activar();        
+    }
+    public boolean getTieneAlarma(){
+        return TieneAlarma;
+    }
+    public void setTieneAlarma(boolean tieneAlarma){
+        this.TieneAlarma = tieneAlarma;
+    }
+    public int getAnticipacion(){
+        return anticipacion;
+    }
+    public void setAnticipacion(int anticipacion){
+        this.anticipacion = anticipacion;
+    }
+    public String getMusica(){
+        return musica;
+    }
+    public void setMusica(String musica){
+        this.musica = musica;
+    }
     public String toString() {
         String fechita = this.toStringFecha();
         return "Asunto: " + asunto + " fecha: " + fechita + " Duracion: " + duracion + "";
@@ -124,8 +164,8 @@ public class Cita implements Serializable {
         return aux.dateAString(fechaHora);
     }
  
-    public String toStringHora() {
+    /*public String toStringHora() {
         calendario.setTime(fechaHora);
         return "" + calendario.get(calendario.DAY_OF_MONTH) + "/" + calendario.get(calendario.MONTH) + 1 + "/" + calendario.get(calendario.YEAR) + "";
-    }
+    }*/
 }

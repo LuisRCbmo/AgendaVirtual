@@ -27,26 +27,40 @@ public class editarCita extends javax.swing.JFrame {
      * Creates new form editarCita
      */
     private mostrarCita mostrar;
-    private Cita cita;
+    private Cita cita,citaAuxiliar;
     private Notificacion notificacion;
-    private Date fechaC = new Date();
-    private String asuntoC = "";
-    private Alarma bb = new Alarma();
+    //private Date fechaC = new Date();
+    //private String asuntoC = "";
+   // private Alarma bb = new Alarma();
     public editarCita(mostrarCita mostrar, Cita cita) {
-        this.cita = cita;
+        this.cita = cita;       
         this.mostrar = mostrar;
-        initComponents();
-        contDuracion.setSelectedIndex(3);//poner index de duracion
+        initComponents();       
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        this.setPreferredSize(new Dimension(600, 400));
+        //this.setPreferredSize(new Dimension(600, 400));
         notificacion = new Notificacion();
-        fechaC = cita.getHoraFecha();
-        asuntoC = cita.getAsunto();
-        bb = cita.getAlarma();
-        
+        citaAuxiliar = new Cita(cita.getAsunto(),cita.getDuracion());       
+        recuperarDatos();
     }
-
+    private void recuperarDatos(){
+        contHora.setSelectedIndex(cita.getIndHoras()); 
+        contMinuto.setSelectedIndex(cita.getIndMinutos()); 
+        amPm.setSelectedIndex(cita.getIndAmPm());
+        contDuracion.setSelectedIndex(cita.getIndDuracion()); 
+        contFecha.setDatoFecha(cita.getHoraFecha());
+        contAsunto.setText(cita.getAsunto());
+        contNota.setText(cita.getNota()); 
+        if(cita.getAlarma() == null){
+            citaAuxiliar.setAlarma(null);
+            setBotonA("Crear Alarma"); 
+        }else{ 
+            citaAuxiliar.setAlarma(cita.getAlarma());        
+        }
+        citaAuxiliar.setFechaHora(cita.getHoraFecha());
+        citaAuxiliar.setIndiceMin(cita.getIndiceMin()); 
+        citaAuxiliar.setIndiceMus(cita.getIndiceMus()); 
+    } 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,9 +95,8 @@ public class editarCita extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 580, 326));
-        setMinimumSize(new java.awt.Dimension(600, 400));
         setUndecorated(true);
-        setSize(new java.awt.Dimension(580, 326));
+        setSize(new java.awt.Dimension(0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         botonAtras.setBackground(new java.awt.Color(149, 173, 177));
@@ -149,7 +162,7 @@ public class editarCita extends javax.swing.JFrame {
         getContentPane().add(contHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
 
         contMinuto.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        contMinuto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "15", "30", "45", "40" }));
+        contMinuto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "15", "30", "45" }));
         contMinuto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         contMinuto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,108 +248,90 @@ public class editarCita extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        Object [] botones = {"  SI  ","  NO  "};
-        //int res = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere descartar los cambios?", "Descartar cambios", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        Object [] botones = {"  SI  ","  NO  "};       
         int res = notificacion.notificacionBotones("¿ Esta seguro que quiere descartar los cambios ?","Descartar cambios",botones,"/Iconos/Advertencia.png");
-        if (res == 0) {
-            //mostrar.setVisible(true);
-            //this.setVisible(false);
-            if(bb != null){
-            cita.setFechaHora(fechaC);
-            cita.setAsunto(asuntoC);
-            Alarma nueva = new Alarma();
-            
-             //System.out.println("Fecha de cita cuando cancelo se la edicion: "+nueva.dateAString(cita.getHoraFecha()));//
-            //System.out.println("Asunto de la cita cuando se calcelo la edicion: "+cita.getAsunto());
-            
-            cita.apagarAlarma();
-            String cancion = bb.getCancion();
-            nueva.setCancion(cancion); 
-            nueva.ProgramarAlarma(fechaC,asuntoC);
-            cita.setAlarma(nueva);            
-        }else{
-             cita.setFechaHora(fechaC);
-             cita.setAsunto(asuntoC);
-             cita.apagarAlarma();
-             cita.setAlarma(null); 
-             System.out.println("si no tenia alarma");
-        }     
-        this.dispose();
+        if (res == 0) {       
+            Alarma a = new Alarma();//
+            if(cita.getAlarma() == null){
+                 System.out.println("no tenia alarma");
+            }else{
+                 System.out.println("si tenia alarma");
+            }
+            System.out.println("fecha de la primera cita :"+a.dateAString(cita.getHoraFecha()));//
+            this.dispose();
         }
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void contHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contHoraActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_contHoraActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
         mostrar.setAsunto(contAsunto.getText());
         mostrar.setNota(contNota.getText());
-        mostrar.setDuracion((String) contDuracion.getSelectedItem());
-        Date fecha=contFecha.getDatoFecha();
-         String aux = (String)amPm.getSelectedItem();
+        mostrar.setDuracion((String) contDuracion.getSelectedItem());        
+        Date fecha=contFecha.getDatoFecha();        
+            String aux = (String)amPm.getSelectedItem();
             int hora = 0;
-            if(aux.equals("pm")){ 
-                hora = (Integer.parseInt((String)contHora.getSelectedItem()))+12;
-            }else{
-                hora = (Integer.parseInt((String)contHora.getSelectedItem()));
-            }           
+                if(aux.equals("pm")){ 
+                    hora = (Integer.parseInt((String)contHora.getSelectedItem()))+12;
+                }else{
+                    hora = (Integer.parseInt((String)contHora.getSelectedItem()));
+                }           
             int minuto = Integer.parseInt((String)contMinuto.getSelectedItem());           
             Date res = establecerFecha(fecha,hora,minuto);
-            mostrar.setFechaHora(res);
-        if(contFecha.getDatoFecha() != null){
-            mostrar.setFecha(contFecha.getDatoFecha());
-            this.dispose();
+        mostrar.setFechaHora(res);       
+        cita.setIndHoras(contHora.getSelectedIndex()); 
+        cita.setIndMinutos(contMinuto.getSelectedIndex());
+        cita.setIndAmPm(amPm.getSelectedIndex());       
+        cita.setIndiceMin(citaAuxiliar.getIndiceMin()); 
+        cita.setIndiceMus(citaAuxiliar.getIndiceMus());
+        if(citaAuxiliar.getAlarma() == null){
+            cita.setAlarma(null);
         }else{
-            notificacion.NotificacionEscrita("Error","Se necesita una fecha","/Iconos/Negacion.png");           
+            cita.setAlarma(citaAuxiliar.getAlarma());
         }
-        
-        //mostrar.setVisible(true);
-        //this.setVisible(false);                                                   
+        this.dispose();                                                                      
     }//GEN-LAST:event_botonGuardarActionPerformed
-
+    private void asignarAlarma(){
+        
+    }
     private void contMinutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contMinutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_contMinutoActionPerformed
 
     private void EditarAlarmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarAlarmaActionPerformed
-       
-        /*fechaC = cita.getHoraFecha();
-        asuntoC = cita.getAsunto();
-        bb = cita.getAlarma();
-        mostrar.setAsunto(contAsunto.getText());
-        mostrar.setNota(contNota.getText());
-        mostrar.setDuracion((String) contDuracion.getSelectedItem());
-        mostrar.setHora((String)contHora.getSelectedItem(),(String)contMinuto.getSelectedItem());*/
-        if(contFecha.getDatoFecha() != null){
-            mostrar.setFecha(contFecha.getDatoFecha());
-            mostrar.setAsunto(contAsunto.getText());
-            mostrar.setNota(contNota.getText());
-            mostrar.setDuracion((String) contDuracion.getSelectedItem());
-            mostrar.setHora("" +contHora.getSelectedItem()+ " : "+ contMinuto.getSelectedItem()+ " "+ amPm.getSelectedItem()+"");
-                if(cita.getAlarma() == null){
-                    InterfazAlarma ia = new InterfazAlarma(cita);       
+
+            citaAuxiliar.setAsunto(contAsunto.getText());   
+            citaAuxiliar.setDuracion(Integer.parseInt((String)contDuracion.getSelectedItem())); 
+            Date fecha=contFecha.getDatoFecha();        
+            String aux = (String)amPm.getSelectedItem();
+            int hora = 0;
+                if(aux.equals("pm")){ 
+                    hora = (Integer.parseInt((String)contHora.getSelectedItem()))+12;
+                }else{
+                    hora = (Integer.parseInt((String)contHora.getSelectedItem()));
+                }           
+            int minuto = Integer.parseInt((String)contMinuto.getSelectedItem());           
+            Date res = establecerFecha(fecha,hora,minuto);
+            citaAuxiliar.setFechaHora(res); 
+                if(citaAuxiliar.getAlarma() == null){
+                    InterfazAlarma ia = new InterfazAlarma(citaAuxiliar,this);       
                     ia.setVisible(true);   
                 }else{                     
-                    EditarAlarma EA = new EditarAlarma(cita);       
+                    EditarAlarma EA = new EditarAlarma(citaAuxiliar,this);       
                     EA.setVisible(true);         
                 }
-            Alarma a = new Alarma();//
-            //System.out.println("Fecha de cita por si el usuario cancela: "+a.dateAString(fechaC));//
-            //System.out.println("Asunto de la cita por si el usuario cancela: "+asuntoC);//
-            //System.out.println("Fecha de cita segun el rsDateChooser1: "+a.dateAString(cita.getHoraFecha()));//
-        }else{
-            notificacion.NotificacionEscrita("Error","Se necesita una fecha","/Iconos/Negacion.png");
-        }                          
+                                
     }//GEN-LAST:event_EditarAlarmaActionPerformed
 
     private void amPmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amPmActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_amPmActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    public void setBotonA(String TF){
+        EditarAlarma.setText(TF);
+    } 
     public void setHora(String h, String m) {
         contHora.setSelectedItem(h);
         contMinuto.setSelectedItem(m);
@@ -375,15 +370,15 @@ public class editarCita extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    public void setFecha(Date horaFecha) {
+    /*public void setFecha(Date horaFecha) {
         contFecha.setDatoFecha(horaFecha);
-    }
+    }*/
     private Date establecerFecha(Date fecha,int hora,int minutos){
         int anio = fecha.getYear() +1900;
         int mes = fecha.getMonth();
         int dia = fecha.getDate();
         Calendar aux = Calendar.getInstance();
-        aux.set(anio,mes,dia,hora,minutos);
+        aux.set(anio,mes,dia,hora,minutos,00);
         return aux.getTime();
     }
 }

@@ -23,13 +23,15 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
     private String[] sonds = {"TelefonoAntiguo.wav", "TITITI.wav", "Gallo.wav", "AlarmaLoud.wav", "AlarmaDeGuerra.wav", "AlarmaDeCoche.wav"};
     private boolean inicio = false;
     private Cita cita;
-    public EditarAlarma(Cita cita) {
+    private editarCita eCita;
+    public EditarAlarma(Cita cita,editarCita eCita) {
         initComponents();
         h1 = new Thread(this);
         h1.start();        
         setLocationRelativeTo(null); 
         notificacion = new Notificacion();
         this.cita = cita;
+        this.eCita = eCita;
         ordenar();
     }
 
@@ -44,12 +46,13 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
         minutos = new javax.swing.JComboBox<>();
         musicas = new javax.swing.JComboBox<>();
         guardar = new javax.swing.JButton();
-        seleccionar = new javax.swing.JButton();
+        eliminar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jlbReloj = new javax.swing.JLabel();
         fechaActual = new javax.swing.JLabel();
+        cancelar = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -100,18 +103,18 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
                 guardarActionPerformed(evt);
             }
         });
-        getContentPane().add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, 90, 30));
+        getContentPane().add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 90, 30));
 
-        seleccionar.setBackground(new java.awt.Color(255, 255, 255));
-        seleccionar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        seleccionar.setText("Seleccionar");
-        seleccionar.setBorder(null);
-        seleccionar.addActionListener(new java.awt.event.ActionListener() {
+        eliminar.setBackground(new java.awt.Color(255, 255, 255));
+        eliminar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        eliminar.setText("Eliminar");
+        eliminar.setBorder(null);
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seleccionarActionPerformed(evt);
+                eliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(seleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, 90, 30));
+        getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 90, 30));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -138,8 +141,19 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
         fechaActual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         getContentPane().add(fechaActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 490, 30));
 
+        cancelar.setBackground(new java.awt.Color(255, 255, 255));
+        cancelar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        cancelar.setText("Cancelar");
+        cancelar.setBorder(null);
+        cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 90, 30));
+
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 290));
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 340));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -153,23 +167,29 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (clip != null) {
             clip.stop();
+            clip.close();
         }
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void seleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarActionPerformed
-        int i = musicas.getSelectedIndex();
-        if (clip != null) {
-            clip.stop();
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+        Object [] botones = {" SI "," NO "};
+        int res = notificacion.notificacionBotones("Quiere eliminar la Alarma","¿ Eliminar ?", botones,"/Iconos/Negacion.png");
+        if(res == 0){
+            eCita.setBotonA("Crear Alarma");
+            cita.apagarAlarma();
+            cita.setAlarma(null); 
+            cita.setTieneAlarma(false); 
+            notificacion.NotificacionEscrita("Eliminado","Alarma Eliminada","/Iconos/Aprobacion.png");
+            this.dispose();
         }
-        cancion = sonds[i];
-        notificacion.NotificacionEscrita("Seleccionado","! Musica seleccionada exitosamente ¡","/Iconos/Aprobacion.png");
-    }//GEN-LAST:event_seleccionarActionPerformed
+    }//GEN-LAST:event_eliminarActionPerformed
 
     private void musicasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_musicasItemStateChanged
         int i = musicas.getSelectedIndex();
         if (clip != null) {
             clip.stop();
+            clip.close();
         }
         if(inicio){
             reproducir(sonds[i]);
@@ -177,78 +197,46 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_musicasItemStateChanged
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        //Alarma aux = new Alarma();//
-        //Date aux1 = new Date();//
+        if (clip != null) {
+            clip.stop();
+            clip.close();
+        }
         Object [] botones = {"  SI  ","  NO  "};
         int res = notificacion.notificacionBotones("¿ Esta seguro que quiere guardar los cambios ?","Editar Alarma",botones,"/Iconos/Interrogacion.png");
-        if (res == 0){
-            int resta = (cita.getIndiceMin() + 1)*5;
-            Calendar anticipacion = Calendar.getInstance();
-            anticipacion.setTime(cita.getHoraFecha()); 
-            
-            //aux1 = anticipacion.getTime();
-            //System.out.println("Fecha de la cita: "+aux.dateAString(cita.getHoraFecha()));// 
-            //System.out.println("Fecha de la cita despues de interractuar con calendar: "+aux.dateAString(aux1)); //
-                       
-            anticipacion.add(Calendar.MINUTE,resta);
-            
-            //aux1 = anticipacion.getTime();
-            //System.out.println("Fecha de la cita despues de aumentarle el tiempo restado: "+aux.dateAString(aux1));//
-            
-            int decremento =Integer.parseInt((String)minutos.getSelectedItem());
-            anticipacion.add(Calendar.MINUTE,(decremento * -1));
-            
-            //aux1 = anticipacion.getTime();//
-            //System.out.println("Fecha de la cita despues de restarle el tiempo de anticipacion seleccionado: "+aux.dateAString(aux1));//
-            
+        if (res == 0){           
+            int i = musicas.getSelectedIndex();
+            cancion = sonds[i];
+            Calendar tiempoCita = Calendar.getInstance();
+            tiempoCita.setTime(cita.getHoraFecha());    
+            int decremento =(Integer.parseInt((String)minutos.getSelectedItem()))*-1;
+            tiempoCita.add(Calendar.MINUTE,(decremento));                
             cita.setIndiceMin(minutos.getSelectedIndex()); 
-            cita.setIndiceMus(musicas.getSelectedIndex());
-            cita.apagarAlarma();
+            cita.setIndiceMus(musicas.getSelectedIndex());           
+            cita.apagarAlarma();            
             Alarma nueva = new Alarma();
             nueva.setCancion(cancion); 
-            nueva.ProgramarAlarma(anticipacion.getTime(),cita.getAsunto()); 
+            nueva.ProgramarAlarma(tiempoCita.getTime(),cita.getAsunto()); 
             cita.setAlarma(nueva); 
+            cita.setMusica(cancion);
+            cita.setAnticipacion(decremento);
+            cita.setTieneAlarma(true); 
+            eCita.setBotonA("Editar Alarma");
+            notificacion.NotificacionEscrita("Alarma añadida","Alarma programada para las " +nueva.dateAString(tiempoCita.getTime()),"/Iconos/Advertencia.png");  
             this.dispose();
         }
     }//GEN-LAST:event_guardarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    /*
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        /*try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditarAlarma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditarAlarma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditarAlarma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditarAlarma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
+        if (clip != null) {
+            clip.stop();
+            clip.close();
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-     /*   java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new EditarAlarma().setVisible(true);
-            }
-        });*/
-    //}
+        this.dispose();
+    }//GEN-LAST:event_cancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelar;
+    private javax.swing.JButton eliminar;
     private javax.swing.JLabel fechaActual;
     private javax.swing.JLabel fondo;
     private javax.swing.JButton guardar;
@@ -260,7 +248,6 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
     private javax.swing.JComboBox<String> minutos;
     private javax.swing.JComboBox<String> musicas;
     private javax.swing.JLabel panel;
-    private javax.swing.JButton seleccionar;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
     @Override

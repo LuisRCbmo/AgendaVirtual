@@ -48,7 +48,13 @@ public class Agenda implements Serializable {
             System.out.println("No tiene citas programadas.");
         }
     }
-
+    /*
+       un for quiero que esten mis citas y estas citan tengan tres atributos
+        si mi alaarma estaba activa
+        la fecha date
+        asunto
+        for ()
+    */
     public void guardarCitas() {
         try {
             ObjectOutputStream escribirfichero = new ObjectOutputStream(new FileOutputStream("listacitas"));

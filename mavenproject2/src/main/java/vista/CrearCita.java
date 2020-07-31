@@ -19,9 +19,9 @@ public class CrearCita extends javax.swing.JFrame {
     public CrearCita(Agenda agenda) {
         initComponents();
         this.agenda = agenda;
-        aniadirItemsHoras();
-        aniadirItemsHorario();
-        aniadirItemsDuracion();
+        //aniadirItemsHoras();
+        //aniadirItemsHorario();
+        //aniadirItemsDuracion();
         this.setLocationRelativeTo(null);
         notificacion = new Notificacion();
     }
@@ -121,6 +121,7 @@ public class CrearCita extends javax.swing.JFrame {
         getContentPane().add(asunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 113, 240, 30));
 
         duracion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        duracion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "15", "20", "25", "30", "35", "40", "45", "50", "55", "60" }));
         duracion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         duracion.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
@@ -135,6 +136,7 @@ public class CrearCita extends javax.swing.JFrame {
         getContentPane().add(duracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, 75, 25));
 
         ampm.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        ampm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "am", "pm" }));
         ampm.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         ampm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,6 +146,7 @@ public class CrearCita extends javax.swing.JFrame {
         getContentPane().add(ampm, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 75, 25));
 
         horas.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        horas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         horas.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         horas.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -205,6 +208,7 @@ public class CrearCita extends javax.swing.JFrame {
         getContentPane().add(rSDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 280, 30));
 
         minutos.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        minutos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "15", "30", "45" }));
         minutos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(minutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 75, 25));
 
@@ -255,7 +259,7 @@ public class CrearCita extends javax.swing.JFrame {
         Object[] botones = {"  SI  ", "  NO  "};
         int num = notificacion.notificacionBotones("¿ Quisiera crear una alarma ?", "Crear Alarma", botones, "/Iconos/Interrogacion.png");
         if (num == 0) {
-            Cita nueva = new Cita(asunto.getText(), Integer.parseInt((String)duracion.getSelectedItem()), new Alarma());
+            Cita nueva = new Cita(asunto.getText(), Integer.parseInt((String)duracion.getSelectedItem()),null);           
             Date fecha = rSDateChooser1.getDatoFecha();           
             String aux = (String)ampm.getSelectedItem();
             int hora = 0;
@@ -266,17 +270,13 @@ public class CrearCita extends javax.swing.JFrame {
             }           
             int minuto = Integer.parseInt((String)minutos.getSelectedItem());           
             Date res = establecerFecha(fecha,hora,minuto);
-            
-            System.out.println("hora "+hora+" minutos "+minuto);//
-            
-            nueva.setFechaHora(res);  
-            
-            System.out.println(nueva.toString());//
-            Alarma a =new Alarma();//
-            String fechas = a.dateAString(res);//
-            System.out.println("fecha : "+fechas);//
-            
-            InterfazAlarma alarma = new InterfazAlarma((Cita) nueva);
+            nueva.setIndHoras(horas.getSelectedIndex()); 
+            nueva.setIndMinutos(minutos.getSelectedIndex()); 
+            nueva.setIndAmPm(ampm.getSelectedIndex()); 
+            nueva.setIndDuracion(duracion.getSelectedIndex()); 
+            nueva.setNota(jTextNota.getText());            
+            nueva.setFechaHora(res);                        
+            InterfazAlarma alarma = new InterfazAlarma((Cita)nueva,null);
             alarma.setVisible(true);
             //falta interraccion entre ventanas
             alarma.addWindowListener(new WindowAdapter() {
@@ -292,7 +292,7 @@ public class CrearCita extends javax.swing.JFrame {
         } else if (num == 1) {            
             String p = (String) duracion.getSelectedItem();
             int dur = Integer.parseInt(p);
-            Cita nueva = new Cita(asunto.getText(), dur);
+            Cita nueva = new Cita(asunto.getText(),dur,null);
             Date fecha = rSDateChooser1.getDatoFecha();
             String aux = (String)ampm.getSelectedItem();
             int hora = 0;
@@ -305,6 +305,10 @@ public class CrearCita extends javax.swing.JFrame {
             Date res = establecerFecha(fecha,hora,minuto);
             nueva.setFechaHora(res);
             nueva.setNota(jTextNota.getText());
+            nueva.setIndHoras(horas.getSelectedIndex());
+            nueva.setIndMinutos(minutos.getSelectedIndex()); 
+            nueva.setIndAmPm(ampm.getSelectedIndex()); 
+            nueva.setIndDuracion(duracion.getSelectedIndex()); 
             agenda.aniadirCita(nueva);
         }
         this.dispose();
@@ -389,7 +393,7 @@ public class CrearCita extends javax.swing.JFrame {
     private rojeru_san.componentes.RSDateChooser rSDateChooser1;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
-    private void aniadirItemsHoras() {
+ /*   private void aniadirItemsHoras() {
         //horas
         this.horas.addItem("01");
         this.horas.addItem("02");
@@ -426,13 +430,13 @@ public class CrearCita extends javax.swing.JFrame {
         this.duracion.addItem("50");
         this.duracion.addItem("55");
         this.duracion.addItem("60");
-    }
+    }*/
     private Date establecerFecha(Date fecha,int hora,int minutos){
         int anio = fecha.getYear() +1900;
         int mes = fecha.getMonth();
         int dia = fecha.getDate();
         Calendar aux = Calendar.getInstance();
-        aux.set(anio,mes,dia,hora,minutos);
+        aux.set(anio,mes,dia,hora,minutos,00);
         return aux.getTime();
     }
 }

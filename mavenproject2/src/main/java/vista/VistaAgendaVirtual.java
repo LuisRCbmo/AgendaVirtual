@@ -47,7 +47,6 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         jScrollPane1 = new javax.swing.JScrollPane();
         Lista = new javax.swing.JList();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         calendar = new rojeru_san.componentes.RSCalendar();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -56,7 +55,6 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu17 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -65,6 +63,9 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         jlbReloj.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jlbReloj.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         getContentPane().add(jlbReloj, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 220, 40));
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setToolTipText("");
 
         jScrollPane1.setViewportView(Lista);
 
@@ -80,10 +81,6 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
             }
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, 120, 40));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 600, 20));
 
         calendar.setColorDiaActual(new java.awt.Color(123, 188, 218));
         getContentPane().add(calendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 320, -1));
@@ -138,13 +135,6 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         jMenu16.add(jMenuItem4);
 
         jMenuBar5.add(jMenu16);
-
-        jMenu17.setBackground(new java.awt.Color(80, 83, 98));
-        jMenu17.setText("                     Hoy");
-        jMenu17.setBorderPainted(true);
-        jMenu17.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jMenu17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jMenuBar5.add(jMenu17);
 
         setJMenuBar(jMenuBar5);
 
@@ -240,10 +230,8 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
     private rojeru_san.componentes.RSCalendar calendar;
     public javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu16;
-    private javax.swing.JMenu jMenu17;
     private javax.swing.JMenuBar jMenuBar5;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;

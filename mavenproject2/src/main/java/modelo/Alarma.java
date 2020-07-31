@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+
 /*
     autor emerson
 */
@@ -29,8 +30,10 @@ public class Alarma implements java.io.Serializable {
         Object[] botones = {"APAGAR", "POSPONER"};
         calendar = Calendar.getInstance();
         fechaActual = new Date();
+        Date comparable = new Date();
         activo = true;
         play = true;
+        
         timer = new Timer();
         timerPlay = new Timer();
         tarea = new TimerTask() {
@@ -42,12 +45,14 @@ public class Alarma implements java.io.Serializable {
                     int com = notificacion.notificacionBotones("¿Que hacer con la alarma?", "Alarma", botones, "/Iconos/Interrogacion.png");
                     if (com == 0) {
                         play = false;
-                        clip.stop();
+                        clip.stop();                        
+                        clip.close();
                         timer.cancel();
 
                     } else {
                         play = false;
                         clip.stop();
+                        clip.close();
                         Posponer(fechaActual);
                         timer.cancel();
                     }
