@@ -286,16 +286,19 @@ public class editarCita extends javax.swing.JFrame {
         cita.setIndAmPm(amPm.getSelectedIndex());       
         cita.setIndiceMin(citaAuxiliar.getIndiceMin()); 
         cita.setIndiceMus(citaAuxiliar.getIndiceMus());
-        if(citaAuxiliar.getAlarma() == null){
+        cita.setMusica(citaAuxiliar.getMusica()); 
+        cita.setAnticipacion(citaAuxiliar.getAnticipacion());
+        if(citaAuxiliar.getAlarma() == null){ 
+            cita.apagarAlarma();
             cita.setAlarma(null);
+            cita.setTieneAlarma(false); 
         }else{
             cita.setAlarma(citaAuxiliar.getAlarma());
+            cita.setTieneAlarma(true); 
         }
         this.dispose();                                                                      
     }//GEN-LAST:event_botonGuardarActionPerformed
-    private void asignarAlarma(){
-        
-    }
+  
     private void contMinutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contMinutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_contMinutoActionPerformed
