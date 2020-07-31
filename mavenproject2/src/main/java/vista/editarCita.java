@@ -289,10 +289,15 @@ public class editarCita extends javax.swing.JFrame {
         cita.setMusica(citaAuxiliar.getMusica()); 
         cita.setAnticipacion(citaAuxiliar.getAnticipacion());
         if(citaAuxiliar.getAlarma() == null){ 
-            cita.apagarAlarma();
+            if(cita.getAlarma() != null){
+                cita.apagarAlarma();
+            }
             cita.setAlarma(null);
             cita.setTieneAlarma(false); 
         }else{
+            if(cita.getAlarma() != null){
+                cita.apagarAlarma();
+            }
             cita.setAlarma(citaAuxiliar.getAlarma());
             cita.setTieneAlarma(true); 
         }
