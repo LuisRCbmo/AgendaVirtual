@@ -229,20 +229,13 @@ public class mostrarCita extends javax.swing.JFrame {
         editarCita edit = new editarCita(this, cita);
         edit.setNota(cita.getNota());
         edit.setAsunto(cita.getAsunto());
-        //edit.setFecha(cita.getHoraFecha());
-        edit.recuperarDatos(cita);
-        edit.setVisible(true);
-        
+        edit.setVisible(true);   
         mostrarCita padree = this;
         edit.addWindowListener(new WindowAdapter() {
             public void windowClosed(WindowEvent e) {
                 padree.setVisible(true);
-                //padre.actualizarCitas();
             }
         });
-        //this.setVisible(false);
-        //edit.setVisible(true);
-        //padre.setVisible(false);
         this.setVisible(false);
     }//GEN-LAST:event_botonEditarActionPerformed
 

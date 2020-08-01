@@ -1,13 +1,17 @@
 package vista;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import modelo.Memo;
+
 /**
  *
  * @author Sergio Garcia
  */
 public class MostrarMemo extends javax.swing.JFrame {
+
     private Memo memo;
+
     public MostrarMemo(Memo memo) {
         initComponents();
         this.memo = memo;
@@ -15,6 +19,7 @@ public class MostrarMemo extends javax.swing.JFrame {
         txtAsunto.setText(memo.getAsunto());
         txtAreaNota.setText(memo.getNota());
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -90,10 +95,12 @@ public class MostrarMemo extends javax.swing.JFrame {
         });
         getContentPane().add(editButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(218, 318, 150, 50));
 
+        txtAsunto.setEditable(false);
         txtAsunto.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         getContentPane().add(txtAsunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 100, 340, 28));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
+        jLabel4.setPreferredSize(new java.awt.Dimension(0, 0));
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 380));
 
         pack();
@@ -102,15 +109,15 @@ public class MostrarMemo extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        EditarMemo editarMemo = new EditarMemo(memo);    
+        EditarMemo editarMemo = new EditarMemo(memo);
         editarMemo.setVisible(true);
         MostrarMemo padre = this;
         editarMemo.addWindowListener(new WindowAdapter() {
             public void windowClosed(WindowEvent e) {
-                padre.setVisible(true);
+                padre.dispose();
             }
-            });
-        this.setVisible(false); 
+        });
+        this.setVisible(false);
     }//GEN-LAST:event_editButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

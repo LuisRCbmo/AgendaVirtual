@@ -7,78 +7,88 @@ import java.util.*;
 public class Cita implements Serializable {
 
     private Alarma alarma;
-    private String asunto,nota,musica; 
+    private String asunto, nota, musica;
     private Date fechaHora;
-    private int duracion,anticipacion;
-    private boolean TieneAlarma= false;   
-    private int indiceMin,indiceMus,indHoras,indMinutos,indAmPm,indDuracion= 0;
-    
+    private int duracion, anticipacion;
+    private boolean TieneAlarma = false;
+    private int indiceMin, indiceMus, indHoras, indMinutos, indAmPm, indDuracion = 0;
+
     public Cita(String asunto, int duracion, Alarma alarma) {
-        this.alarma = alarma;       
+        this.alarma = alarma;
         this.asunto = asunto;
         this.duracion = duracion;
-       
+
     }
-    /*public Cita(String asunto, int duracion) {
-        this.asunto = asunto;
-        this.duracion = duracion;
-    }*/
-    public Cita clone(){
-        Cita res = new Cita(asunto,duracion,alarma);
-        res.setNota(nota); 
-        res.setMusica(musica); 
-        res.setFechaHora(fechaHora); 
-        res.setTieneAlarma(TieneAlarma); 
-        res.setIndiceMin(indiceMin); 
-        res.setIndiceMus(indiceMus); 
+
+    public Cita clone() {
+        Cita res = new Cita(asunto, duracion, alarma);
+        res.setNota(nota);
+        res.setMusica(musica);
+        res.setFechaHora(fechaHora);
+        res.setTieneAlarma(TieneAlarma);
+        res.setIndiceMin(indiceMin);
+        res.setIndiceMus(indiceMus);
         res.setIndHoras(indHoras);
-        res.setIndMinutos(indMinutos); 
+        res.setIndMinutos(indMinutos);
         res.setIndAmPm(indAmPm);
-        res.setIndDuracion(indDuracion); 
-        res.setAnticipacion(anticipacion); 
-        return res ;
+        res.setIndDuracion(indDuracion);
+        res.setAnticipacion(anticipacion);
+        return res;
     }
-    
-    public void setHora(int hora,int minuto){
-        fechaHora.setHours(hora); 
-        fechaHora.setMinutes(minuto); 
+
+    public void setHora(int hora, int minuto) {
+        fechaHora.setHours(hora);
+        fechaHora.setMinutes(minuto);
     }
-    public int getIndiceMin(){
+
+    public int getIndiceMin() {
         return indiceMin;
     }
-    public int getIndiceMus(){
+
+    public int getIndiceMus() {
         return indiceMus;
     }
-    public int getIndMinutos(){
+
+    public int getIndMinutos() {
         return indMinutos;
     }
-    public int getIndHoras(){
+
+    public int getIndHoras() {
         return indHoras;
     }
-    public int getIndAmPm(){
+
+    public int getIndAmPm() {
         return indAmPm;
-    } 
-    public int getIndDuracion(){
+    }
+
+    public int getIndDuracion() {
         return indDuracion;
     }
-    public void setIndiceMin(int indiceMin){
+
+    public void setIndiceMin(int indiceMin) {
         this.indiceMin = indiceMin;
     }
-    public void setIndiceMus(int indiceMus){
+
+    public void setIndiceMus(int indiceMus) {
         this.indiceMus = indiceMus;
     }
-    public void setIndMinutos(int indMinutos){
+
+    public void setIndMinutos(int indMinutos) {
         this.indMinutos = indMinutos;
     }
-    public void setIndHoras(int indHoras){
+
+    public void setIndHoras(int indHoras) {
         this.indHoras = indHoras;
     }
-    public void setIndAmPm(int indAmPm){
+
+    public void setIndAmPm(int indAmPm) {
         this.indAmPm = indAmPm;
     }
-    public void setIndDuracion(int indDuracion){
+
+    public void setIndDuracion(int indDuracion) {
         this.indDuracion = indDuracion;
     }
+
     public void setDuracion(int duracion) {
         this.duracion = duracion;
     }
@@ -94,6 +104,7 @@ public class Cita implements Serializable {
     public Date getHoraFecha() {
         return fechaHora;
     }
+
     /*public String getHora(){
         String res;
         int h= fechaHora.getHours();
@@ -124,43 +135,52 @@ public class Cita implements Serializable {
     public String getNota() {
         return nota;
     }
-    
-    public void setAlarma(Alarma alarma){
+
+    public void setAlarma(Alarma alarma) {
         this.alarma = alarma;
     }
-    
-    public Alarma getAlarma(){
+
+    public Alarma getAlarma() {
         return alarma;
     }
 
-    public void apagarAlarma(){
-        alarma.desactivar();        
+    public void apagarAlarma() {
+        alarma.desactivar();
     }
-    public void activarAlarma(){
-        alarma.activar();        
+
+    public void activarAlarma() {
+        alarma.activar();
     }
-    public boolean getTieneAlarma(){
+
+    public boolean getTieneAlarma() {
         return TieneAlarma;
     }
-    public void setTieneAlarma(boolean tieneAlarma){
+
+    public void setTieneAlarma(boolean tieneAlarma) {
         this.TieneAlarma = tieneAlarma;
     }
-    public int getAnticipacion(){
+
+    public int getAnticipacion() {
         return anticipacion;
     }
-    public void setAnticipacion(int anticipacion){
+
+    public void setAnticipacion(int anticipacion) {
         this.anticipacion = anticipacion;
     }
-    public String getMusica(){
+
+    public String getMusica() {
         return musica;
     }
-    public void setMusica(String musica){
+
+    public void setMusica(String musica) {
         this.musica = musica;
     }
+
     public String toString() {
         String fechita = this.toStringFecha();
         return "Asunto: " + asunto + " fecha: " + fechita + " Duracion: " + duracion + "";
     }
+
     public String toStringFormat() {
         String fechita = this.toStringFechaFormat();
         return "Asunto: " + asunto + " fecha: " + fechita + " Duracion: " + duracion + "";
@@ -175,11 +195,12 @@ public class Cita implements Serializable {
         int mes = fechaHora.getMonth() + 1;
         return "" + fechaHora.getDate() + "/" + mes + "/" + anio + "";
     }
+
     public String toStringFechaFormat() {
         Alarma aux = new Alarma();
         return aux.dateAString(fechaHora);
     }
- 
+
     /*public String toStringHora() {
         calendario.setTime(fechaHora);
         return "" + calendario.get(calendario.DAY_OF_MONTH) + "/" + calendario.get(calendario.MONTH) + 1 + "/" + calendario.get(calendario.YEAR) + "";

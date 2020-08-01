@@ -177,6 +177,10 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         this.dispose();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    //Agregar un menu mas para usuario
+    //y otro para cerrar sesion xd 
+    //y otro para salirse xd
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         System.out.println("guardando!!!");
         SerializarProyecto serialProyecto = new SerializarProyecto();

@@ -275,19 +275,18 @@ public class CrearCita extends javax.swing.JFrame {
             nueva.setIndAmPm(ampm.getSelectedIndex()); 
             nueva.setIndDuracion(duracion.getSelectedIndex()); 
             nueva.setNota(jTextNota.getText());            
-            nueva.setFechaHora(res);                        
+            nueva.setFechaHora(res);
+            CrearCita padree = this;
             InterfazAlarma alarma = new InterfazAlarma((Cita)nueva,null);
             alarma.setVisible(true);
-            //falta interraccion entre ventanas
             alarma.addWindowListener(new WindowAdapter() {
                 public void windowClosed(WindowEvent e) {
-                    //padre.setVisible(true);
-                    //padre.actualizarCitas();
+                    padree.setVisible(true);
                     alarma.dispose();
+                    padree.dispose();
                 }
             });
-            //this.setVisible(false);
-            //falta interraccion entre ventanas
+            padree.setVisible(false);
             agenda.aniadirCita(nueva);
         } else if (num == 1) {            
             String p = (String) duracion.getSelectedItem();
@@ -310,8 +309,8 @@ public class CrearCita extends javax.swing.JFrame {
             nueva.setIndAmPm(ampm.getSelectedIndex()); 
             nueva.setIndDuracion(duracion.getSelectedIndex()); 
             agenda.aniadirCita(nueva);
+            this.dispose();
         }
-        this.dispose();
     }//GEN-LAST:event_BotonGuardarActionPerformed
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
         this.dispose();

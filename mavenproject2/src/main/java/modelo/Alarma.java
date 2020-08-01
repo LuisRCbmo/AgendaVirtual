@@ -16,6 +16,7 @@ public class Alarma implements java.io.Serializable {
     private boolean activo, play;
     private Calendar calendar;
     transient private Clip clip;
+    private int musica; // posicion de tus canciones
     private Date fechaActual;
     private String[] sonds = {"TelefonoAntiguo.wav", "TITITI.wav", "Gallo.wav", "AlarmaLoud.wav", "AlarmaDeGuerra.wav", "AlarmaDeCoche.wav"};
     private String asunto;

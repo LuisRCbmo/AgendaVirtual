@@ -24,4 +24,21 @@ public class Main {
         vistaAgendaVirtual.setVisible(true); 
         
     }
+    
+    /*
+    recuperacion de citas con alarmas :3 
+        public void recuperar(){
+            for(int i = 0 ; i < listaCitas ; i++){
+                if(cita(i).getTieneAlarma()){            
+                    cita(i).setAlarma(new Alarma());
+                    cita(i).getAlarma().setCancion(cita(i).getMusica())
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(cita(i).getFechaHora);
+                    calendar.add(calendar.MINUTE,cita(i).getAnticipacion);
+                    cita(i).getAlarma().programarAlarma(calendar.getTime(),cita(i).getAsunto);
+                }
+        }
+    
+        
+    */
 }
