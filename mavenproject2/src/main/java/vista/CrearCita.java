@@ -3,6 +3,7 @@ package vista;
 import java.util.Date;
 import modelo.*;
 import Notificaciones.Notificacion;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Calendar;
@@ -256,60 +257,68 @@ public class CrearCita extends javax.swing.JFrame {
     }//GEN-LAST:event_duracionComponentAdded
 
     private void BotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGuardarActionPerformed
-        Object[] botones = {"  SI  ", "  NO  "};
-        int num = notificacion.notificacionBotones("¿ Quisiera crear una alarma ?", "Crear Alarma", botones, "/Iconos/Interrogacion.png");
-        if (num == 0) {
-            Cita nueva = new Cita(asunto.getText(), Integer.parseInt((String)duracion.getSelectedItem()),null);           
-            Date fecha = rSDateChooser1.getDatoFecha();           
-            String aux = (String)ampm.getSelectedItem();
-            int hora = 0;
-            if(aux.equals("pm")){ 
-                hora = (Integer.parseInt((String)horas.getSelectedItem()))+12;
-            }else{
-                hora = (Integer.parseInt((String)horas.getSelectedItem()));
-            }           
-            int minuto = Integer.parseInt((String)minutos.getSelectedItem());           
-            Date res = establecerFecha(fecha,hora,minuto);
-            nueva.setIndHoras(horas.getSelectedIndex()); 
-            nueva.setIndMinutos(minutos.getSelectedIndex()); 
-            nueva.setIndAmPm(ampm.getSelectedIndex()); 
-            nueva.setIndDuracion(duracion.getSelectedIndex()); 
-            nueva.setNota(jTextNota.getText());            
-            nueva.setFechaHora(res);
-            CrearCita padree = this;
-            InterfazAlarma alarma = new InterfazAlarma((Cita)nueva,null);
-            alarma.setVisible(true);
-            alarma.addWindowListener(new WindowAdapter() {
-                public void windowClosed(WindowEvent e) {
-                    padree.setVisible(true);
-                    alarma.dispose();
-                    padree.dispose();
+        if (!(rSDateChooser1.getDatoFecha() == null && asunto.getText().equals("") && jTextNota.getText().equals(""))) {
+            if (!verificarCitas(Integer.parseInt((String) horas.getSelectedItem()), Integer.parseInt((String) minutos.getSelectedItem()), (String) ampm.getSelectedItem(), rSDateChooser1.getDatoFecha())) {
+                Object[] botones = {"  SI  ", "  NO  "};
+                int num = notificacion.notificacionBotones("¿ Quisiera crear una alarma ?", "Crear Alarma", botones, "/Iconos/Interrogacion.png");
+                if (num == 0) {
+                    Cita nueva = new Cita(asunto.getText(), Integer.parseInt((String) duracion.getSelectedItem()), null);
+                    Date fecha = rSDateChooser1.getDatoFecha();
+                    String aux = (String) ampm.getSelectedItem();
+                    int hora = 0;
+                    if (aux.equals("pm")) {
+                        hora = (Integer.parseInt((String) horas.getSelectedItem())) + 12;
+                    } else {
+                        hora = (Integer.parseInt((String) horas.getSelectedItem()));
+                    }
+                    int minuto = Integer.parseInt((String) minutos.getSelectedItem());
+                    Date res = establecerFecha(fecha, hora, minuto);
+                    nueva.setIndHoras(horas.getSelectedIndex());
+                    nueva.setIndMinutos(minutos.getSelectedIndex());
+                    nueva.setIndAmPm(ampm.getSelectedIndex());
+                    nueva.setIndDuracion(duracion.getSelectedIndex());
+                    nueva.setNota(jTextNota.getText());
+                    nueva.setFechaHora(res);
+                    CrearCita padree = this;
+                    InterfazAlarma alarma = new InterfazAlarma((Cita) nueva, null);
+                    alarma.setVisible(true);
+                    alarma.addWindowListener(new WindowAdapter() {
+                        public void windowClosed(WindowEvent e) {
+                            padree.setVisible(true);
+                            alarma.dispose();
+                            padree.dispose();
+                        }
+                    });
+                    padree.setVisible(false);
+                    agenda.aniadirCita(nueva);
+                } else if (num == 1) {
+                    String p = (String) duracion.getSelectedItem();
+                    int dur = Integer.parseInt(p);
+                    Cita nueva = new Cita(asunto.getText(), dur, null);
+                    Date fecha = rSDateChooser1.getDatoFecha();
+                    String aux = (String) ampm.getSelectedItem();
+                    int hora = 0;
+                    if (aux.equals("pm")) {
+                        hora = (Integer.parseInt((String) horas.getSelectedItem())) + 12;
+                    } else {
+                        hora = (Integer.parseInt((String) horas.getSelectedItem()));
+                    }
+                    int minuto = Integer.parseInt((String) minutos.getSelectedItem());
+                    Date res = establecerFecha(fecha, hora, minuto);
+                    nueva.setFechaHora(res);
+                    nueva.setNota(jTextNota.getText());
+                    nueva.setIndHoras(horas.getSelectedIndex());
+                    nueva.setIndMinutos(minutos.getSelectedIndex());
+                    nueva.setIndAmPm(ampm.getSelectedIndex());
+                    nueva.setIndDuracion(duracion.getSelectedIndex());
+                    agenda.aniadirCita(nueva);
+                    this.dispose();
                 }
-            });
-            padree.setVisible(false);
-            agenda.aniadirCita(nueva);
-        } else if (num == 1) {            
-            String p = (String) duracion.getSelectedItem();
-            int dur = Integer.parseInt(p);
-            Cita nueva = new Cita(asunto.getText(),dur,null);
-            Date fecha = rSDateChooser1.getDatoFecha();
-            String aux = (String)ampm.getSelectedItem();
-            int hora = 0;
-            if(aux.equals("pm")){ 
-                hora = (Integer.parseInt((String)horas.getSelectedItem()))+12;
-            }else{
-                hora = (Integer.parseInt((String)horas.getSelectedItem()));
-            }           
-            int minuto = Integer.parseInt((String)minutos.getSelectedItem());           
-            Date res = establecerFecha(fecha,hora,minuto);
-            nueva.setFechaHora(res);
-            nueva.setNota(jTextNota.getText());
-            nueva.setIndHoras(horas.getSelectedIndex());
-            nueva.setIndMinutos(minutos.getSelectedIndex()); 
-            nueva.setIndAmPm(ampm.getSelectedIndex()); 
-            nueva.setIndDuracion(duracion.getSelectedIndex()); 
-            agenda.aniadirCita(nueva);
-            this.dispose();
+            } else {
+                notificacion.NotificacionEscrita("Ya existe", "Ya existe una cita con la hora ingresada", "/Iconos/Negacion.png");
+            }
+        }else{
+            notificacion.NotificacionEscrita("No se puede guardar cita", "Porfavor ingrese los datos.", "/Iconos/Negacion.png");
         }
     }//GEN-LAST:event_BotonGuardarActionPerformed
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
@@ -328,40 +337,6 @@ public class CrearCita extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_asuntoKeyTyped
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(CrearCita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(CrearCita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(CrearCita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(CrearCita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new CrearCita().setVisible(true);
-//            }
-//        });
-//    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonGuardar;
     private javax.swing.JComboBox<String> ampm;
@@ -392,50 +367,30 @@ public class CrearCita extends javax.swing.JFrame {
     private rojeru_san.componentes.RSDateChooser rSDateChooser1;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
- /*   private void aniadirItemsHoras() {
-        //horas
-        this.horas.addItem("01");
-        this.horas.addItem("02");
-        this.horas.addItem("03");
-        this.horas.addItem("04");
-        this.horas.addItem("05");
-        this.horas.addItem("06");
-        this.horas.addItem("07");
-        this.horas.addItem("08");
-        this.horas.addItem("09");
-        this.horas.addItem("10");
-        this.horas.addItem("11");
-        this.horas.addItem("12");
-        //minutos
-        this.minutos.addItem("00");
-        this.minutos.addItem("15");
-        this.minutos.addItem("30");
-        this.minutos.addItem("45");
-    }
 
-    private void aniadirItemsHorario() {
-        this.ampm.addItem("am");
-        this.ampm.addItem("pm");
-    }
-
-    private void aniadirItemsDuracion() {
-        this.duracion.addItem("15");
-        this.duracion.addItem("20");
-        this.duracion.addItem("25");
-        this.duracion.addItem("30");
-        this.duracion.addItem("35");
-        this.duracion.addItem("40");
-        this.duracion.addItem("45");
-        this.duracion.addItem("50");
-        this.duracion.addItem("55");
-        this.duracion.addItem("60");
-    }*/
-    private Date establecerFecha(Date fecha,int hora,int minutos){
-        int anio = fecha.getYear() +1900;
+    private Date establecerFecha(Date fecha, int hora, int minutos) {
+        int anio = fecha.getYear() + 1900;
         int mes = fecha.getMonth();
         int dia = fecha.getDate();
         Calendar aux = Calendar.getInstance();
-        aux.set(anio,mes,dia,hora,minutos,00);
+        aux.set(anio, mes, dia, hora, minutos, 00);
         return aux.getTime();
+    }
+
+    private boolean verificarCitas(int hora, int minuto, String amPm, Date calendar) {
+        boolean res = false;
+        for (int i = 0; i < agenda.getListaCitas().tamanio() && !res; i++) {
+            Cita citaActual = (Cita) agenda.getListaCitas().acceder(i);
+            if (amPm.equals("pm")) {
+                if (hora + 12 == citaActual.getHoraFecha().getHours() && minuto == citaActual.getHoraFecha().getMinutes() && (calendar.getDay() == citaActual.getHoraFecha().getDay()) && (calendar.getMonth() == citaActual.getHoraFecha().getMonth()) && (calendar.getYear() == citaActual.getHoraFecha().getYear())) {
+                    res = true;
+                }
+            } else {
+                if (hora == citaActual.getHoraFecha().getHours() && minuto == citaActual.getHoraFecha().getMinutes() && (calendar.getDay() == citaActual.getHoraFecha().getDay()) && (calendar.getMonth() == citaActual.getHoraFecha().getMonth()) && (calendar.getYear() == citaActual.getHoraFecha().getYear())) {
+                    res = true;
+                }
+            }
+        }
+        return res;
     }
 }

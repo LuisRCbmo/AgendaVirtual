@@ -1,4 +1,5 @@
 package vista;
+import Notificaciones.Notificacion;
 import modelo.*;
 import edl.*;
 /**
@@ -117,9 +118,15 @@ public class CrearMemo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        Memo nuevo = new Memo(txtAsunto.getText(), txtAreaNota.getText());
-        listaMemo.insertar(nuevo);
-        this.dispose();
+        Notificacion n = new Notificacion();
+        if(txtAsunto.getText().equals("") && txtAreaNota.getText().equals("")){
+            n.NotificacionEscrita("Faltan datos", "Porfavor ingrese los datos.", "/Iconos/Advertencia.png");
+        }else{
+            Memo nuevo = new Memo(txtAsunto.getText(), txtAreaNota.getText());
+            listaMemo.insertar(nuevo);
+            this.dispose();
+            n.NotificacionEscrita("Exito", "Se guardaron los datos exitosamente", "/Iconos/Aprobacion.png");
+        }
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     /**

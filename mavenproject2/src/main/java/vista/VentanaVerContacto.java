@@ -1,5 +1,6 @@
 package vista;
 import edl.ListaSE;
+import Notificaciones.Notificacion;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import modelo.*;
@@ -19,7 +20,6 @@ public class VentanaVerContacto extends javax.swing.JFrame {
         this.n = n;
         this.listaContactos = listaContactos;
         this.contacto = this.listaContactos.acceder(n);
-        //this.contacto = contacto;
         txtnombre.setText(contacto.getNombre());
         txtapellido.setText(contacto.getApellido());
         txtfijo.setText(contacto.getFijo());
@@ -163,8 +163,13 @@ public class VentanaVerContacto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-        listaContactos.eliminar(n);
-        this.dispose();
+        Object[] botones = {" Si "," No "}; 
+        Notificacion m = new Notificacion();
+        int res = m.notificacionBotones("¿Esta seguro de querer elminar el contacto?", "Eliminar", botones, "/Iconos/Advertencia.png");
+        if(res == 0){
+            listaContactos.eliminar(n);
+            this.dispose();
+        }
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
