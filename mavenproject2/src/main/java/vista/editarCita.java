@@ -253,6 +253,7 @@ public class editarCita extends javax.swing.JFrame {
         Object[] botones = {" SI ", " NO "};
         int num = notificacion.notificacionBotones("¿Quiere guardar los cambios?","Guardar", botones, "/Iconos/Advertencia.png");
         if (num == 0) {
+            cita.Imprimir();          
             mostrar.setAsunto(contAsunto.getText());
             mostrar.setNota(contNota.getText());
             mostrar.setDuracion((String) contDuracion.getSelectedItem());
@@ -267,12 +268,11 @@ public class editarCita extends javax.swing.JFrame {
             int minuto = Integer.parseInt((String) contMinuto.getSelectedItem());
             Date res = establecerFecha(fecha, hora, minuto);
             mostrar.setFechaHora(res); 
-            citaAuxiliar.setIndHoras(contHora.getSelectedIndex());
-            citaAuxiliar.setIndMinutos(contMinuto.getSelectedIndex());
-            citaAuxiliar.setIndDuracion(contDuracion.getSelectedIndex());
-            citaAuxiliar.setIndAmPm(amPm.getSelectedIndex());
-            cita = citaAuxiliar;
-           /* if (citaAuxiliar.getAlarma() == null) {
+            cita.setIndHoras(contHora.getSelectedIndex());
+            cita.setIndMinutos(contMinuto.getSelectedIndex());
+            cita.setIndDuracion(contDuracion.getSelectedIndex());
+            cita.setIndAmPm(amPm.getSelectedIndex());                                
+            if (citaAuxiliar.getAlarma() == null) {
                 if (cita.getAlarma() != null) {
                     cita.apagarAlarma();
                 }
@@ -282,13 +282,21 @@ public class editarCita extends javax.swing.JFrame {
                 cita.setTieneAlarma(false);
             } else {
                 cita.setIndiceMin(citaAuxiliar.getIndiceMin());
-                cita.setIndiceMus(cita.getIndiceMus()); 
+                cita.setIndiceMus(citaAuxiliar.getIndiceMus());                
                 if(cita.getAlarma() != null){
                     cita.apagarAlarma();
                 }
-                cita.setAlarma(citaAuxiliar.getAlarma());
+                Calendar fechaRestada = Calendar.getInstance();
+                fechaRestada.setTime(cita.getHoraFecha()); 
+                fechaRestada.add(Calendar.MINUTE,citaAuxiliar.getAnticipacion());             
+                Alarma nueva = new Alarma();               
+                nueva.setCancion(citaAuxiliar.getMusica()); 
+                nueva.ProgramarAlarma(fechaRestada.getTime(),cita.getAsunto());
+                cita.setAnticipacion(citaAuxiliar.getAnticipacion()); 
+                cita.setMusica(citaAuxiliar.getMusica()); 
                 cita.setTieneAlarma(true);
-            }*/
+            }
+            cita.Imprimir();
             this.dispose();
         }
     }//GEN-LAST:event_botonGuardarActionPerformed

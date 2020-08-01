@@ -160,7 +160,7 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
 
 
     private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
-        if (clip != null) {
+    if (clip != null) {
             clip.stop();
             clip.close();
         }  
@@ -171,18 +171,10 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
         int minutos = (Integer.parseInt((String)jcbMinutos.getSelectedItem()))*-1;
         fecha.add(Calendar.MINUTE, (minutos));
         Date fechaA = fecha.getTime();
-        Alarma nueva = new Alarma();
-        if (cita.getAlarma() == null) {            
-            nueva.setCancion(cancion);
-            nueva.ProgramarAlarma(fechaA, cita.getAsunto());
-            cita.setAlarma(nueva); 
-        } else {         
-            cita.getAlarma().setCancion(cancion);
-            cita.getAlarma().ProgramarAlarma(fechaA,cita.getAsunto());            
-        }
+        Alarma nueva = new Alarma();  
+        cita.setAlarma(nueva); 
         cita.setMusica(cancion); 
-        cita.setAnticipacion(minutos); 
-        cita.setTieneAlarma(true); 
+        cita.setAnticipacion(minutos);  
         cita.setIndiceMin(jcbMinutos.getSelectedIndex());
         cita.setIndiceMus(jcbMusicas.getSelectedIndex());
         notificacion.NotificacionEscrita("Añadido", "! Alarma añadida exitosamente ¡", "/Iconos/Aprobacion.png");            

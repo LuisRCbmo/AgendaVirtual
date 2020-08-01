@@ -16,15 +16,14 @@ public class CrearCita extends javax.swing.JFrame {
 
     private Agenda agenda;
     private Notificacion notificacion;
+    private Cita citaAuxiliar;
 
     public CrearCita(Agenda agenda) {
         initComponents();
         this.agenda = agenda;
-        //aniadirItemsHoras();
-        //aniadirItemsHorario();
-        //aniadirItemsDuracion();
         this.setLocationRelativeTo(null);
         notificacion = new Notificacion();
+        citaAuxiliar = new Cita("", 0, null);
     }
 
     /**
@@ -279,12 +278,28 @@ public class CrearCita extends javax.swing.JFrame {
                     nueva.setIndDuracion(duracion.getSelectedIndex());
                     nueva.setNota(jTextNota.getText());
                     nueva.setFechaHora(res);
+                    citaAuxiliar.setFechaHora(nueva.getHoraFecha());
                     CrearCita padree = this;
-                    InterfazAlarma alarma = new InterfazAlarma((Cita) nueva, null);
+                    InterfazAlarma alarma = new InterfazAlarma(citaAuxiliar, null);
                     alarma.setVisible(true);
                     alarma.addWindowListener(new WindowAdapter() {
                         public void windowClosed(WindowEvent e) {
                             padree.setVisible(true);
+                            if (citaAuxiliar.getAlarma() != null) {
+                                Calendar fechaA = Calendar.getInstance();
+                                fechaA.setTime(nueva.getHoraFecha());
+                                fechaA.add(Calendar.MINUTE, citaAuxiliar.getAnticipacion());
+                                Alarma alarm = new Alarma();
+                                alarm.setCancion(citaAuxiliar.getMusica());
+                                alarm.ProgramarAlarma(fechaA.getTime(), nueva.getAsunto());
+                                nueva.setAlarma(alarm);
+                                nueva.setMusica(citaAuxiliar.getMusica());
+                                nueva.setIndiceMus(citaAuxiliar.getIndiceMus());
+                                nueva.setAnticipacion(citaAuxiliar.getAnticipacion());
+                                nueva.setIndiceMin(citaAuxiliar.getIndiceMin());
+                                nueva.setTieneAlarma(true);
+                            }
+                            nueva.Imprimir();
                             alarma.dispose();
                             padree.dispose();
                         }
@@ -317,7 +332,7 @@ public class CrearCita extends javax.swing.JFrame {
             } else {
                 notificacion.NotificacionEscrita("Ya existe", "Ya existe una cita con la hora ingresada", "/Iconos/Negacion.png");
             }
-        }else{
+        } else {
             notificacion.NotificacionEscrita("No se puede guardar cita", "Porfavor ingrese los datos.", "/Iconos/Negacion.png");
         }
     }//GEN-LAST:event_BotonGuardarActionPerformed

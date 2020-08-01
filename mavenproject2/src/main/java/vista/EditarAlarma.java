@@ -211,15 +211,11 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
             int decremento =(Integer.parseInt((String)minutos.getSelectedItem()))*-1;
             tiempoCita.add(Calendar.MINUTE,(decremento));                
             cita.setIndiceMin(minutos.getSelectedIndex()); 
-            cita.setIndiceMus(musicas.getSelectedIndex());           
-            cita.apagarAlarma();            
-            Alarma nueva = new Alarma();
-            nueva.setCancion(cancion); 
-            nueva.ProgramarAlarma(tiempoCita.getTime(),cita.getAsunto()); 
+            cita.setIndiceMus(musicas.getSelectedIndex());                     
+            Alarma nueva = new Alarma();            
             cita.setAlarma(nueva); 
             cita.setMusica(cancion);
             cita.setAnticipacion(decremento);
-            cita.setTieneAlarma(true); 
             eCita.setBotonA("Editar Alarma");
             notificacion.NotificacionEscrita("Alarma añadida","Alarma programada para las " +nueva.dateAString(tiempoCita.getTime()),"/Iconos/Advertencia.png");  
             this.dispose();

@@ -1,15 +1,16 @@
 package modelo;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import vista.mostrarCita;
 import java.util.*;
 
 public class Cita implements Serializable {
 
-    private Alarma alarma;
-    private String asunto, nota, musica;
-    private Date fechaHora;
-    private int duracion, anticipacion;
+    private Alarma alarma = null;
+    private String asunto, nota, musica = "";
+    private Date fechaHora = null;
+    private int duracion, anticipacion = 0;
     private boolean TieneAlarma = false;
     private int indiceMin, indiceMus, indHoras, indMinutos, indAmPm, indDuracion = 0;
 
@@ -19,9 +20,33 @@ public class Cita implements Serializable {
         this.duracion = duracion;
 
     }
+    public void Imprimir(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        if(alarma != null){
+            System.out.println("La cita : Tiene Alarma");
+        }else{
+            System.out.println("La cita : No tiene Alarma");
+        }
+        System.out.println("Asunto de la cita : "+ asunto);
+        System.out.println("Nota de la cita : "+ nota);
+        System.out.println("Musica de la Alarma de la cita : "+musica);
+        if(fechaHora != null){
+            System.out.println("Fecha de la Cita : "+sdf.format(fechaHora));
+        }else{
+            System.out.println("Fecha de la cita : No tiene");
+        }
+        System.out.println("Duracion de la cita : "+duracion);
+        System.out.println("Tiempo de anticipacion de la cita : "+anticipacion);
+        System.out.println("Su variable que indica si tiene una alarma : "+TieneAlarma);
+        System.out.println("Indices de InterfazAlarma/EditarAlarma : Indice de los minutos "+indiceMin+" Indice de la musica : "+indiceMus);
+        System.out.println("Indices de EditarCita : Indice de horas "+indHoras+" Indice de minutos "+indMinutos+" Indice de Am Pm "+indAmPm+" Indice de duracion "+indDuracion);
+    }
 
     public Cita clone() {
-        Cita res = new Cita(asunto, duracion, alarma);
+        Cita res = new Cita(asunto, duracion,null);
+        if(alarma != null){
+            res.setAlarma(new Alarma()); 
+        }
         res.setNota(nota);
         res.setMusica(musica);
         res.setFechaHora(fechaHora);
