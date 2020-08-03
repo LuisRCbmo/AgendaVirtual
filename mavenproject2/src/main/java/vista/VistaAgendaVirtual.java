@@ -8,7 +8,12 @@ import modelo.*;
 import java.util.*;
 import java.util.Calendar;
 import javax.swing.DefaultListModel;
-
+import Usuario.User;
+import Usuario.Users;
+import VisualUsuario.*;
+import Notificaciones.Notificacion;
+import controlador.Main;
+import VisualUsuario.JFrameLoginUser;
 /**
  *
  * @author hp
@@ -17,19 +22,24 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
 
     //Atributos contenedores
     private AgendaVirtual agendaVirtual;
+    private User usuario;
+    private Users users;
     //otros atributos
     private Calendar calendario;
     private String hora, minuto, segundo, ampm;
     private Thread h1;
 
-    public VistaAgendaVirtual(AgendaVirtual agendaVirtual) {
+    public VistaAgendaVirtual(Users users, User usuario) {
         initComponents();
-        this.agendaVirtual = agendaVirtual;
+        this.usuario = usuario;
+        this.users = users;
+        this.agendaVirtual = usuario.getAgendaVirtual();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         h1 = new Thread((Runnable) this);
         h1.start();
         actualizarCitas();
+        //agendaVirtual.recuperarDatos();
     }
 
     /**
@@ -41,6 +51,7 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem5 = new javax.swing.JMenuItem();
         jlbReloj = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Lista = new javax.swing.JList();
@@ -50,9 +61,13 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         jLabel2 = new javax.swing.JLabel();
         jMenuBar5 = new javax.swing.JMenuBar();
         jMenu16 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+
+        jMenuItem5.setText("jMenuItem5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -108,6 +123,14 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         jMenu16.setBorderPainted(true);
         jMenu16.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
+        jMenuItem6.setText("Perfil");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu16.add(jMenuItem6);
+
         jMenuItem2.setText("Contactos");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,6 +154,14 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
             }
         });
         jMenu16.add(jMenuItem4);
+
+        jMenuItem3.setText("Cerrar sesion");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu16.add(jMenuItem3);
 
         jMenuBar5.add(jMenu16);
 
@@ -175,20 +206,41 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         this.dispose();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    //Agregar un menu mas para usuario
-    //y otro para cerrar sesion xd 
-    //y otro para salirse xd
-    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.out.println("guardando!!!");
         SerializarProyecto serialProyecto = new SerializarProyecto();
-        serialProyecto.guardarProyecto(agendaVirtual);
+        serialProyecto.guardarProyecto(users);
+        System.out.println("guardando!!!");
         System.exit(0); //Cierra todo el proceso desde el boton "Salir"
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         actualizarCitas();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        usuario perfil = new usuario(usuario);
+        perfil.setVisible(true);
+        VistaAgendaVirtual padre = this;
+        perfil.addWindowListener(new WindowAdapter() {
+            public void windowClosed(WindowEvent e) {
+                padre.setVisible(true);
+            }
+        });
+        padre.setVisible(false);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        Notificacion notificacion = new Notificacion();
+        Object[] botones = {"  SI  ", "  NO  "};
+        int num = notificacion.notificacionBotones("¿Esta seguro de cerrar la sesion actual?", "Cerrar sesion", botones, "/Iconos/Advertencia.png");
+        if (num == 0) {
+            SerializarProyecto serialProyecto = new SerializarProyecto();
+            serialProyecto.guardarProyecto(users);
+            System.out.println("guardando!!!");
+            new JFrameLoginUser(users).setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList Lista;
@@ -200,7 +252,10 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
     private javax.swing.JMenuBar jMenuBar5;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlbReloj;
     // End of variables declaration//GEN-END:variables

@@ -48,7 +48,18 @@ public class AgendaVirtual implements Serializable {
         int posicion = listamemo.indexOf(memo);
         return listamemo.eliminar(posicion);
     }
-
-   
-
+    /*
+    public void recuperar(){
+        for(int i = 0 ; i < agenda.getListaCitas() ; i++){
+            if(cita(i).getTieneAlarma()){            
+                cita(i).setAlarma(new Alarma());
+                cita(i).getAlarma().setCancion(cita(i).getMusica())
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(cita(i).getFechaHora);
+                calendar.add(calendar.MINUTE,cita(i).getAnticipacion);
+                cita(i).getAlarma().programarAlarma(calendar.getTime(),cita(i).getAsunto);
+            }
+        }    
+    }
+     */
 }

@@ -24,6 +24,7 @@ public class CrearCita extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         notificacion = new Notificacion();
         citaAuxiliar = new Cita("", 0, null);
+        rSDateChooser1.setDatoFecha(new Date());
     }
 
     /**

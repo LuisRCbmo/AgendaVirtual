@@ -8,23 +8,30 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelo.*;
-import vista.VistaAgendaVirtual;
+import Usuario.Users;
+import VisualUsuario.JFrameLoginUser;
+
 
 /**
  *
  * @author Sergio Garcia
  */
 public class Main {
-
+    /*
     public static void main(String[] args) {
         SerializarProyecto serialProyect = new SerializarProyecto();
         AgendaVirtual agendaVirtual = serialProyect.recuperarProyecto();
         VistaAgendaVirtual vistaAgendaVirtual = new VistaAgendaVirtual(agendaVirtual);
-        vistaAgendaVirtual.setVisible(true); 
-        
+            vistaAgendaVirtual.setVisible(true);
     }
+    */
     
+    public static void main(String[] args) {
+        SerializarProyecto serialProyect = new SerializarProyecto();
+        Users users = serialProyect.recuperarProyecto();
+        JFrameLoginUser login = new JFrameLoginUser(users);
+        login.setVisible(true);
+    }
     /*
     recuperacion de citas con alarmas :3 
         public void recuperar(){
