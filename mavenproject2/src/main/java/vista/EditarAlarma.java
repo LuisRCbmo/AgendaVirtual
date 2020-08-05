@@ -9,10 +9,20 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import modelo.Alarma;
 import modelo.Cita;
+/**
+ * @author Emerson Vera
+ */
 
-/*
-    autor emerson
-*/
+/**
+ * Calendario es para trabajar con fechas.
+ * hora, minuto, segundo, ampm es para trabajar con el reloj.
+ * el Trread es para trabajar con el reloj.
+ * el Clip es para el sonido.
+ * Cancion es para reproducir una cancion en especifico.
+ * Sounds es el arreglo de todas las canciones disponibles.
+ * Cita, se la usa para guardar informacion de este frame para posterirmente editarse si el usuario lo prefiere.
+ * editarCita cambiar la informacion de esta ventana en tiempo de ejecucion.
+ */
 public class EditarAlarma extends javax.swing.JFrame implements Runnable{
     private Notificacion notificacion;
     private Calendar calendario;
@@ -24,6 +34,9 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
     private boolean inicio = false;
     private Cita cita;
     private editarCita eCita;
+    /**
+     * Les da valores iniciales a los atributos y lanza un metodo llamado ordenar().
+     */
     public EditarAlarma(Cita cita,editarCita eCita) {
         initComponents();
         h1 = new Thread(this);
@@ -156,13 +169,19 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+    * Hace que los comboBox aparezca con los valores previamente seleccionados por el usuario. 
+    * Las de minutos y musicas.
+    */
     private void ordenar(){
         minutos.setSelectedIndex(cita.getIndiceMin()); 
         musicas.setSelectedIndex(cita.getIndiceMus());
         fechaActual.setText(cita.toStringFormat()); 
         inicio = true;
     } 
+    /**
+     * Cierra la ventana actual, pone pausa al sonido para que no este sonando en la otra ventana.
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (clip != null) {
             clip.stop();
@@ -170,7 +189,11 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
         }
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    /**
+     * A la cita,se le asigna su alarma null
+     * A la ventana editarCita actualiza informacion en tiempo de ejecucion
+     * Tambien se le asigna la cita a su atributo si tiene alarma, un false(Eliminando alarma de esta cita).
+     */
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
         Object [] botones = {" SI "," NO "};
         int res = notificacion.notificacionBotones("Quiere eliminar la Alarma","¿ Eliminar ?", botones,"/Iconos/Negacion.png");
@@ -182,7 +205,10 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
             this.dispose();
         }
     }//GEN-LAST:event_eliminarActionPerformed
-
+    /**
+     * Reproduce los sonidos seleccionados en el comboBox
+     * Se le puso una condicional, porque al momento de ordenar(), este sonido se escuchaba, con esta condicional ya no sucede eso.
+     */
     private void musicasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_musicasItemStateChanged
         int i = musicas.getSelectedIndex();
         if (clip != null) {
@@ -193,7 +219,14 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
             reproducir(sonds[i]);
         }
     }//GEN-LAST:event_musicasItemStateChanged
-
+    
+    /**
+     * A la cita se le asignan 5 valores:
+     * *Se le asigna una alarma.
+     * *Se le asigna el indice de los minutos de anticipacion que el usuario ingrese al momento de crear una alarma.
+     * *Se le asigna el indice de la musica que sonará, siendo de eleccion del usuario.
+     * *Se le asigna el tiempo de anticipacion y se le asigna la musica.
+     */
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         if (clip != null) {
             clip.stop();
@@ -219,7 +252,10 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
             this.dispose();
         }
     }//GEN-LAST:event_guardarActionPerformed
-
+    /**
+     *  Cancela todo lo hecho en alarma sin que le ocurran cambios a la cita.
+     *  Luego la ventana actual se cierra.Poniendo pausa a todas las musicas.
+     */
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         if (clip != null) {
             clip.stop();
@@ -244,6 +280,9 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
     private javax.swing.JLabel panel;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
+    /**
+     * Para el reloj
+     */
     @Override
     public void run() {
         Thread ct = Thread.currentThread();
@@ -256,7 +295,10 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
             }
         }
     }
-
+    
+    /**
+     * Para el reloj
+     */
     private void calcula() {
         calendario = new GregorianCalendar();
         Date fechaHoraActual = new Date();
@@ -271,10 +313,13 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
         minuto = calendario.get(Calendar.MINUTE) > 9 ? "" + calendario.get(Calendar.MINUTE) : "0" + calendario.get(Calendar.MINUTE);
         segundo = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND) : "0" + calendario.get(Calendar.SECOND);
     }
+    /**
+     * Reproduce el sonido de la cancion seleccionada.
+     */
     public void reproducir(String cancion) {
         try {
             clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(getClass().getResource("/audios/" + cancion))); //alarma
+            clip.open(AudioSystem.getAudioInputStream(getClass().getResource("/audios/" + cancion)));
             clip.start();
         } catch (Exception e) {
             System.out.println(e);

@@ -6,11 +6,20 @@ import java.util.*;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import Notificaciones.Notificacion;
-
-/* 
-    autor emerson
+/**
+ * autor Emerson Vera
  */
 
+/**
+ * Calendario es para trabajar con fechas.
+ * hora, minuto, segundo, ampm es para trabajar con el reloj.
+ * el Trread es para trabajar con el reloj.
+ * el Clip es para el sonido.
+ * Cancion es para reproducir una cancion en especifico.
+ * Sounds es el arreglo de todas las canciones disponibles.
+ * Cita, se la usa para guardar informacion de este frame para posterirmente editarse si el usuario lo prefiere.
+ * editarCita cambiar la informacion de esta ventana en tiempo de ejecucion.
+ */
 public class CrearAlarma extends javax.swing.JFrame implements Runnable {
 
     private Notificacion notificacion;
@@ -22,7 +31,12 @@ public class CrearAlarma extends javax.swing.JFrame implements Runnable {
     private String[] sonds = {"TelefonoAntiguo.wav", "TITITI.wav", "Gallo.wav", "AlarmaLoud.wav", "AlarmaDeGuerra.wav", "AlarmaDeCoche.wav"};
     private Cita cita;
     private editarCita eCita;
-    public CrearAlarma(Cita cita,editarCita eCita) {
+/**
+ * Requiere de una cita y un editarCita(JFrame)
+ * Asigna valores a los atributos:  cita y editarCita.
+ * inicializa el Thread h1
+ */
+    public CrearAlarma(Cita cita, editarCita eCita) {
         initComponents();
         this.cita = cita;
         this.eCita = eCita;
@@ -156,47 +170,54 @@ public class CrearAlarma extends javax.swing.JFrame implements Runnable {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
+    /**
+     * A la cita se le asignan 5 valores:
+     * *Se le asigna una alarma.
+     * *Se le asigna el indice de los minutos de anticipacion que el usuario ingrese al momento de crear una alarma.
+     * *Se le asigna el indice de la musica que sonará, siendo de eleccion del usuario.
+     * *Se le asigna el tiempo de anticipacion y se le asigna la musica.
+     */
     private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
-    if (clip != null) {
+        if (clip != null) {
             clip.stop();
             clip.close();
-        }  
+        }
         int i = jcbMusicas.getSelectedIndex();
         cancion = sonds[i];
         Calendar fecha = Calendar.getInstance();
         fecha.setTime(cita.getHoraFecha());
-        int minutos = (Integer.parseInt((String)jcbMinutos.getSelectedItem()))*-1;
+        int minutos = (Integer.parseInt((String) jcbMinutos.getSelectedItem())) * -1;
         fecha.add(Calendar.MINUTE, (minutos));
         Date fechaA = fecha.getTime();
-        Alarma nueva = new Alarma();         
-        cita.setAlarma(nueva); 
-        cita.setTieneAlarma(true); 
-        cita.setMusica(cancion); 
-        cita.setAnticipacion(minutos);  
+        Alarma nueva = new Alarma();
+        cita.setAlarma(nueva);
+        cita.setTieneAlarma(true);
+        cita.setMusica(cancion);
+        cita.setAnticipacion(minutos);
         cita.setIndiceMin(jcbMinutos.getSelectedIndex());
         cita.setIndiceMus(jcbMusicas.getSelectedIndex());
-        notificacion.NotificacionEscrita("Añadido", "! Alarma añadida exitosamente ¡", "/Iconos/Aprobacion.png");            
-        if(eCita != null){
-            eCita.setBotonA("Editar Alarma"); 
+        notificacion.NotificacionEscrita("Añadido", "! Alarma añadida exitosamente ¡", "/Iconos/Aprobacion.png");
+        if (eCita != null) {
+            eCita.setBotonA("Editar Alarma");
         }
-        notificacion.NotificacionEscrita("Alarma añadida","Alarma programada para las " +nueva.dateAString(fechaA),"/Iconos/Advertencia.png");  
-        System.out.println("----------------------");
-        System.out.println("Informacion de la cita Auxiliar despues de crear una alarma");
-        cita.Imprimir();
-        System.out.println("--------------------------------------");
+        notificacion.NotificacionEscrita("Alarma añadida", "Alarma programada para las " + nueva.dateAString(fechaA), "/Iconos/Advertencia.png");
         this.dispose();
     }//GEN-LAST:event_crearActionPerformed
 
-
+    /**
+     * Si la musica aun esta sonando, lo cierra.
+     */
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         if (clip != null) {
             clip.stop();
             clip.close();
-        }  
+        }
         this.dispose();
     }//GEN-LAST:event_cancelarActionPerformed
-
+    /**
+     * Cuando el usuario selecciona una musica del comboBox, se escuchara el sonido de la musica seleccionada.
+     * Pero si antes habia una musica que seguia sonando, esta se pausará, para que el otro suene sin sobre ponerse.
+     */
     private void jcbMusicasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbMusicasItemStateChanged
 
         int i = jcbMusicas.getSelectedIndex();
@@ -218,7 +239,9 @@ public class CrearAlarma extends javax.swing.JFrame implements Runnable {
     private void jcbMinutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbMinutosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcbMinutosActionPerformed
-
+    /**
+     * Retrocede a otra ventana, si estaba sonando una cancion, esta se pausará para no molestar al usuario.
+     */
     private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
         if (clip != null) {
             clip.stop();
@@ -243,7 +266,9 @@ public class CrearAlarma extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jlbReloj;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
-
+/**
+ * Para el reloj.
+ */
     @Override
     public void run() {
         Thread ct = Thread.currentThread();
@@ -256,7 +281,9 @@ public class CrearAlarma extends javax.swing.JFrame implements Runnable {
             }
         }
     }
-
+    /**
+     * Para el reloj
+     */
     private void calcula() {
         calendario = new GregorianCalendar();
         Date fechaHoraActual = new Date();
@@ -271,7 +298,9 @@ public class CrearAlarma extends javax.swing.JFrame implements Runnable {
         minuto = calendario.get(Calendar.MINUTE) > 9 ? "" + calendario.get(Calendar.MINUTE) : "0" + calendario.get(Calendar.MINUTE);
         segundo = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND) : "0" + calendario.get(Calendar.SECOND);
     }
-
+/**
+ * Reproduce la cancion seleccionada por el uusario. 
+ */
     public void reproducir(String cancion) {
         try {
             clip = AudioSystem.getClip();

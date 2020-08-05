@@ -5,19 +5,15 @@
  */
 package VisualUsuario;
 
-
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import Usuario.User;
-
-
 
 /*
  *
  * @author Luis
  */
 public class usuario extends javax.swing.JFrame {
-
     
     private User usuario;
 
@@ -109,7 +105,7 @@ public class usuario extends javax.swing.JFrame {
 
         txtCorreo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtCorreo.setText("Correo:");
-        getContentPane().add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 150, -1));
+        getContentPane().add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 150, -1));
 
         txtcorreo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtcorreo.setText("Correo:");
@@ -125,7 +121,7 @@ public class usuario extends javax.swing.JFrame {
 
         txtcelular.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtcelular.setText("\"celular\"");
-        getContentPane().add(txtcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 150, -1));
+        getContentPane().add(txtcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 150, -1));
 
         editar.setBackground(new java.awt.Color(255, 255, 255));
         editar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N

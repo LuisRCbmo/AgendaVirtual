@@ -11,39 +11,28 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import java.io.Serializable;
-/*
-    autor emerson
-*/
+/**
+ * @author Emerson Vera.
+ */
 
-public class Notificacion implements Serializable{
-    
-    
+/**
+ * Ancho y alto son las dimensiones de los iconos.
+ */
+
+public class Notificacion implements Serializable{    
     private int Ancho = 53;
     private int Alto = 53;
-    
+    /**
+     * Este metodo Icon te retorna un icono con las dimensiones de alto y ancho.
+     */
     public Icon icono(String url) {       
         Icon img = new ImageIcon(new ImageIcon(getClass().getResource(url)).getImage()
                 .getScaledInstance(Ancho, Alto, java.awt.Image.SCALE_SMOOTH));
         return img;
     }
-    
-    /*private void AsignarTamanio(String URL){
-        if(URL.equals("/Iconos/Alarma.jpg")){
-            Ancho = Alto =53;           
-        }else if(URL.equals("/Iconos/Interrogacion.png")){
-            Ancho =53;
-            Alto = 53;
-        }else if(URL.equals("/Iconos/Negacion.png")){
-            Ancho = 53;
-            Alto = 53;           
-        }else if (URL.equals("/Iconos/Aprobacion.png")){
-            Ancho = 53;
-            Alto = 53;
-        }else if (URL.equals("/Iconos/Advertencia.png")){
-            Ancho = 53;
-            Alto = 53;
-        }
-    }*/
+    /**
+     * Este le da formato a las notificaciones del JOptionPane
+     */
     private void DarFormatoJOP(){                
         UIManager.put("Button.background", Color.WHITE);            
         UIManager.put("OptionPane.background", new Color(123,188,218));
@@ -51,41 +40,49 @@ public class Notificacion implements Serializable{
         UIManager.put("OptionPane.yesButtonText","Si");
         UIManager.put("OptionPane.noButtonText","No");
         UIManager.put("OptionPane.cancelButtonText","Cancelar");
-        UIManager.put("OptionPane.okButtonText","Aceptar");       
-       //Font fuente = new Font(Font.DIALOG_INPUT,Font.PLAIN,14);
-       // UIManager.put("OptionPane.messageFont",fuente);
-       // UIManager.put("OptionPane.buttonFont", fuente);       
-        //UIManager.put("OptionPane.minimumSize", new Dimension(300, 120));//tamaño del joptionpane
-        //UIManager.put("OptionPane.messageForeground", Color.WHITE);// color de las letras
+        UIManager.put("OptionPane.okButtonText","Aceptar");
     }
-    
+    /**
+     * Este es una notificacion de JOPtionPane adaptado para solo recibir un mensaje, titutlo, una lista de los botones("si","no","cancelar", etc.)
+     * y la direccion del icono 
+     */
     public int notificacionBotones(String mensaje,String titulo,Object [] botones,String URL){
         int res = 0; 
-        //AsignarTamanio(URL);
         DarFormatoJOP();         
         res = JOptionPane.showOptionDialog(null,mensaje,titulo,
               JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,icono(URL), botones,botones[0]);        
         return res;
     }   
-    public void NotificacionEscrita(String titulo,String mensaje,String URL){
-        //AsignarTamanio(URL);                 
+    /**
+     * Los mismo del anterior solo que esta no recibe botones.
+     */
+    public void NotificacionEscrita(String titulo,String mensaje,String URL){                
         DarFormatoJOP();
-        JOptionPane.showMessageDialog(null, mensaje ,titulo,JOptionPane.PLAIN_MESSAGE,icono(URL));                   
+        JOptionPane.showMessageDialog(null, mensaje ,titulo,JOptionPane.PLAIN_MESSAGE,icono(URL));
     }
-    public String NotificacionInteraccion(String mensage,String titulo,String URL){      
-        //AsignarTamanio(URL);
+    /**
+     * Estos metodos no se utilizan pero se crearon un porsiacaso.
+     */
+    public String NotificacionInteraccion(String mensage,String titulo,String URL){
         DarFormatoJOP();
          String respuesta = JOptionPane.showInputDialog(null, new JLabel(mensage,icono(URL), JLabel.HEIGHT)
                 ,titulo, JOptionPane.PLAIN_MESSAGE);
         return respuesta ;
     }
-    public String NotificacionListaDesplegable(String mensage,String titulo,String URL,Object[] lista){      
-        //AsignarTamanio(URL);
+    public String NotificacionListaDesplegable(String mensage,String titulo,String URL,Object[] lista){
         DarFormatoJOP();
         String respuesta = (String)JOptionPane.showInputDialog(null,new JLabel(mensage,JLabel.LEFT),titulo, JOptionPane.PLAIN_MESSAGE,icono(URL),lista,lista[0]);
         return respuesta ;
     }
 }
 
-
-
+/**
+ * Iconos y sus direcciones(URL).
+ */
+    /*         
+       "/Iconos/Interrogacion.png" 
+       "/Iconos/Negacion.png"         
+       "/Iconos/Aprobacion.png"
+       "/Iconos/Advertencia.png"
+       "/Iconos/Bienvenido.png"
+    */

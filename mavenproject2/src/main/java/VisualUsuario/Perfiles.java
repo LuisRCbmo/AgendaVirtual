@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package VisualUsuario;
 
 import Usuario.User;
@@ -10,8 +5,13 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import Notificaciones.Notificacion;
 /**
- *
  * @author emerson
+ */
+
+/**
+ * usuario es para guardar el icono seleccionado.
+ * iamgenes para asignar todas las imagendes disponibles en los jLabels de esta ventana.
+ * venUsuario es para actualizar informacion de esta ventana(imagen). 
  */
 public class Perfiles extends javax.swing.JFrame {
     
@@ -19,7 +19,10 @@ public class Perfiles extends javax.swing.JFrame {
     private Icon[] imagenes = new Icon[10];
     private usuario ventUsuario;
     private Notificacion notificacion;
-    
+    /**
+     * Se otorga valores a los atributos
+     * Y se ejecuta el metodo iniciar()
+     */
     public Perfiles(User usuario,usuario ventUsuario) {             
         initComponents();
         this.usuario = usuario;
@@ -28,9 +31,12 @@ public class Perfiles extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         iniciar();        
     } 
+    /**
+     * Coloca todas las imagenes en los JLabels con las dimensiones apropiadas.
+     */
     public void iniciar(){
         for(int i =0;i<10;i++){
-            imagenes[i]= new ImageIcon(new ImageIcon(getClass().getResource("/imagenesPerfil/img"+i+".jpg")).getImage().getScaledInstance(100,100,java.awt.Image.SCALE_SMOOTH));        
+            imagenes[i]= new ImageIcon(new ImageIcon(getClass().getResource("/ImagenesPerfil/img"+i+".jpg")).getImage().getScaledInstance(100,100,java.awt.Image.SCALE_SMOOTH));        
         }
         img0.setIcon(imagenes[0]);
         img1.setIcon(imagenes[1]); 
@@ -43,6 +49,10 @@ public class Perfiles extends javax.swing.JFrame {
         img8.setIcon(imagenes[8]); 
         img9.setIcon(imagenes[9]); 
     }
+    /**
+     * Este metodo guarda la imagen en el usuario.
+     * Y la actualiza en la ventana usuario.
+     */
     public void asignarImagen(int pos){
         Object [] botones = {" SI "," NO "};
         int res = notificacion.notificacionBotones("¿Seleccionar Foto de Perfil?","Seleccionar",botones,"/Iconos/Interrogacion.png");
@@ -255,11 +265,15 @@ public class Perfiles extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+    * Se cierra la ventan.
+    */
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         this.dispose();
     }//GEN-LAST:event_backActionPerformed
-
+    /**
+     * Los siguientes metodos son para que el usuario peuda seleccionar una imagen y agregarla a su perfil.
+     */
     private void img0MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_img0MouseClicked
         asignarImagen(0);
     }//GEN-LAST:event_img0MouseClicked

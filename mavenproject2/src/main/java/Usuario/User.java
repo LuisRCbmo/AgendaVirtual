@@ -19,7 +19,7 @@ public class User implements java.io.Serializable {
         this.direction = direction;
         this.cellPhone = cellPhone;
         agendaVirtual = new AgendaVirtual();
-        imgPerfil = new ImageIcon(new ImageIcon(getClass().getResource("/imagenesPerfil/img0.jpg")).getImage().getScaledInstance(125,125,java.awt.Image.SCALE_SMOOTH));
+        imgPerfil = new ImageIcon(new ImageIcon(getClass().getResource("/ImagenesPerfil/img0.jpg")).getImage().getScaledInstance(125,125,java.awt.Image.SCALE_SMOOTH));
     }
     public Icon getImgPerfil(){
         return imgPerfil;
@@ -90,7 +90,4 @@ public class User implements java.io.Serializable {
     public void setAgendaVirtual(AgendaVirtual agendaVirtual) {
         this.agendaVirtual = agendaVirtual;
     }
-    
-    
-    
 }
