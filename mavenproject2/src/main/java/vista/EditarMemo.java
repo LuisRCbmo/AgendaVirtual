@@ -35,7 +35,6 @@ public class EditarMemo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(600, 400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         editButton.setBackground(new java.awt.Color(255, 255, 255));

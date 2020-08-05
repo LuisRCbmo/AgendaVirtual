@@ -1,7 +1,6 @@
 package vista;
 
 import modelo.Alarma;
-import modelo.ListaAlarma;
 import modelo.Cita;
 import java.util.*;
 import javax.sound.sampled.AudioSystem;
@@ -12,7 +11,7 @@ import Notificaciones.Notificacion;
     autor emerson
  */
 
-public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
+public class CrearAlarma extends javax.swing.JFrame implements Runnable {
 
     private Notificacion notificacion;
     private Calendar calendario;
@@ -23,7 +22,7 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
     private String[] sonds = {"TelefonoAntiguo.wav", "TITITI.wav", "Gallo.wav", "AlarmaLoud.wav", "AlarmaDeGuerra.wav", "AlarmaDeCoche.wav"};
     private Cita cita;
     private editarCita eCita;
-    public InterfazAlarma(Cita cita,editarCita eCita) {
+    public CrearAlarma(Cita cita,editarCita eCita) {
         initComponents();
         this.cita = cita;
         this.eCita = eCita;
@@ -59,7 +58,6 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setResizable(false);
         setSize(new java.awt.Dimension(560, 260));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -171,8 +169,9 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
         int minutos = (Integer.parseInt((String)jcbMinutos.getSelectedItem()))*-1;
         fecha.add(Calendar.MINUTE, (minutos));
         Date fechaA = fecha.getTime();
-        Alarma nueva = new Alarma();  
+        Alarma nueva = new Alarma();         
         cita.setAlarma(nueva); 
+        cita.setTieneAlarma(true); 
         cita.setMusica(cancion); 
         cita.setAnticipacion(minutos);  
         cita.setIndiceMin(jcbMinutos.getSelectedIndex());
@@ -182,6 +181,10 @@ public class InterfazAlarma extends javax.swing.JFrame implements Runnable {
             eCita.setBotonA("Editar Alarma"); 
         }
         notificacion.NotificacionEscrita("Alarma añadida","Alarma programada para las " +nueva.dateAString(fechaA),"/Iconos/Advertencia.png");  
+        System.out.println("----------------------");
+        System.out.println("Informacion de la cita Auxiliar despues de crear una alarma");
+        cita.Imprimir();
+        System.out.println("--------------------------------------");
         this.dispose();
     }//GEN-LAST:event_crearActionPerformed
 

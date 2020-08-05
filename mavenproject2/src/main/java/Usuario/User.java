@@ -1,4 +1,6 @@
 package Usuario;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import modelo.AgendaVirtual;
 /**
  *
@@ -7,7 +9,7 @@ import modelo.AgendaVirtual;
 public class User implements java.io.Serializable {
     private String user,password,name,lastName,email,direction,cellPhone;
     private AgendaVirtual agendaVirtual;
-    
+    private Icon imgPerfil;
     public User(String user, String password, String name, String lastName, String email, String direction, String cellPhone){
         this.user = user;
         this.password = password;
@@ -17,8 +19,14 @@ public class User implements java.io.Serializable {
         this.direction = direction;
         this.cellPhone = cellPhone;
         agendaVirtual = new AgendaVirtual();
+        imgPerfil = new ImageIcon(new ImageIcon(getClass().getResource("/imagenesPerfil/img0.jpg")).getImage().getScaledInstance(125,125,java.awt.Image.SCALE_SMOOTH));
     }
-
+    public Icon getImgPerfil(){
+        return imgPerfil;
+    }
+    public void setImgPerfil(Icon imagen){
+        imgPerfil = imagen;
+    }
     public String getLastName() {
         return lastName;
     }

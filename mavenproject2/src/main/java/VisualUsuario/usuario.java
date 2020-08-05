@@ -5,28 +5,33 @@
  */
 package VisualUsuario;
 
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import Usuario.User;
 
-/**
+
+
+/*
  *
  * @author Luis
  */
 public class usuario extends javax.swing.JFrame {
 
-    /**
-     * Creates new form usuario
-     */
-    private User usuario;
     
+    private User usuario;
+
     public usuario(User usuario) {
         initComponents();
         this.usuario = usuario;
         mostrarUsuario();
+        asignarImagen();
         this.setLocationRelativeTo(null);
+        
     }
-
+    public void asignarImagen(){
+        ImagenPerfil.setIcon(usuario.getImgPerfil()); 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,7 +44,7 @@ public class usuario extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        ImagenPerfil = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         txtnombre = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -53,6 +58,7 @@ public class usuario extends javax.swing.JFrame {
         cambiarc = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         txtdireccion = new javax.swing.JLabel();
+        EditarImagen = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,8 +67,8 @@ public class usuario extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Usuaio");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 360, 30));
+        jLabel2.setText("USUARIO");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 360, 30));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/panel.png"))); // NOI18N
         jLabel9.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -72,8 +78,8 @@ public class usuario extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jLabel7.setText("jLabel7");
-        jPanel1.add(jLabel7, java.awt.BorderLayout.CENTER);
+        ImagenPerfil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(ImagenPerfil, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 150, 150));
 
@@ -103,10 +109,10 @@ public class usuario extends javax.swing.JFrame {
 
         txtCorreo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtCorreo.setText("Correo:");
-        getContentPane().add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 150, -1));
+        getContentPane().add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 150, -1));
 
         txtcorreo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtcorreo.setText("\"correo\"");
+        txtcorreo.setText("Correo:");
         getContentPane().add(txtcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 150, -1));
 
         txtapellido.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -119,7 +125,7 @@ public class usuario extends javax.swing.JFrame {
 
         txtcelular.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtcelular.setText("\"celular\"");
-        getContentPane().add(txtcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 150, -1));
+        getContentPane().add(txtcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 150, -1));
 
         editar.setBackground(new java.awt.Color(255, 255, 255));
         editar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -130,7 +136,7 @@ public class usuario extends javax.swing.JFrame {
                 editarActionPerformed(evt);
             }
         });
-        getContentPane().add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 150, 50));
+        getContentPane().add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 150, 50));
 
         cambiarc.setBackground(new java.awt.Color(255, 255, 255));
         cambiarc.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -141,7 +147,7 @@ public class usuario extends javax.swing.JFrame {
                 cambiarcActionPerformed(evt);
             }
         });
-        getContentPane().add(cambiarc, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, 150, 50));
+        getContentPane().add(cambiarc, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 150, 50));
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel8.setText("Direccion:");
@@ -150,6 +156,17 @@ public class usuario extends javax.swing.JFrame {
         txtdireccion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtdireccion.setText("\"direccion\"");
         getContentPane().add(txtdireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, 150, -1));
+
+        EditarImagen.setBackground(new java.awt.Color(255, 255, 255));
+        EditarImagen.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        EditarImagen.setText("Editar Imagen");
+        EditarImagen.setBorder(null);
+        EditarImagen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarImagenActionPerformed(evt);
+            }
+        });
+        getContentPane().add(EditarImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 150, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -186,7 +203,14 @@ public class usuario extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_cambiarcActionPerformed
 
+    private void EditarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarImagenActionPerformed
+        Perfiles imgPerfil = new Perfiles(usuario,this);
+        imgPerfil.setVisible(true); 
+    }//GEN-LAST:event_EditarImagenActionPerformed
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton EditarImagen;
+    private javax.swing.JLabel ImagenPerfil;
     private javax.swing.JButton cambiarc;
     private javax.swing.JButton editar;
     private javax.swing.JButton jButton1;
@@ -195,7 +219,6 @@ public class usuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -207,7 +230,7 @@ public class usuario extends javax.swing.JFrame {
     private javax.swing.JLabel txtnombre;
     // End of variables declaration//GEN-END:variables
 
-    private void mostrarUsuario(){
+    private void mostrarUsuario() {
         txtnombre.setText(usuario.getName());
         txtapellido.setText(usuario.getLastName());
         txtcelular.setText(usuario.getCellPhone());

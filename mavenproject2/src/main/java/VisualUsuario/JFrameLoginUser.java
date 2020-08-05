@@ -8,16 +8,19 @@ import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
+import Notificaciones.Notificacion;
 /**
  *
  * @author Sergio Garcia
  */
 public class JFrameLoginUser extends javax.swing.JFrame {
     private Users users;
+    private Notificacion notificacion;
     public JFrameLoginUser(Users users) {
         initComponents();
         this.users = users;
         this.setLocationRelativeTo(null);
+        notificacion = new Notificacion();
         //jLabel4.setVisible(false
     }
 
@@ -44,7 +47,6 @@ public class JFrameLoginUser extends javax.swing.JFrame {
         setTitle("Login");
         setBackground(new java.awt.Color(204, 255, 255));
         setUndecorated(true);
-        setResizable(false);
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -52,14 +54,15 @@ public class JFrameLoginUser extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setText("Usuario");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 305, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 70, 20));
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setText("Contraseña");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 343, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 70, 20));
 
+        txtUser.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUserActionPerformed(evt);
@@ -70,14 +73,15 @@ public class JFrameLoginUser extends javax.swing.JFrame {
                 txtUserKeyTyped(evt);
             }
         });
-        getContentPane().add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 190, -1));
+        getContentPane().add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 190, -1));
 
+        txtPassword.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPasswordKeyTyped(evt);
             }
         });
-        getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 190, -1));
+        getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 190, -1));
 
         bttnLogin.setBackground(new java.awt.Color(255, 255, 255));
         bttnLogin.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -93,9 +97,10 @@ public class JFrameLoginUser extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("¡Bienvenido a su Agenda Virtual!");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 53));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 270, 30));
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Crear nueva cuenta.");
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -114,14 +119,14 @@ public class JFrameLoginUser extends javax.swing.JFrame {
                 jLabel5KeyPressed(evt);
             }
         });
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 389, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 150, 30));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/perfil_Image.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 220, 220));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
 
         fondo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/panel.png"))); // NOI18N
         fondo2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        getContentPane().add(fondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 50));
+        getContentPane().add(fondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 50));
 
         bttnExit.setBackground(new java.awt.Color(255, 255, 255));
         bttnExit.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -132,10 +137,10 @@ public class JFrameLoginUser extends javax.swing.JFrame {
                 bttnExitActionPerformed(evt);
             }
         });
-        getContentPane().add(bttnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, 90, 30));
+        getContentPane().add(bttnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 420, 90, 30));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 300, 420));
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 310, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -164,7 +169,8 @@ public class JFrameLoginUser extends javax.swing.JFrame {
         boolean flag = false;
         for(int i = 0 ; i < users.getUsers().size() && !flag; i++){
             if(users.getUsers().get(i).getUser().equals(txtUser.getText()) && users.getUsers().get(i).getPassword().equals(txtPassword.getText())){
-                JOptionPane.showMessageDialog(null, "Bienvenido a tu Agenda virtual "+ users.getUsers().get(i).getName()); 
+                //JOptionPane.showMessageDialog(null, "Bienvenido a tu Agenda virtual "+ users.getUsers().get(i).getName()); 
+                notificacion.NotificacionEscrita("!Bienvenido¡","Bienvenido a tu Agenda virtual "+ users.getUsers().get(i).getName(),"/Iconos/Bienvenido.png"); 
                 flag = true;
                 this.dispose();
                 VistaAgendaVirtual agendaVirtualVista = new VistaAgendaVirtual(users , users.getUsers().get(i));
@@ -172,7 +178,8 @@ public class JFrameLoginUser extends javax.swing.JFrame {
             }
         }
         if(!flag){
-            JOptionPane.showMessageDialog(null, "Usuario no valido, porfavor revise su usuario.");
+            //JOptionPane.showMessageDialog(null, "Usuario no valido, porfavor revise su usuario.");
+            notificacion.NotificacionEscrita("Incorrecto","Usuario no valido, porfavor revise su usuario.","/Iconos/Advertencia.png");
         }
     }//GEN-LAST:event_bttnLoginActionPerformed
 

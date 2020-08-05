@@ -36,12 +36,9 @@ public class MostrarMemo extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAutoRequestFocus(false);
         setBounds(new java.awt.Rectangle(0, 0, 600, 400));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(600, 400));
-        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -74,7 +71,7 @@ public class MostrarMemo extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("MEMO");
+        jLabel3.setText("MOSTRAR MEMO");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 330, 30));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -96,6 +93,7 @@ public class MostrarMemo extends javax.swing.JFrame {
         getContentPane().add(editButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(218, 318, 150, 50));
 
         txtAsunto.setEditable(false);
+        txtAsunto.setBackground(new java.awt.Color(255, 255, 255));
         txtAsunto.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         getContentPane().add(txtAsunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 100, 340, 28));
 

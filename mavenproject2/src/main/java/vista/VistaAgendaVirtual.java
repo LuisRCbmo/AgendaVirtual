@@ -39,6 +39,7 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         h1 = new Thread((Runnable) this);
         h1.start();
         actualizarCitas();
+        agendaVirtual.reactivarAlarmas();
         //agendaVirtual.recuperarDatos();
     }
 

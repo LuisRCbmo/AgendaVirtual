@@ -253,7 +253,10 @@ public class editarCita extends javax.swing.JFrame {
         Object[] botones = {" SI ", " NO "};
         int num = notificacion.notificacionBotones("¿Quiere guardar los cambios?","Guardar", botones, "/Iconos/Advertencia.png");
         if (num == 0) {
-            cita.Imprimir();          
+            System.out.println("----------------------------------");//
+            System.out.println("La cita antes de cambiar datos");//
+            cita.Imprimir(); //
+            System.out.println("------------------------------------");//
             mostrar.setAsunto(contAsunto.getText());
             mostrar.setNota(contNota.getText());
             mostrar.setDuracion((String) contDuracion.getSelectedItem());
@@ -271,15 +274,20 @@ public class editarCita extends javax.swing.JFrame {
             cita.setIndHoras(contHora.getSelectedIndex());
             cita.setIndMinutos(contMinuto.getSelectedIndex());
             cita.setIndDuracion(contDuracion.getSelectedIndex());
-            cita.setIndAmPm(amPm.getSelectedIndex());                                
+            cita.setIndAmPm(amPm.getSelectedIndex()); 
+            System.out.println("--------------------------");
+            System.out.println("informacion de la cita auxiliar antes de cambiar alarma");
+            citaAuxiliar.Imprimir();
+            System.out.println("--------------------------------");
             if (citaAuxiliar.getAlarma() == null) {
                 if (cita.getAlarma() != null) {
                     cita.apagarAlarma();
-                }
+                }               
                 cita.setIndiceMin(0);
                 cita.setIndiceMus(0);
                 cita.setAlarma(null);
                 cita.setTieneAlarma(false);
+                mostrar.setTextoBotonAlarma(); 
             } else {
                 cita.setIndiceMin(citaAuxiliar.getIndiceMin());
                 cita.setIndiceMus(citaAuxiliar.getIndiceMus());                
@@ -292,11 +300,16 @@ public class editarCita extends javax.swing.JFrame {
                 Alarma nueva = new Alarma();               
                 nueva.setCancion(citaAuxiliar.getMusica()); 
                 nueva.ProgramarAlarma(fechaRestada.getTime(),cita.getAsunto());
+                cita.setAlarma(nueva); 
                 cita.setAnticipacion(citaAuxiliar.getAnticipacion()); 
                 cita.setMusica(citaAuxiliar.getMusica()); 
                 cita.setTieneAlarma(true);
+                mostrar.setTextoBotonAlarma(); 
             }
-            cita.Imprimir();
+            System.out.println("---------------------------");//
+            System.out.println("Cita despues de cambiar datos");//
+            cita.Imprimir();//
+            System.out.println("-------------------------------");//
             this.dispose();
         }
     }//GEN-LAST:event_botonGuardarActionPerformed
@@ -321,11 +334,15 @@ public class editarCita extends javax.swing.JFrame {
         Date res = establecerFecha(fecha, hora, minuto);
         citaAuxiliar.setFechaHora(res);
         if (citaAuxiliar.getAlarma() == null) {
-            InterfazAlarma ia = new InterfazAlarma(citaAuxiliar, this);
+            CrearAlarma ia = new CrearAlarma(citaAuxiliar, this);
             ia.setVisible(true);
             ia.addWindowListener(new WindowAdapter() {
                 public void windowClosed(WindowEvent e) {
                     padre.setVisible(true);
+                    System.out.println("-------------------------------------------------------------");
+                    System.out.println("Informacion de la Cita Auxiliar despues de interactuar con crear alarma");
+                    citaAuxiliar.Imprimir();
+                    System.out.println("---------------------------------------------------------------");
                 }
             });
             padre.setVisible(false);
@@ -336,10 +353,13 @@ public class editarCita extends javax.swing.JFrame {
             EA.addWindowListener(new WindowAdapter() {
                 public void windowClosed(WindowEvent e) {
                     padre.setVisible(true);
+                    citaAuxiliar.Imprimir();
                 }
             });
             padre.setVisible(false);
         }
+        
+        
     }//GEN-LAST:event_EditarAlarmaActionPerformed
 
     private void amPmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amPmActionPerformed

@@ -7,16 +7,16 @@ import java.util.*;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-/*
-    autor emerson
-*/
-
+/**
+ * autor emerson
+*
+ */
 public class Alarma implements java.io.Serializable {
 
     private boolean activo, play;
     private Calendar calendar;
     transient private Clip clip;
-    private int musica; // posicion de tus canciones
+    //private int musica; // posicion de tus canciones
     private Date fechaActual;
     private String[] sonds = {"TelefonoAntiguo.wav", "TITITI.wav", "Gallo.wav", "AlarmaLoud.wav", "AlarmaDeGuerra.wav", "AlarmaDeCoche.wav"};
     private String asunto;
@@ -28,35 +28,37 @@ public class Alarma implements java.io.Serializable {
 
     public Alarma() {
         notificacion = new Notificacion();
-        Object[] botones = {"APAGAR", "POSPONER"};
+        Object[] botones = {"APAGAR"};
         calendar = Calendar.getInstance();
         fechaActual = new Date();
         Date comparable = new Date();
         activo = true;
         play = true;
-        
+
         timer = new Timer();
         timerPlay = new Timer();
         tarea = new TimerTask() {
             @Override
             public void run() {
                 if (activo) {
+                    activo = false;
                     timerPlay.schedule(replay, 0, establecerRepeticion());
-                    notificacion.NotificacionEscrita("¡ Alarma !",asunto + " A las: " + dateAStringFormat(fechaActual), "/Iconos/Alarma.jpg");
-                    int com = notificacion.notificacionBotones("¿Que hacer con la alarma?", "Alarma", botones, "/Iconos/Interrogacion.png");
+                    //notificacion.NotificacionEscrita("¡ Alarma !",asunto + " A las: " + dateAStringFormat(fechaActual), "/Iconos/Alarma.jpg");
+                    int com = notificacion.notificacionBotones(asunto + " A las: " + dateAStringFormat(fechaActual), "¡ Alarma !", botones, "/Iconos/Alarma.jpg");
                     if (com == 0) {
                         play = false;
-                        clip.stop();                        
+                        clip.stop();
                         clip.close();
                         timer.cancel();
 
-                    } else {
+                    }/* else {
+                        //pospuesto += + 1;
                         play = false;
                         clip.stop();
                         clip.close();
                         Posponer(fechaActual);
                         timer.cancel();
-                    }
+                    }*/
                 } else {
                     timer.cancel();
                 }
@@ -95,9 +97,11 @@ public class Alarma implements java.io.Serializable {
     public void setCancion(String cancion) {
         this.cancion = cancion;
     }
-    public String getCancion(){
+
+    public String getCancion() {
         return cancion;
     }
+
     private void reproducir() {
         try {
             clip = AudioSystem.getClip();
@@ -108,19 +112,18 @@ public class Alarma implements java.io.Serializable {
         }
     }
 
-    private void Posponer(Date t) {
+    /*private void Posponer(Date t) {
         calendar.setTime(t);
         calendar.add(Calendar.MINUTE, 10);
         fechaActual = calendar.getTime();
         Alarma am = new Alarma();
         am.setCancion(cancion);
         am.ProgramarAlarma(calendar.getTime(), asunto);
-    }
+    }*/
 
     public boolean getActivo() {
         return activo;
     }
-
     public void desactivar() {
         activo = false;
         System.out.println("Alarma Desactivada");
@@ -135,14 +138,15 @@ public class Alarma implements java.io.Serializable {
         return fechaActual;
     }
 
-    public void ProgramarAlarma(Date t, String asunto) {
+    public void ProgramarAlarma(Date fechaC, String asunto) {
         this.asunto = asunto;
+        fechaActual = fechaC;
         Date aux = new Date();
-        if ((t.getTime()-60000) < aux.getTime()) {
+        if ((fechaC.getTime() - 60000) < aux.getTime()) {
+            activo = false;
             System.out.println("Esta alarma no sonara");
-        } else if ((t.getTime()-60000) >= aux.getTime()){           
-            fechaActual = t;
-            timer.schedule(tarea, t);
+        } else if ((fechaC.getTime() - 60000) >= aux.getTime()) {           
+            timer.schedule(tarea, fechaC);
             System.out.println("Esta alarma si sonara");
         }
     }
@@ -164,10 +168,5 @@ public class Alarma implements java.io.Serializable {
             System.out.println("error en la conversion");
         }
         return fecha;
-    }
-
-    public boolean equals(Object o) {
-        Alarma am = (Alarma) o;
-        return fechaActual.getTime() == am.getFechaActual().getTime();
     }
 }

@@ -229,5 +229,5 @@ public class Cita implements Serializable {
     /*public String toStringHora() {
         calendario.setTime(fechaHora);
         return "" + calendario.get(calendario.DAY_OF_MONTH) + "/" + calendario.get(calendario.MONTH) + 1 + "/" + calendario.get(calendario.YEAR) + "";
-    }*/
+    }*/   
 }

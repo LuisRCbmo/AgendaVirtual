@@ -76,7 +76,7 @@ public class cambiarc extends javax.swing.JFrame {
                 bttnGuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(bttnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 150, 50));
+        getContentPane().add(bttnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 150, 50));
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel5.setText("Contraseña actual");
@@ -97,7 +97,7 @@ public class cambiarc extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -6, 600, 260));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 240));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

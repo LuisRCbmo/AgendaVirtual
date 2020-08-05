@@ -57,7 +57,6 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setResizable(false);
         setSize(new java.awt.Dimension(560, 260));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -177,7 +176,6 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
         int res = notificacion.notificacionBotones("Quiere eliminar la Alarma","¿ Eliminar ?", botones,"/Iconos/Negacion.png");
         if(res == 0){
             eCita.setBotonA("Crear Alarma");
-            cita.apagarAlarma();
             cita.setAlarma(null); 
             cita.setTieneAlarma(false); 
             notificacion.NotificacionEscrita("Eliminado","Alarma Eliminada","/Iconos/Aprobacion.png");

@@ -6,7 +6,7 @@
 package vista;
 
 import edl.ListaSE;
-//import javax.swing.JOptionPane;
+import Notificaciones.Notificacion;
 import modelo.Contacto;
 
 /**
@@ -15,6 +15,7 @@ import modelo.Contacto;
  */
 public class ec extends javax.swing.JFrame {
 
+    private Notificacion notificacion;
     private ListaSE<Contacto> listaContactos;
     private int n;
     private Contacto contacto;
@@ -28,6 +29,17 @@ public class ec extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setSize(600, 400);
+        notificacion = new Notificacion();
+        actualizar();
+    }
+
+    public void actualizar() {
+        nombretxt.setText(contacto.getNombre());
+        apellidotxt.setText(contacto.getApellido());
+        fijotxt.setText(contacto.getFijo());
+        celulartxt.setText(contacto.getCelular());
+        correotxt.setText(contacto.getCorreo());
+        direcciontxt.setText(contacto.getDireccion());
     }
 
     /**
@@ -80,6 +92,11 @@ public class ec extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, -1, -1));
 
         fijotxt.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        fijotxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fijotxtKeyTyped(evt);
+            }
+        });
         getContentPane().add(fijotxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 120, -1));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -112,6 +129,11 @@ public class ec extends javax.swing.JFrame {
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, 20));
 
         celulartxt.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        celulartxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                celulartxtKeyTyped(evt);
+            }
+        });
         getContentPane().add(celulartxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 130, -1));
 
         regresar.setBackground(new java.awt.Color(149, 173, 177));
@@ -142,18 +164,37 @@ public class ec extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
-        contacto.setApellido(apellidotxt.getText());
-        contacto.setCelular(celulartxt.getText());
-        contacto.setCorreo(correotxt.getText());
-        contacto.setDireccion(direcciontxt.getText());
-        contacto.setFijo(fijotxt.getText());
-        contacto.setNombre(nombretxt.getText());
-        this.dispose();
+        Object[] botones = {" SI ", " NO "};
+        int res = notificacion.notificacionBotones("Esta seguro que quiere guardar los cambios", "Guardar", botones, "/Iconos/Interrogacion.png");
+        if (res == 0) {
+            contacto.setApellido(apellidotxt.getText());
+            contacto.setCelular(celulartxt.getText());
+            contacto.setCorreo(correotxt.getText());
+            contacto.setDireccion(direcciontxt.getText());
+            contacto.setFijo(fijotxt.getText());
+            contacto.setNombre(nombretxt.getText());
+            this.dispose();
+        }
     }//GEN-LAST:event_GuardarActionPerformed
 
     private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
         this.dispose();
     }//GEN-LAST:event_regresarActionPerformed
+
+    private void fijotxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fijotxtKeyTyped
+        char word = evt.getKeyChar();
+        if (word < '0' || word > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_fijotxtKeyTyped
+
+    private void celulartxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_celulartxtKeyTyped
+        char word = evt.getKeyChar();
+        if (word < '0' || word > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_celulartxtKeyTyped
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Guardar;
     private javax.swing.JTextField apellidotxt;

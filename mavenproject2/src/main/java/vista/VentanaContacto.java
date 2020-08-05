@@ -63,7 +63,6 @@ public class VentanaContacto extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
-        jButton1.setActionCommand("");
         jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 2, 2, new java.awt.Color(255, 255, 255)));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,6 +124,11 @@ public class VentanaContacto extends javax.swing.JFrame {
                 txtfijoActionPerformed(evt);
             }
         });
+        txtfijo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtfijoKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtfijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 130, -1));
 
         txtcorreo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -134,19 +138,24 @@ public class VentanaContacto extends javax.swing.JFrame {
         getContentPane().add(txtdireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 320, -1));
 
         txtcelular.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtcelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcelularKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 120, -1));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("CONTACTOS");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 360, 30));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 360, 30));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/panel.png"))); // NOI18N
         jLabel9.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(255, 255, 255)));
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 560, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -158,7 +167,7 @@ public class VentanaContacto extends javax.swing.JFrame {
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         if (txtapellido.getText().equals("") && txtnombre.getText().equals("") && txtcorreo.getText().equals("") && txtdireccion.getText().equals("") && txtcelular.getText().equals("") && txtfijo.getText().equals("")) {
             notificacion.NotificacionEscrita("Error", "Porfavor ingrese los datos.", "/Iconos/Advertencia.png");
-        }else{
+        } else {
             Object[] botones = {"  SI  ", "  NO  "};
             int res = notificacion.notificacionBotones("¿ Agregar contacto ?", "Contacto", botones, "/Iconos/Interrogacion.png");
             if (res == 0) {
@@ -176,6 +185,20 @@ public class VentanaContacto extends javax.swing.JFrame {
     private void txtfijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfijoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtfijoActionPerformed
+
+    private void txtfijoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfijoKeyTyped
+        char word = evt.getKeyChar();
+        if (word < '0' || word > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtfijoKeyTyped
+
+    private void txtcelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcelularKeyTyped
+        char word = evt.getKeyChar();
+        if (word < '0' || word > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtcelularKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton guardar;

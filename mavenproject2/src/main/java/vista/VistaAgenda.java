@@ -145,15 +145,13 @@ public class VistaAgenda extends javax.swing.JFrame {
     private void eliminarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarCitaActionPerformed
         Object [] botones = {"  SI  ","  NO  "};
         if(agenda.getListaCitas().tamanio() == 0){
-            //JOptionPane.showMessageDialog(null,"No tiene citas guardadas");
             notificacion.NotificacionEscrita("Cita","No tiene citas guardadas","/Iconos/Advertencia.png");
         }else{
-            //int index = JOptionPane.showConfirmDialog(null, "¿Esta seguro que quiere eliminar la cita?", "Eliminar cita", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
             int index = notificacion.notificacionBotones("¿ Esta seguro que quiere eliminar la cita ?","Eliminar cita", botones,"/Iconos/Negacion.png");
             if(index == 0){
                 int pos = listaCitas.getSelectedIndex();
                 Cita eliminada = (Cita)agenda.getListaCitas().acceder(pos); 
-                if(eliminada.getTieneAlarma()){
+                if(eliminada.getAlarma() != null){
                     eliminada.apagarAlarma();
                 }
                 agenda.getListaCitas().eliminar(pos); 
@@ -190,7 +188,7 @@ public class VistaAgenda extends javax.swing.JFrame {
                 JList list = (JList) evt.getSource();
                 if (evt.getClickCount() == 2) { // Doble Click
                     int index = list.locationToIndex(evt.getPoint()); // retorna la posicion del elemento seleccionado
-                    mostrarCita mostrar = new mostrarCita((Cita) agenda.getListaCitas().acceder(index), padre);
+                    mostrarCita mostrar = new mostrarCita((Cita) agenda.getListaCitas().acceder(index), padre,agenda.getListaCitas());
                     mostrar.setVisible(true);
                     mostrar.addWindowListener(new WindowAdapter() {
                         public void windowClosed(WindowEvent e) {

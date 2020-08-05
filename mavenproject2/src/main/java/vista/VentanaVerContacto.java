@@ -178,7 +178,8 @@ public class VentanaVerContacto extends javax.swing.JFrame {
         VentanaVerContacto padre = this;
         ec.addWindowListener(new WindowAdapter() {
                 public void windowClosed(WindowEvent e) {
-                    padre.setVisible(true);
+                    padre.dispose();
+                    //padre.setVisible(true);
                 }
             });
         this.setVisible(false);

@@ -103,7 +103,7 @@ public class vcs extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CONTACTOS");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 280, 30));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 280, 30));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/panel.png"))); // NOI18N
         jLabel3.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -112,18 +112,12 @@ public class vcs extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo.jpeg"))); // NOI18N
         jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, 0, 610, 400));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-        /*if (JOptionPane.showConfirmDialog(null, "¿Eliminar?", "WARNING",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            int n = jlistcontactos.getSelectedIndex();
-            listaContactos.eliminar(n);
-            addContacts();
-        } else {    // no option
-        }*/
+       
         Object [] botones = {"  SI  ","  NO  "};
         int res  = notificacion.notificacionBotones("¿ Eliminar ?","Advertencia", botones,"/Iconos/Negacion.png");
         if (res  == 0) {

@@ -281,7 +281,7 @@ public class CrearCita extends javax.swing.JFrame {
                     nueva.setFechaHora(res);
                     citaAuxiliar.setFechaHora(nueva.getHoraFecha());
                     CrearCita padree = this;
-                    InterfazAlarma alarma = new InterfazAlarma(citaAuxiliar, null);
+                    CrearAlarma alarma = new CrearAlarma(citaAuxiliar, null);
                     alarma.setVisible(true);
                     alarma.addWindowListener(new WindowAdapter() {
                         public void windowClosed(WindowEvent e) {
@@ -300,7 +300,10 @@ public class CrearCita extends javax.swing.JFrame {
                                 nueva.setIndiceMin(citaAuxiliar.getIndiceMin());
                                 nueva.setTieneAlarma(true);
                             }
+                            System.out.println("----------------------------");
+                            System.out.println("Cita nueva recien creada :");
                             nueva.Imprimir();
+                            System.out.println("--------------------------------");
                             alarma.dispose();
                             padree.dispose();
                         }

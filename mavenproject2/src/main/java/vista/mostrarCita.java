@@ -7,10 +7,10 @@ package vista;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import javax.swing.JOptionPane;
 import modelo.*;
 import java.util.*;
 import Notificaciones.Notificacion;
+import edl.ListaSE;
 import java.text.SimpleDateFormat;
 
 /**
@@ -25,10 +25,11 @@ public class mostrarCita extends javax.swing.JFrame {
     public Cita cita;
     private VistaAgenda padre;
     private Notificacion notificacion;
-
-    public mostrarCita(Cita cita, VistaAgenda padre) {
+    private ListaSE<Cita> listaCitas;
+    public mostrarCita(Cita cita, VistaAgenda padre,ListaSE<Cita> listaCitas) {
         this.padre = padre;
         this.cita = cita;
+        this.listaCitas = listaCitas;
         initComponents();
         this.setLocationRelativeTo(null);
         if (cita.getAsunto() != null) {
@@ -44,16 +45,22 @@ public class mostrarCita extends javax.swing.JFrame {
         if (cita.getHoraFecha() != null) {
             setFechaHora(cita.getHoraFecha()); 
         }
-        if(cita.getAlarma() == null){
-            contAlarma.setText("Desactivada"); 
-        }else{
-            contAlarma.setText("Activada"); 
-        }
+        setTextoBotonAlarma();
         this.setVisible(true);
         notificacion = new Notificacion();
     
     }
-
+    public void setTextoBotonAlarma(){
+        if(cita.getAlarma() == null){
+            contAlarma.setText("Desactivada"); 
+        }else{
+            if(cita.getAlarma().getActivo()){
+                contAlarma.setText("Activada"); 
+            }else{
+                contAlarma.setText("Desactivada"); 
+            }        
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -152,7 +159,7 @@ public class mostrarCita extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("AGENDA");
+        jLabel8.setText("MOSTRAR CITA");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 280, 30));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/panel.png"))); // NOI18N
@@ -241,10 +248,15 @@ public class mostrarCita extends javax.swing.JFrame {
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         Object [] botones = {"  SI  ","  NO  "};
-        int res = notificacion.notificacionBotones("¿ Esta seguro que quiere eliminar la cita ?","Eliminar cita", botones,"/Iconos/Negacion.png");
-        //int res = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere eliminar la cita?", "Eliminar cita", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        int res = notificacion.notificacionBotones("¿ Esta seguro que quiere eliminar la cita ?","Eliminar cita", botones,"/Iconos/Negacion.png");       
         if (res == 0) {
-            //eliminar cita
+            int aux = listaCitas.indexOf(cita);
+            if(cita.getAlarma() != null){
+                cita.apagarAlarma();
+            }
+            listaCitas.eliminar(aux);
+            this.dispose();
+            notificacion.NotificacionEscrita("Eliminado","La cita se elimino","/Iconos/Aprobacion.png");           
         }
     }//GEN-LAST:event_botonEliminarActionPerformed
 

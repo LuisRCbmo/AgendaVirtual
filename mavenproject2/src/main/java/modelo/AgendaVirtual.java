@@ -1,11 +1,9 @@
 package modelo;
 
-import modelo.*;
 import edl.*;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 import java.util.Date;
 import java.io.Serializable;
+import java.util.Calendar;
 
 /**
  *
@@ -48,18 +46,24 @@ public class AgendaVirtual implements Serializable {
         int posicion = listamemo.indexOf(memo);
         return listamemo.eliminar(posicion);
     }
-    /*
-    public void recuperar(){
-        for(int i = 0 ; i < agenda.getListaCitas() ; i++){
-            if(cita(i).getTieneAlarma()){            
-                cita(i).setAlarma(new Alarma());
-                cita(i).getAlarma().setCancion(cita(i).getMusica())
+    
+    public void reactivarAlarmas(){
+        for(int i = 0 ; i < agenda.getListaCitas().tamanio() ; i++){
+            Cita cita = (Cita)agenda.getListaCitas().acceder(i);
+            cita.Imprimir();
+            try{                           
+                if(cita.getTieneAlarma()){
+                cita.setAlarma(new Alarma());
+                cita.getAlarma().setCancion(cita.getMusica());
                 Calendar calendar = Calendar.getInstance();
-                calendar.setTime(cita(i).getFechaHora);
-                calendar.add(calendar.MINUTE,cita(i).getAnticipacion);
-                cita(i).getAlarma().programarAlarma(calendar.getTime(),cita(i).getAsunto);
+                calendar.setTime(cita.getHoraFecha());
+                calendar.add(calendar.MINUTE,cita.getAnticipacion());
+                cita.getAlarma().ProgramarAlarma(calendar.getTime(),cita.getAsunto());
+                }
+            }catch(Exception e){
+                System.out.println("Salio mal C':");
             }
-        }    
+        }   
     }
-     */
+     
 }
