@@ -26,6 +26,9 @@ public class usuario extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
+    /*
+        asigan la imagen que tenga el usuario a el label imagenPerfil
+    */
     public void asignarImagen(){
         ImagenPerfil.setIcon(usuario.getImgPerfil()); 
     }

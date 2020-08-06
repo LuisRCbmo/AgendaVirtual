@@ -2,9 +2,6 @@
 package Notificaciones;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.io.Serializable;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
