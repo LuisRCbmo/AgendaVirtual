@@ -9,6 +9,11 @@ import java.util.Calendar;
  *
  * @author hp
  */
+
+/**
+ * Agenda almacenadora de citas.
+ * 
+ */
 public class AgendaVirtual implements Serializable {
 
     private Agenda agenda;
