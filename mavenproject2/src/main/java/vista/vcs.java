@@ -19,6 +19,10 @@ public class vcs extends javax.swing.JFrame {
 
     private ListaSE listaContactos;
     private Notificacion notificacion;
+    /*
+     Es el constructor para la ventana "vcs (Ventana Contactos)" esta ventana solciita 
+    un dato tipo LISTASE como parametro
+    */
     public vcs(ListaSE listaContactos) {
         initComponents();
         this.listaContactos = listaContactos;
@@ -35,6 +39,8 @@ public class vcs extends javax.swing.JFrame {
      * @param data
      */
     @SuppressWarnings("unchecked")
+    /*boton "eliminar" sirve para eliminar un cotacto ya 
+    seleccionado de la lista de contactos*/
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -117,7 +123,6 @@ public class vcs extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-       
         Object [] botones = {"  SI  ","  NO  "};
         int res  = notificacion.notificacionBotones("¿ Eliminar ?","Advertencia", botones,"/Iconos/Negacion.png");
         if (res  == 0) {
@@ -126,7 +131,8 @@ public class vcs extends javax.swing.JFrame {
             addContacts();
         }
     }//GEN-LAST:event_EliminarActionPerformed
-
+    /*boton "añadir" sirve para cerrar la ventana actual y abrir una ventana 
+    para añadir un nuevo contacto*/
     private void añadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirActionPerformed
         VentanaContacto vc = new VentanaContacto(listaContactos);
         vc.setVisible(true);
@@ -139,11 +145,12 @@ public class vcs extends javax.swing.JFrame {
         });
         this.setVisible(false);
     }//GEN-LAST:event_añadirActionPerformed
-
+    /*boton "cerrar" para cerrar la ventana actual*/
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose(); 
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    /*Es un evento, al hacer doble click sobre uno de los contactos de la lista 
+    se abrira una ventana "VentanaContacto"*/
     private void jlistcontactosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlistcontactosMouseClicked
         JList list = (JList) evt.getSource();
         if (evt.getClickCount() == 2) {
@@ -161,18 +168,7 @@ public class vcs extends javax.swing.JFrame {
                 this.setVisible(false);
         }
     }//GEN-LAST:event_jlistcontactosMouseClicked
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Eliminar;
-    private javax.swing.JButton añadir;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> jlistcontactos;
-    // End of variables declaration//GEN-END:variables
-
+/*el metodo "addContacts()" sirve para actualizar el jlist de contactos en la ventana*/
     private void addContacts() {
         DefaultListModel modeloLista = new DefaultListModel();
         for (int i = 0; i < listaContactos.tamanio(); i++) {
@@ -183,4 +179,15 @@ public class vcs extends javax.swing.JFrame {
         jlistcontactos.updateUI();//sube la lista al jList
 
     }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Eliminar;
+    private javax.swing.JButton añadir;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> jlistcontactos;
+    // End of variables declaration//GEN-END:variables
+    
 }

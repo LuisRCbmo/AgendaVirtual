@@ -20,8 +20,10 @@ public class ec extends javax.swing.JFrame {
     private int n;
     private Contacto contacto;
 
-    /**
-     * Creates new form ec
+    /*
+     Creates new form ec
+     Es el constructor para la ventana "ec (editar contacto)" este pide un 
+     dato tipo contacto como parametro
      */
     public ec(Contacto contacto) {
         initComponents();
@@ -32,7 +34,8 @@ public class ec extends javax.swing.JFrame {
         notificacion = new Notificacion();
         actualizar();
     }
-
+    /*el metodo "actualizar()" sirve sobre escribir los datos en 
+    cada espacio en blanco, segun su variable correspondiente*/
     public void actualizar() {
         nombretxt.setText(contacto.getNombre());
         apellidotxt.setText(contacto.getApellido());
@@ -162,10 +165,12 @@ public class ec extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /*boton "guardar" que sirve para sobreescribir los datos del contacto 
+    seleccionado, con los nuevos datos ingresados*/
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
         Object[] botones = {" SI ", " NO "};
-        int res = notificacion.notificacionBotones("Esta seguro que quiere guardar los cambios", "Guardar", botones, "/Iconos/Interrogacion.png");
+        int res = notificacion.notificacionBotones("Esta seguro que quiere guardar"
+                + " los cambios", "Guardar", botones, "/Iconos/Interrogacion.png");
         if (res == 0) {
             contacto.setApellido(apellidotxt.getText());
             contacto.setCelular(celulartxt.getText());
@@ -176,18 +181,20 @@ public class ec extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_GuardarActionPerformed
-
+    /*boton "cerrar" para cerrar la ventana actual*/
     private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
         this.dispose();
     }//GEN-LAST:event_regresarActionPerformed
-
+    /*accion que permite verificar si los datos ingresados en la casiila txtfijo 
+    en el string son unicamente numeros*/
     private void fijotxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fijotxtKeyTyped
         char word = evt.getKeyChar();
         if (word < '0' || word > '9') {
             evt.consume();
         }
     }//GEN-LAST:event_fijotxtKeyTyped
-
+    /*accion que permite verificar si los datos ingresados en la casiila txtcelular 
+    en el string son unicamente numeros*/
     private void celulartxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_celulartxtKeyTyped
         char word = evt.getKeyChar();
         if (word < '0' || word > '9') {

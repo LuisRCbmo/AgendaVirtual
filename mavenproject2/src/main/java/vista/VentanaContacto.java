@@ -19,7 +19,7 @@ public class VentanaContacto extends javax.swing.JFrame {
 
     private ListaSE listaContactos;
     private Notificacion notificacion;
-
+    /**/
     public VentanaContacto(ListaSE listaContactos) {
         initComponents();
         this.listaContactos = listaContactos;
@@ -159,11 +159,11 @@ public class VentanaContacto extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /*boton para cerrar la ventana actual*/
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    /*Boton que sirve para  crear el contacto con los datos ingreasdos y guardarlo en una lista de contactos */
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         if (txtapellido.getText().equals("") && txtnombre.getText().equals("") && txtcorreo.getText().equals("") && txtdireccion.getText().equals("") && txtcelular.getText().equals("") && txtfijo.getText().equals("")) {
             notificacion.NotificacionEscrita("Error", "Porfavor ingrese los datos.", "/Iconos/Advertencia.png");
@@ -185,14 +185,16 @@ public class VentanaContacto extends javax.swing.JFrame {
     private void txtfijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfijoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtfijoActionPerformed
-
+    /*accion que permite verificar si los datos ingresados en la casiila txtfijo 
+    en el string son unicamente numeros*/
     private void txtfijoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfijoKeyTyped
         char word = evt.getKeyChar();
         if (word < '0' || word > '9') {
             evt.consume();
         }
     }//GEN-LAST:event_txtfijoKeyTyped
-
+    /*accion que permite verificar si los datos ingresados en la casiila txtcelular 
+    en el string son unicamente numeros*/
     private void txtcelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcelularKeyTyped
         char word = evt.getKeyChar();
         if (word < '0' || word > '9') {
