@@ -76,6 +76,6 @@ public class Contacto implements Serializable{
     }
     /*metodo para regresar 1 o mas datos del objeto en forma de string*/
     public String toString(){
-        return " Contacto: " + nombre +" " +apellido;
+        return "Contacto: " + nombre +" " +apellido;
     }
 }

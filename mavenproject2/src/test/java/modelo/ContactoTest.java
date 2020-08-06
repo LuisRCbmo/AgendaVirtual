@@ -18,202 +18,73 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class ContactoTest {
     
-    public ContactoTest() {
-    }
-    
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
-    
-    @BeforeEach
-    public void setUp() {
-    }
-    
-    @AfterEach
-    public void tearDown() {
-    }
-
-    /**
-     * Test of getNombre method, of class Contacto.
-     */
     @Test
-    public void testGetNombre() {
-        System.out.println("getNombre");
-        Contacto instance = new Contacto("Sergio","Garcia","","","","");
-        String expResult = "Sergio";
+    public void testNombre() {
+        System.out.println("get y set nombre");
+        Contacto instance =new Contacto("","","","","","");
+        instance.setNombre("nombre");
+        String expResult = "nombre";
         String result = instance.getNombre();
-        assertEquals(expResult,result);
-        if(!result.equals(expResult)){
-            fail("The test case is a prototype.");
-        }
-        
+        assertEquals(expResult, result);
     }
-
-    /**
-     * Test of getApellido method, of class Contacto.
-     */
+    
     @Test
-    public void testGetApellido() {
-        System.out.println("getApellido");
-        Contacto instance = new Contacto("Sergio","Garcia","71418129","4377447","vera@gmail","av.cap.ustariz");
-        String expResult = "Garcia";
+    public void testApellido() {
+        System.out.println("get y set apellido");
+        Contacto instance =new Contacto("","","","","","");
+        instance.setApellido("apellido");
+        String expResult = "apellido";
         String result = instance.getApellido();
         assertEquals(expResult, result);
-        if(!result.equals(expResult)){
-            fail("The test case is a prototype.");
-        }
     }
-
-    /**
-     * Test of getCelular method, of class Contacto.
-     */
+    
     @Test
-    public void testGetCelular() {
-        System.out.println("getCelular");
-        Contacto instance = new Contacto("Sergio","Garcia","71418129","4377447","vera@gmail","av.cap.ustariz");;
-        String expResult = "";
-        String result = instance.getCelular();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getFijo method, of class Contacto.
-     */
-    @Test
-    public void testGetFijo() {
-        System.out.println("getFijo");
-        Contacto instance = null;
-        String expResult = "";
+    public void testfijo() {
+        System.out.println("get y set fijo");
+        Contacto instance =new Contacto("","","","","","");
+        instance.setFijo("123");
+        String expResult = "123";
         String result = instance.getFijo();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of getCorreo method, of class Contacto.
-     */
+    
     @Test
-    public void testGetCorreo() {
-        System.out.println("getCorreo");
-        Contacto instance = null;
-        String expResult = "";
+    public void testcelular() {
+        System.out.println("get y set celular");
+        Contacto instance =new Contacto("","","","","","");
+        instance.setCelular("celular");
+        String expResult = "celular";
+        String result = instance.getCelular();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testcorreo() {
+        System.out.println("get y set correo");
+        Contacto instance =new Contacto("","","","","","");
+        instance.setCorreo("correo");
+        String expResult = "correo";
         String result = instance.getCorreo();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of getDireccion method, of class Contacto.
-     */
+    
     @Test
-    public void testGetDireccion() {
-        System.out.println("getDireccion");
-        Contacto instance = null;
-        String expResult = "";
+    public void testDireccion() {
+        System.out.println("get y set nombre");
+        Contacto instance =new Contacto("","","","","","");
+        instance.setDireccion("direccion");
+        String expResult = "direccion";
         String result = instance.getDireccion();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of setNombre method, of class Contacto.
-     */
-    @Test
-    public void testSetNombre() {
-        System.out.println("setNombre");
-        String nombre = "";
-        Contacto instance = null;
-        instance.setNombre(nombre);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setApellido method, of class Contacto.
-     */
-    @Test
-    public void testSetApellido() {
-        System.out.println("setApellido");
-        String apellido = "";
-        Contacto instance = null;
-        instance.setApellido(apellido);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setCelular method, of class Contacto.
-     */
-    @Test
-    public void testSetCelular() {
-        System.out.println("setCelular");
-        String celular = "";
-        Contacto instance = null;
-        instance.setCelular(celular);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setFijo method, of class Contacto.
-     */
-    @Test
-    public void testSetFijo() {
-        System.out.println("setFijo");
-        String fijo = "";
-        Contacto instance = null;
-        instance.setFijo(fijo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setCorreo method, of class Contacto.
-     */
-    @Test
-    public void testSetCorreo() {
-        System.out.println("setCorreo");
-        String correo = "";
-        Contacto instance = null;
-        instance.setCorreo(correo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setDireccion method, of class Contacto.
-     */
-    @Test
-    public void testSetDireccion() {
-        System.out.println("setDireccion");
-        String direccion = "";
-        Contacto instance = null;
-        instance.setDireccion(direccion);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of toString method, of class Contacto.
-     */
+    
     @Test
     public void testToString() {
         System.out.println("toString");
-        Contacto instance = null;
-        String expResult = "";
+        Contacto instance =new Contacto("nombre","apellido","","","","");
+        String expResult = "Contacto: nombre apellido";
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

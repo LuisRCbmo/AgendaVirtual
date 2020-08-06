@@ -174,11 +174,12 @@ public class usuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /*boton "cerrar" para cerrar la ventana actual*/
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    /*boton "editar" sirve para cerrar la ventana actual y abrir una ventana 
+    para añadir editar el usuario*/
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
         editaruser eu = new editaruser(usuario);
         eu.setVisible(true);
@@ -190,7 +191,8 @@ public class usuario extends javax.swing.JFrame {
         });
         this.setVisible(false);
     }//GEN-LAST:event_editarActionPerformed
-
+/*boton "cambiar contraseña" sirve para cerrar la ventana actual y abrir una ventana 
+    para añadir editar el la contraseña del usuario*/
     private void cambiarcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarcActionPerformed
         cambiarc eu = new cambiarc(usuario);
         eu.setVisible(true);

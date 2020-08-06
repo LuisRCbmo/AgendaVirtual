@@ -129,7 +129,7 @@ public class editaruser extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
         Notificacion notificacion = new Notificacion();
         Object[] botones = {"  SI  ", "  NO  "};
@@ -144,7 +144,7 @@ public class editaruser extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_GuardarActionPerformed
-
+    /*boton "cerrar" para cerrar la ventana actual*/
     private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
         this.dispose();
     }//GEN-LAST:event_regresarActionPerformed
