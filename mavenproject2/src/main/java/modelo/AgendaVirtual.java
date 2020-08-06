@@ -55,12 +55,6 @@ public class AgendaVirtual implements Serializable {
         listamemo.insertar(m);
     }
 /**
-     * este metodo sirve para mostrar todas las citas de una agenda
-     */
-    public void mostrarcita() {
-        agenda.mostrarCitas();
-    }
-/**
      * es para eliminar un memo de la pocion que le das
      */
     public Memo elimimarmemo(Memo memo) {

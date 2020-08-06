@@ -6,7 +6,7 @@ import java.io.Serializable;
  *
  * @author hp
  */
-public class Memo implements Comparable<Memo>, Serializable {
+public class Memo implements Serializable {
 
     private String asunto;
     private String nota;
@@ -14,12 +14,6 @@ public class Memo implements Comparable<Memo>, Serializable {
     public Memo(String asunto, String nota) {
         this.asunto = asunto;
         this.nota = nota;
-    }
-
-    public void mostrarMemo() {
-        System.out.println("Asunto: " + asunto);
-        System.out.println();
-        System.out.println("Nota: " + nota);
     }
 
     public String getAsunto() {
@@ -42,8 +36,4 @@ public class Memo implements Comparable<Memo>, Serializable {
         return "Asunto: " + asunto + " Nota: " + nota;
     }
 
-    @Override
-    public int compareTo(Memo o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
