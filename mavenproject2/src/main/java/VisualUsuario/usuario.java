@@ -8,6 +8,7 @@ package VisualUsuario;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import Usuario.User;
+import javax.swing.ImageIcon;
 
 /*
  *
@@ -23,7 +24,7 @@ public class usuario extends javax.swing.JFrame {
         mostrarUsuario();
         asignarImagen();
         this.setLocationRelativeTo(null);
-        
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
     public void asignarImagen(){
         ImagenPerfil.setIcon(usuario.getImgPerfil()); 

@@ -2,6 +2,7 @@ package vista;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.ImageIcon;
 import modelo.Memo;
 
 /**
@@ -9,15 +10,16 @@ import modelo.Memo;
  * @author Sergio Garcia
  */
 public class MostrarMemo extends javax.swing.JFrame {
-
+    //Requiere del memo a mostrarse
     private Memo memo;
-
+    //Constructor de MostrarMemo
     public MostrarMemo(Memo memo) {
         initComponents();
         this.memo = memo;
         this.setLocationRelativeTo(null);
         txtAsunto.setText(memo.getAsunto());
         txtAreaNota.setText(memo.getNota());
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
 
     @SuppressWarnings("unchecked")
@@ -103,9 +105,11 @@ public class MostrarMemo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    //Cierra la ventana
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
+    //Abre una nueva ventana que permite la edicion del memo
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         EditarMemo editarMemo = new EditarMemo(memo);
         editarMemo.setVisible(true);

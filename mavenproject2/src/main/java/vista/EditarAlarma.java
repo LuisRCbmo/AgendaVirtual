@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.ImageIcon;
 import modelo.Alarma;
 import modelo.Cita;
 /**
@@ -46,6 +47,7 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
         this.cita = cita;
         this.eCita = eCita;
         ordenar();
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
 
    

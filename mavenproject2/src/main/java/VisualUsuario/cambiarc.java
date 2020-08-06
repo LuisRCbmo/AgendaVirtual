@@ -6,6 +6,7 @@
 package VisualUsuario;
 import Usuario.User;
 import Notificaciones.Notificacion;
+import javax.swing.ImageIcon;
 /**
  *
  * @author Luis
@@ -20,6 +21,7 @@ public class cambiarc extends javax.swing.JFrame {
         initComponents();
         usuario = user;
         this.setLocationRelativeTo(null);
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
 
     @SuppressWarnings("unchecked")

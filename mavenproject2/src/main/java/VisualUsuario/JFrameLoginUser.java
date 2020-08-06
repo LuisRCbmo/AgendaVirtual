@@ -9,19 +9,24 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 import Notificaciones.Notificacion;
+import javax.swing.ImageIcon;
 /**
  *
  * @author Sergio Garcia
  */
 public class JFrameLoginUser extends javax.swing.JFrame {
+    /**
+     * Requiere de lista de usuarios para luego poder comprobarla al momento de ingresarse
+     */
     private Users users;
     private Notificacion notificacion;
+    //Se inicia el Jframe
     public JFrameLoginUser(Users users) {
         initComponents();
         this.users = users;
         this.setLocationRelativeTo(null);
         notificacion = new Notificacion();
-        //jLabel4.setVisible(false
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
 
     @SuppressWarnings("unchecked")
@@ -148,7 +153,7 @@ public class JFrameLoginUser extends javax.swing.JFrame {
     private void jLabel5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel5KeyPressed
 
     }//GEN-LAST:event_jLabel5KeyPressed
-
+    //Al pasar por el jLabel5 "Crear cuenta nueva" se abre la nueva ventana para poder crear un nuevo usuario
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         JFrameNewUser crearCuenta = new JFrameNewUser(users);
         crearCuenta.setVisible(true);
@@ -164,12 +169,12 @@ public class JFrameLoginUser extends javax.swing.JFrame {
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         
     }//GEN-LAST:event_formKeyPressed
-
+    //Comprueba si el usuario ingresado fue anteriormente creado para posteriormente ingresar a su Agenda Virtual
+    //Caso contrario, no le dejará ingresar porque no es un usuario valido.
     private void bttnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnLoginActionPerformed
         boolean flag = false;
         for(int i = 0 ; i < users.getUsers().size() && !flag; i++){
             if(users.getUsers().get(i).getUser().equals(txtUser.getText()) && users.getUsers().get(i).getPassword().equals(txtPassword.getText())){
-                //JOptionPane.showMessageDialog(null, "Bienvenido a tu Agenda virtual "+ users.getUsers().get(i).getName()); 
                 notificacion.NotificacionEscrita("!Bienvenido¡","Bienvenido a tu Agenda virtual "+ users.getUsers().get(i).getName(),"/Iconos/Bienvenido.png"); 
                 flag = true;
                 this.dispose();
@@ -178,32 +183,35 @@ public class JFrameLoginUser extends javax.swing.JFrame {
             }
         }
         if(!flag){
-            //JOptionPane.showMessageDialog(null, "Usuario no valido, porfavor revise su usuario.");
             notificacion.NotificacionEscrita("Incorrecto","Usuario no valido, porfavor revise su usuario.","/Iconos/Advertencia.png");
         }
     }//GEN-LAST:event_bttnLoginActionPerformed
-
+    //Ayuda visual del jLabel5
     private void mouseEnteredCreateAccount(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mouseEnteredCreateAccount
         Font font = jLabel5.getFont();
         jLabel5.setFont(new Font(font.getName(), Font.BOLD, font.getSize()));
         jLabel5.setForeground(Color.red);
         jLabel5.repaint();        
     }//GEN-LAST:event_mouseEnteredCreateAccount
-
+    //Ayuda visual del jLabel5
     private void moseExitedCreatedAccount(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moseExitedCreatedAccount
         Font font = jLabel5.getFont();
         jLabel5.setFont(new Font(font.getName(), Font.PLAIN, font.getSize()));
         jLabel5.setForeground(null);
         jLabel5.repaint();
     }//GEN-LAST:event_moseExitedCreatedAccount
-
+    /**
+     * Verifica que no se ingresen caracteres diferentes a numeros y letras
+     */
     private void txtUserKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyTyped
         char word = evt.getKeyChar();
         if ((word < '0' || word > '9') && (word < 'a' || word > 'z') && (word < 'A' || word > 'Z')) {
             evt.consume();
         }
     }//GEN-LAST:event_txtUserKeyTyped
-
+    /**
+     * Verifica que no se ingresen caracteres diferentes a numeros y letras
+     */
     private void txtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyTyped
         char word = evt.getKeyChar();
         if ((word < '0' || word > '9') && (word < 'a' || word > 'z') && (word < 'A' || word > 'Z')) {
@@ -214,47 +222,10 @@ public class JFrameLoginUser extends javax.swing.JFrame {
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserActionPerformed
-
+    //Cierra toda ejecucion del Login, al igual que de la Agenda Virtual
     private void bttnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_bttnExitActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrameLoginUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrameLoginUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrameLoginUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrameLoginUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Users user = new Users();
-                new JFrameLoginUser(user).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttnExit;

@@ -13,6 +13,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -37,6 +38,7 @@ public class editarCita extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         notificacion = new Notificacion();
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
 
     public void recuperarDatos() {

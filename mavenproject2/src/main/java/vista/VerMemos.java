@@ -14,6 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JList;
 import Notificaciones.Notificacion;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -34,6 +35,7 @@ public class VerMemos extends javax.swing.JFrame {
         addMemos();
         mouseListener();
         notificacion = new Notificacion();
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
 
     @SuppressWarnings("unchecked")

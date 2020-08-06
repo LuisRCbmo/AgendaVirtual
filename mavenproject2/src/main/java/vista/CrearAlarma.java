@@ -6,6 +6,7 @@ import java.util.*;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import Notificaciones.Notificacion;
+import javax.swing.ImageIcon;
 /**
  * autor Emerson Vera
  */
@@ -44,7 +45,7 @@ public class CrearAlarma extends javax.swing.JFrame implements Runnable {
         h1.start();
         setLocationRelativeTo(null);
         notificacion = new Notificacion();
-
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
 
     @SuppressWarnings("unchecked")

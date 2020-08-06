@@ -29,7 +29,8 @@ public class Perfiles extends javax.swing.JFrame {
         this.ventUsuario = ventUsuario;
         notificacion = new Notificacion();
         setLocationRelativeTo(null);
-        iniciar();        
+        iniciar();
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     } 
     /**
      * Coloca todas las imagenes en los JLabels con las dimensiones apropiadas.

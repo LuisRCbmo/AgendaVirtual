@@ -11,6 +11,7 @@ import javax.swing.JList;
 //import javax.swing.JOptionPane;
 import modelo.*;
 import Notificaciones.Notificacion;
+import javax.swing.ImageIcon;
 /**
  *
  * @author Luis
@@ -29,6 +30,7 @@ public class vcs extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         addContacts();
         notificacion = new Notificacion();
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
 
     /**

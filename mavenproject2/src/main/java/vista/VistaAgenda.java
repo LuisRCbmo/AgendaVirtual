@@ -12,16 +12,19 @@ import Notificaciones.Notificacion;
  * @author Sergio Garcia
  */
 public class VistaAgenda extends javax.swing.JFrame {
+    //Requiere de agenda para poder mostrar las citas que se encuentran en ella.
     private Agenda agenda;
     private Notificacion notificacion;
+    //Constructor de VistaAgenda.
     public VistaAgenda(Agenda agenda){
         initComponents();
-        this.agenda = agenda;//contiene los datos
+        this.agenda = agenda;
         this.setResizable(false);
         actualizarCitas();
         this.setLocationRelativeTo(null);
         mouseListener();
         notificacion = new Notificacion();
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -122,6 +125,7 @@ public class VistaAgenda extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    //Abre una nueva ventana CrearCita.
     private void aniadirCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aniadirCitaActionPerformed
         CrearCita crearCita = new CrearCita(agenda);
         crearCita.setVisible(true);
@@ -134,6 +138,7 @@ public class VistaAgenda extends javax.swing.JFrame {
         });
         this.setVisible(false);
     }//GEN-LAST:event_aniadirCitaActionPerformed
+    //Cierra la ventana
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
         this.dispose();
     }//GEN-LAST:event_botonAtrasActionPerformed
@@ -141,7 +146,7 @@ public class VistaAgenda extends javax.swing.JFrame {
     private void listaCitasComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_listaCitasComponentShown
 
     }//GEN-LAST:event_listaCitasComponentShown
-
+    //Elimina la cita seleccionada en la lista(JList)
     private void eliminarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarCitaActionPerformed
         Object [] botones = {"  SI  ","  NO  "};
         if(agenda.getListaCitas().tamanio() == 0){
@@ -172,6 +177,7 @@ public class VistaAgenda extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList listaCitas;
     // End of variables declaration//GEN-END:variables
+    //Actualiza la lista(Jlist) cada vez que se elimina o se guarda las citas
     private void actualizarCitas(){
         DefaultListModel modeloLista = new DefaultListModel();
         for(int i = 0; i < agenda.getListaCitas().tamanio() ; i++){
@@ -181,6 +187,7 @@ public class VistaAgenda extends javax.swing.JFrame {
         listaCitas.setModel(modeloLista);//le hace set
         listaCitas.updateUI();//sube la lista al jList
     }
+    //Metodo auxiliar para poder acceder a la ventana mostrarCita de la cita seleccionada
     private void mouseListener() {
         VistaAgenda padre = this;
         listaCitas.addMouseListener(new MouseAdapter() {

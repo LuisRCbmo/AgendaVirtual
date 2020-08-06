@@ -12,6 +12,7 @@ import java.util.*;
 import Notificaciones.Notificacion;
 import edl.ListaSE;
 import java.text.SimpleDateFormat;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -48,6 +49,7 @@ public class mostrarCita extends javax.swing.JFrame {
         setTextoBotonAlarma();
         this.setVisible(true);
         notificacion = new Notificacion();
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     
     }
     public void setTextoBotonAlarma(){

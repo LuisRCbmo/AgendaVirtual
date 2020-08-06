@@ -7,6 +7,7 @@ package VisualUsuario;
 
 import Notificaciones.Notificacion;
 import Usuario.User;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -24,6 +25,7 @@ public class editaruser extends javax.swing.JFrame {
         this.usuario = usuario;
         mostrarUsuario();
         this.setLocationRelativeTo(null);
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
 
     /**

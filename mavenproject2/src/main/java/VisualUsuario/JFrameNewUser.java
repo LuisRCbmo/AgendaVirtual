@@ -5,13 +5,14 @@ import Usuario.User;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import Notificaciones.Notificacion;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Sergio Garcia
  */
 public class JFrameNewUser extends javax.swing.JFrame {
-
+    //Necesita de la lista de usuarios para posteriormente al crearse un nuevo usuario, agregarse a esta.
     private Users users;
     private Notificacion notificacion;
     public JFrameNewUser(Users users) {
@@ -19,6 +20,7 @@ public class JFrameNewUser extends javax.swing.JFrame {
         this.users = users;
         notificacion = new Notificacion();
         this.setLocationRelativeTo(null);
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
 
     @SuppressWarnings("unchecked")
@@ -219,66 +221,77 @@ public class JFrameNewUser extends javax.swing.JFrame {
     private void txtPasswordConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordConfirmActionPerformed
 
     }//GEN-LAST:event_txtPasswordConfirmActionPerformed
-
+    //Cierra la ventana de "Crear nuevo Usuario"
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    //Registra y verifica si existe un usuario ya registrado con las mismas credenciales, para tener usuarios de inicio unicos.
     private void bttnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnRegisterActionPerformed
         if(txtName.getText().equals("") || txtPassword.getText().equals("") || txtUser.getText().equals("") || txtPasswordConfirm.getText().equals("") || txtApellido.getText().equals("")  || txtCelular.getText().equals("")  || txtCorreo.getText().equals("")  || txtDireccion.getText().equals("")){
-            //JOptionPane.showMessageDialog(null, "Porfavor ingrese sus datos al crear una nueva cuenta");
             notificacion.NotificacionEscrita("Incompleto","Porfavor ingrese sus datos al crear una nueva cuenta","/Iconos/Advertencia.png");
         }else{
             if(users.addUser(new User(txtUser.getText(), txtPassword.getText(),txtName.getText(),txtApellido.getText(), txtCelular.getText(),txtCorreo.getText(),txtDireccion.getText()))){
-                //JOptionPane.showMessageDialog(null, "¡Se guardaron los datos correctamente!");
                 notificacion.NotificacionEscrita("!Exito¡","¡Se guardaron los datos correctamente!","/Iconos/Aprobacion.png");
                 this.dispose();
             }else{
-                //JOptionPane.showMessageDialog(null, "Ya existe ese nombre de usuario, porfavor elija otro.");
                 notificacion.NotificacionEscrita("Ya existe","Ya existe ese nombre de usuario, porfavor elija otro.","/Iconos/Negacion.png");
             }
         }
     }//GEN-LAST:event_bttnRegisterActionPerformed
-
+    /**
+     * Verifica que no se ingresen caracteres diferentes a numeros y letras
+     */
     private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
         char word = evt.getKeyChar();
         if ((word < '0' || word > '9') && (word < 'a' || word > 'z') && (word < 'A' || word > 'Z')) {
             evt.consume();
         }
     }//GEN-LAST:event_txtNameKeyTyped
-
+    /**
+     * Verifica que no se ingresen caracteres diferentes a numeros y letras
+     */
     private void txtUserKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyTyped
         char word = evt.getKeyChar();
         if ((word < '0' || word > '9') && (word < 'a' || word > 'z') && (word < 'A' || word > 'Z')) {
             evt.consume();
         }
     }//GEN-LAST:event_txtUserKeyTyped
-
+    /**
+     * Verifica que no se ingresen caracteres diferentes a numeros y letras
+     */
     private void txtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyTyped
         char word = evt.getKeyChar();
         if ((word < '0' || word > '9') && (word < 'a' || word > 'z') && (word < 'A' || word > 'Z')) {
             evt.consume();
         }
     }//GEN-LAST:event_txtPasswordKeyTyped
-
+    /**
+     * Verifica que no se ingresen caracteres diferentes a numeros y letras
+     */
     private void txtPasswordConfirmKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordConfirmKeyTyped
         char word = evt.getKeyChar();
         if ((word < '0' || word > '9') && (word < 'a' || word > 'z') && (word < 'A' || word > 'Z')) {
             evt.consume();
         }
     }//GEN-LAST:event_txtPasswordConfirmKeyTyped
-
+    /**
+     * Se lo dejó en blanco porque se puede escribir una direccion con caracteres como ser "#,°.*,",","."
+     */
     private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtDireccionActionPerformed
-
+    /**
+     * Verifica que no se ingresen caracteres diferentes a numeros y letras
+     */
     private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
         char word = evt.getKeyChar();
         if ((word < '0' || word > '9') && (word < 'a' || word > 'z') && (word < 'A' || word > 'Z')) {
             evt.consume();
         }
     }//GEN-LAST:event_txtApellidoKeyTyped
-
+    /**
+     * Verifica que no se ingresen caracteres diferentes a numeros
+     */
     private void txtCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularKeyTyped
         char word = evt.getKeyChar();
         if (word < '0' || word > '9') {
@@ -287,16 +300,11 @@ public class JFrameNewUser extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCelularKeyTyped
 
     private void txtCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyTyped
-        /*
-        char word = evt.getKeyChar();
-        if(evt.getKeyChar() == '@'){
-            evt.consume();
-        }else if ((word < '0' || word > '9') && (word < 'a' || word > 'z') && (word < 'A' || word > 'Z')) {
-            evt.consume();
-        }
-        */
-    }//GEN-LAST:event_txtCorreoKeyTyped
 
+    }//GEN-LAST:event_txtCorreoKeyTyped
+    /**
+     * Verifica que no se ingresen caracteres diferentes a numeros y letras
+     */
     private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
         char word = evt.getKeyChar();
         if ((word < '0' || word > '9') && (word < 'a' || word > 'z') && (word < 'A' || word > 'Z')) {

@@ -3,6 +3,7 @@ import edl.ListaSE;
 import Notificaciones.Notificacion;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.ImageIcon;
 import modelo.*;
 /**
  *
@@ -27,6 +28,7 @@ public class VentanaVerContacto extends javax.swing.JFrame {
         txtcorreo.setText(contacto.getCorreo());
         txtdireccion.setText(contacto.getDireccion());
         this.setLocationRelativeTo(null);
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
     /**
      * This method is called from within the constructor to initialize the form.

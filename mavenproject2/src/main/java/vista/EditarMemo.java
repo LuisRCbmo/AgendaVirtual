@@ -3,6 +3,7 @@ package vista;
 //import javax.swing.JOptionPane;
 import modelo.Memo;
 import Notificaciones.Notificacion;
+import javax.swing.ImageIcon;
 /**
  *
  * @author Sergio Garcia
@@ -17,6 +18,7 @@ public class EditarMemo extends javax.swing.JFrame {
         txtAsunto.setText(memo.getAsunto());
         txtAreaNota.setText(memo.getNota());
         notificacion = new Notificacion();
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
