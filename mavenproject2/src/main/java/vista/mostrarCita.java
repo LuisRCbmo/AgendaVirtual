@@ -20,14 +20,19 @@ import javax.swing.ImageIcon;
  */
 public class mostrarCita extends javax.swing.JFrame {
 
-    /**
-     * Creates new form mostrarCita
+    /*
+    Requiere una cita ya creada para poder mostrarla
+    Requiere una VistaAgenda que sera la vista padre
+    Requiere una lista de citas la cual obtenemos de la vista padre
      */
     public Cita cita;
     private VistaAgenda padre;
     private Notificacion notificacion;
     private ListaSE<Cita> listaCitas;
     public mostrarCita(Cita cita, VistaAgenda padre,ListaSE<Cita> listaCitas) {
+        /*
+        inicializamos la vista haciendo un control de null en la cita y tomando sus datos para rellenar los espacios de la ventana de mostrar cita
+        */
         this.padre = padre;
         this.cita = cita;
         this.listaCitas = listaCitas;
@@ -53,7 +58,7 @@ public class mostrarCita extends javax.swing.JFrame {
     
     }
     /*
-    si la cita no tubiera una alarma en label contAlarma apareceria "Desactivada"
+    si la cita no tuviera una alarma en label contAlarma apareceria "Desactivada"
     si la cita tubiera una alarma pero esta ya hubiera sonado entonces apareceria con "Desactivada"
     si la cita tubiera una alarma que no sono aparecera "Activada"
     */
@@ -232,12 +237,15 @@ public class mostrarCita extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/*
+    Este boton permite volver a la ventana anterior
+*/
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
-        //padre.setVisible(true); //solo se vuelven invisibles las ventanas
         this.dispose();
     }//GEN-LAST:event_botonAtrasActionPerformed
-
+/*
+    Permite abrir una ventana para editar la cita actual, en esta ventana se mostraran los datos de las citas y estos seran editables y se podran guardar.
+*/
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
         System.out.println("indice de la musica : "+cita.getIndiceMus()+" indice de los minutos de anticipacion : "+cita.getIndiceMin());
         editarCita edit = new editarCita(this, cita);
@@ -284,16 +292,23 @@ public class mostrarCita extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    /*
+    Delega a la cita para que realice el metodo de setAsunto y tambien realiza un set sobre un textArea.
+    */
     public void setAsunto(String p) {
         contAsunto.setText(p);
         cita.setAsunto(p);
     }
-
+    /*
+    Delega a la cita para que realice el metodo de setNota y tambien realiza un set sobre un textArea.
+    */
     public void setNota(String p) {
         contNota.setText(p);
         cita.setNota(p);
     }
-
+    /*
+    Delega a la cita para que realice el metodo de setDuracion y tambien realiza un set sobre un textArea.
+    */
     public void setDuracion(String p) {
         contDuracion.setText(p);
         int dur = Integer.parseInt(p);

@@ -88,7 +88,6 @@ public class JtestAgendaVirtual {
    public void testmotrascitas(){
     
    
-    
    Agenda agenda=new Agenda();
    agenda.aniadirCita( new Cita("notas",15,new Alarma()));
    agenda.aniadirCita( new Cita("cita",30,new Alarma()));

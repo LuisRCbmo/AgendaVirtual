@@ -49,20 +49,20 @@ public class AgendaVirtual implements Serializable {
         return listaContactos;
     }
 /**
-     * es para añadir un memo ala lista
+     * es para añadir un memo a la lista
      */
     public void agregarmemo(Memo m) {
         listamemo.insertar(m);
     }
 /**
-     * es para eliminar un memo de la pocion que le das
+     * es para eliminar un memo de la posicion que le das
      */
     public Memo elimimarmemo(Memo memo) {
         int posicion = listamemo.indexOf(memo);
         return listamemo.eliminar(posicion);
     }
     /*
-    reactiva las alarma que las citas tenian despues de cerrar el proyecto si es que tubieran 
+    reactiva las alarma que las citas tenian despues de cerrar el proyecto si es que tuvieran 
     */
     public void reactivarAlarmas(){
         for(int i = 0 ; i < agenda.getListaCitas().tamanio() ; i++){

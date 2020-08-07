@@ -25,11 +25,18 @@ public class editarCita extends javax.swing.JFrame {
     /**
      * Creates new form editarCita
      */
+    /*
+    Requiere mostrarCita que sera la ventana padre
+    Requiere una Cita la cual sera la cita que se editara
+    */
     private mostrarCita mostrar;
     private Cita cita, citaAuxiliar;
     private Notificacion notificacion;
 
     public editarCita(mostrarCita mostrar, Cita cita) {
+        /*
+        inicializamos todos los componentes y dentro de ello se llenan todos los textAreas con datos de la cita, los cuales se podran editar
+        */
         initComponents();
         this.cita = cita;
         this.mostrar = mostrar;
@@ -359,17 +366,23 @@ public class editarCita extends javax.swing.JFrame {
     public void setBotonA(String TF) {
         EditarAlarma.setText(TF);
     }
-
+    /*
+    Realiza un set sobre el textArea de contHora y contMinuto.
+    */
     public void setHora(String h, String m) {
         contHora.setSelectedItem(h);
         contMinuto.setSelectedItem(m);
 
     }
-
+ /*
+    Realiza un set sobre el textArea de contAsunto
+*/
     public void setAsunto(String p) {
         contAsunto.setText(p);
     }
-
+     /*
+    Realiza un set sobre el textArea de contNotas
+    */
     public void setNota(String p) {
         contNota.setText(p);
     }
