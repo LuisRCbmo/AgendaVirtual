@@ -52,6 +52,11 @@ public class mostrarCita extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     
     }
+    /*
+    si la cita no tubiera una alarma en label contAlarma apareceria "Desactivada"
+    si la cita tubiera una alarma pero esta ya hubiera sonado entonces apareceria con "Desactivada"
+    si la cita tubiera una alarma que no sono aparecera "Activada"
+    */
     public void setTextoBotonAlarma(){
         if(cita.getAlarma() == null){
             contAlarma.setText("Desactivada"); 
@@ -247,7 +252,9 @@ public class mostrarCita extends javax.swing.JFrame {
         });
         this.setVisible(false);
     }//GEN-LAST:event_botonEditarActionPerformed
-
+/*
+   elimina la cita de la lista de citas de Agenda 
+*/
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         Object [] botones = {"  SI  ","  NO  "};
         int res = notificacion.notificacionBotones("¿ Esta seguro que quiere eliminar la cita ?","Eliminar cita", botones,"/Iconos/Negacion.png");       
@@ -292,19 +299,9 @@ public class mostrarCita extends javax.swing.JFrame {
         int dur = Integer.parseInt(p);
         cita.setDuracion(dur);
     }
-
-    /*public void setFecha(String d, String m, String a) {
-        contFecha.setText(d + "/" + m + "/" + a);
-    }*/
-
-    /*public void setFecha(String p) {
-        contFecha.setText(p);
-    }*/
-
-    /*public void setFecha(Date fecha) {
-        cita.setFechaHora(fecha);
-    }*/
-
+/*
+    setea la fecha de la cita y actualiza la fecha y la hora de esta ventana con la fecha de la cita
+*/
     public void setFechaHora(Date fecha){
         cita.setFechaHora(fecha);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -313,10 +310,6 @@ public class mostrarCita extends javax.swing.JFrame {
         contHora.setText(sdf.format(fecha)); 
         cita.setFechaHora(fecha); 
     }
-
-    /*public void setHora(String p) {
-        contHora.setText(p);
-    }*/
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonEditar;

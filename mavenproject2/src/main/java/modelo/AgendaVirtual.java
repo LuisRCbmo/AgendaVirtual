@@ -61,11 +61,12 @@ public class AgendaVirtual implements Serializable {
         int posicion = listamemo.indexOf(memo);
         return listamemo.eliminar(posicion);
     }
-    
+    /*
+    reactiva las alarma que las citas tenian despues de cerrar el proyecto si es que tubieran 
+    */
     public void reactivarAlarmas(){
         for(int i = 0 ; i < agenda.getListaCitas().tamanio() ; i++){
-            Cita cita = (Cita)agenda.getListaCitas().acceder(i);
-            cita.Imprimir();
+            Cita cita = (Cita)agenda.getListaCitas().acceder(i);           
             try{                           
                 if(cita.getTieneAlarma()){
                 cita.setAlarma(new Alarma());

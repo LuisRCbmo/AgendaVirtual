@@ -40,7 +40,9 @@ public class editarCita extends javax.swing.JFrame {
         notificacion = new Notificacion();
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
-
+    /* 
+        actualiza la informacion de esta ventana con la informacion de la cita
+    */
     public void recuperarDatos() {
         contHora.setSelectedIndex(cita.getIndHoras());
         contMinuto.setSelectedIndex(cita.getIndMinutos());
@@ -227,22 +229,19 @@ public class editarCita extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/*
+    vuelve a la ventana anterior
+*/
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
         this.dispose();
     }//GEN-LAST:event_botonAtrasActionPerformed
-
+/*
+   cancela toda edicion de la cita y esta mantiene la informacion que antes tenia 
+*/
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         Object[] botones = {"  SI  ", "  NO  "};
         int res = notificacion.notificacionBotones("¿ Esta seguro que quiere descartar los cambios ?", "Descartar cambios", botones, "/Iconos/Advertencia.png");
-        if (res == 0) {
-            Alarma a = new Alarma();//
-            if (cita.getAlarma() == null) {
-                System.out.println("no tenia alarma");
-            } else {
-                System.out.println("si tenia alarma");
-            }
-            System.out.println("fecha de la primera cita :" + a.dateAString(cita.getHoraFecha()));//
+        if (res == 0) {           
             this.dispose();
         }
     }//GEN-LAST:event_botonCancelarActionPerformed
@@ -250,15 +249,13 @@ public class editarCita extends javax.swing.JFrame {
     private void contHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contHoraActionPerformed
 
     }//GEN-LAST:event_contHoraActionPerformed
-
+/*
+    guarda toda la informacion que el usuario haya cambiado
+*/
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
         Object[] botones = {" SI ", " NO "};
         int num = notificacion.notificacionBotones("¿Quiere guardar los cambios?","Guardar", botones, "/Iconos/Advertencia.png");
         if (num == 0) {
-            System.out.println("----------------------------------");//
-            System.out.println("La cita antes de cambiar datos");//
-            cita.Imprimir(); //
-            System.out.println("------------------------------------");//
             mostrar.setAsunto(contAsunto.getText());
             mostrar.setNota(contNota.getText());
             mostrar.setDuracion((String) contDuracion.getSelectedItem());
@@ -276,11 +273,7 @@ public class editarCita extends javax.swing.JFrame {
             cita.setIndHoras(contHora.getSelectedIndex());
             cita.setIndMinutos(contMinuto.getSelectedIndex());
             cita.setIndDuracion(contDuracion.getSelectedIndex());
-            cita.setIndAmPm(amPm.getSelectedIndex()); 
-            System.out.println("--------------------------");
-            System.out.println("informacion de la cita auxiliar antes de cambiar alarma");
-            citaAuxiliar.Imprimir();
-            System.out.println("--------------------------------");
+            cita.setIndAmPm(amPm.getSelectedIndex());
             if (citaAuxiliar.getAlarma() == null) {
                 if (cita.getAlarma() != null) {
                     cita.apagarAlarma();
@@ -308,10 +301,6 @@ public class editarCita extends javax.swing.JFrame {
                 cita.setTieneAlarma(true);
                 mostrar.setTextoBotonAlarma(); 
             }
-            System.out.println("---------------------------");//
-            System.out.println("Cita despues de cambiar datos");//
-            cita.Imprimir();//
-            System.out.println("-------------------------------");//
             this.dispose();
         }
     }//GEN-LAST:event_botonGuardarActionPerformed
@@ -319,8 +308,11 @@ public class editarCita extends javax.swing.JFrame {
     private void contMinutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contMinutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_contMinutoActionPerformed
-
+/*
+   manda a editar la alarma cita utilizando una cita auxiliar si es que el usuario cancela 
+*/
     private void EditarAlarmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarAlarmaActionPerformed
+       
         editarCita padre = this;
         citaAuxiliar.setAsunto(contAsunto.getText());
         citaAuxiliar.setDuracion(Integer.parseInt((String) contDuracion.getSelectedItem()));
@@ -341,10 +333,6 @@ public class editarCita extends javax.swing.JFrame {
             ia.addWindowListener(new WindowAdapter() {
                 public void windowClosed(WindowEvent e) {
                     padre.setVisible(true);
-                    System.out.println("-------------------------------------------------------------");
-                    System.out.println("Informacion de la Cita Auxiliar despues de interactuar con crear alarma");
-                    citaAuxiliar.Imprimir();
-                    System.out.println("---------------------------------------------------------------");
                 }
             });
             padre.setVisible(false);
@@ -354,20 +342,20 @@ public class editarCita extends javax.swing.JFrame {
             EA.setVisible(true);
             EA.addWindowListener(new WindowAdapter() {
                 public void windowClosed(WindowEvent e) {
-                    padre.setVisible(true);
-                    citaAuxiliar.Imprimir();
+                    padre.setVisible(true);                   
                 }
             });
             padre.setVisible(false);
-        }
-        
+        }       
         
     }//GEN-LAST:event_EditarAlarmaActionPerformed
 
     private void amPmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amPmActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_amPmActionPerformed
-
+    /*
+    cambia el texto del boton editar alarma
+    */
     public void setBotonA(String TF) {
         EditarAlarma.setText(TF);
     }
@@ -410,7 +398,9 @@ public class editarCita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-
+/*
+   retorna la fecha seleccionada por el usuaio en formato de Date 
+*/
     private Date establecerFecha(Date fecha, int hora, int minutos) {
         int anio = fecha.getYear() + 1900;
         int mes = fecha.getMonth();

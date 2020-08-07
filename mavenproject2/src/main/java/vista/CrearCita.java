@@ -299,10 +299,6 @@ public class CrearCita extends javax.swing.JFrame {
                                 nueva.setIndiceMin(citaAuxiliar.getIndiceMin());
                                 nueva.setTieneAlarma(true);
                             }
-                            System.out.println("----------------------------");
-                            System.out.println("Cita nueva recien creada :");
-                            nueva.Imprimir();
-                            System.out.println("--------------------------------");
                             alarma.dispose();
                             padree.dispose();
                         }

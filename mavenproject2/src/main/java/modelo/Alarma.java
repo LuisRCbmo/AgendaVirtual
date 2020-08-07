@@ -156,7 +156,9 @@ public class Alarma implements java.io.Serializable {
     public Date getFechaActual() {
         return fechaActual;
     }
-
+    public void setFechaActual(Date fecha){
+        fechaActual = fecha;
+    }
     /**
      * Aqui controlo que la fecha dada sea mayor a la fecha actual - 60 mimutos
      * . para que se pueda activar. Si es menor, la alarma no sonará.

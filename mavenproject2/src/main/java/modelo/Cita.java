@@ -2,9 +2,15 @@ package modelo;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import vista.mostrarCita;
 import java.util.*;
-
+/*
+    la variable musica la uso para guardar la musica que el usuario haya escojido al momento de guardar
+    fechaHora la uso para la fecha de la cita y activar su alarma si es que tubiera
+    anticipacion se usa para activar la alarma una vez el proyecto se cierre y es el tiempo de anticipacion que el usuario haya escojido
+    tiene alarma se usa para verificar si al momento de volver a abrir el proyecto esta cita tenia una alarma
+    indiceMin, indiceMus, indHoras, indMinutos, indAmPm, indDuracion se usan para que al momento de abrir una ventana de edicion aparezcan los datos en el orden que 
+    el usuario haya escojido previamente
+*/
 public class Cita implements Serializable {
 
     private Alarma alarma = null;
@@ -19,29 +25,10 @@ public class Cita implements Serializable {
         this.asunto = asunto;
         this.duracion = duracion;
 
-    }
-    public void Imprimir(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        if(alarma != null){
-            System.out.println("La cita : Tiene Alarma");
-        }else{
-            System.out.println("La cita : No tiene Alarma");
-        }
-        System.out.println("Asunto de la cita : "+ asunto);
-        System.out.println("Nota de la cita : "+ nota);
-        System.out.println("Musica de la Alarma de la cita : "+musica);
-        if(fechaHora != null){
-            System.out.println("Fecha de la Cita : "+sdf.format(fechaHora));
-        }else{
-            System.out.println("Fecha de la cita : No tiene");
-        }
-        System.out.println("Duracion de la cita : "+duracion);
-        System.out.println("Tiempo de anticipacion de la cita : "+anticipacion);
-        System.out.println("Su variable que indica si tiene una alarma : "+TieneAlarma);
-        System.out.println("Indices de InterfazAlarma/EditarAlarma : Indice de los minutos "+indiceMin+" Indice de la musica : "+indiceMus);
-        System.out.println("Indices de EditarCita : Indice de horas "+indHoras+" Indice de minutos "+indMinutos+" Indice de Am Pm "+indAmPm+" Indice de duracion "+indDuracion);
-    }
-
+    }   
+/*
+   clona la cita actual y te manda una nueva con distanta alarma 
+*/
     public Cita clone() {
         Cita res = new Cita(asunto, duracion,null);
         if(alarma != null){
@@ -129,22 +116,6 @@ public class Cita implements Serializable {
     public Date getHoraFecha() {
         return fechaHora;
     }
-
-    /*public String getHora(){
-        String res;
-        int h= fechaHora.getHours();
-        int m= fechaHora.getMinutes();
-        if(h>12){
-            h=h-12;
-            res= ""+h+" : "+m+" pm";
-        }else{
-            res= ""+h+" : "+m+" am";
-        }
-        System.out.println(res);
-        System.out.println(fechaHora);
-        return res;
-        
-    }*/
     public void setAsunto(String asunto) {
         this.asunto = asunto;
     }
@@ -205,7 +176,9 @@ public class Cita implements Serializable {
         String fechita = this.toStringFecha();
         return "Asunto: " + asunto + " fecha: " + fechita + " Duracion: " + duracion + "";
     }
-
+    /*
+    retorna la informacion primordial de la cita
+    */
     public String toStringFormat() {
         String fechita = this.toStringFechaFormat();
         return "Asunto: " + asunto + " fecha: " + fechita + " Duracion: " + duracion + "";
@@ -220,14 +193,12 @@ public class Cita implements Serializable {
         int mes = fechaHora.getMonth() + 1;
         return "" + fechaHora.getDate() + "/" + mes + "/" + anio + "";
     }
-
+    /*
+    retorna la fecha de la cita en un formato simple
+    */
     public String toStringFechaFormat() {
         Alarma aux = new Alarma();
         return aux.dateAString(fechaHora);
     }
-
-    /*public String toStringHora() {
-        calendario.setTime(fechaHora);
-        return "" + calendario.get(calendario.DAY_OF_MONTH) + "/" + calendario.get(calendario.MONTH) + 1 + "/" + calendario.get(calendario.YEAR) + "";
-    }*/   
+     
 }
