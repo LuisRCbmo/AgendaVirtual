@@ -20,7 +20,7 @@ public class JFrameNewUser extends javax.swing.JFrame {
         this.users = users;
         notificacion = new Notificacion();
         this.setLocationRelativeTo(null);
-        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
+        //setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
 
     @SuppressWarnings("unchecked")

@@ -34,7 +34,7 @@ public class ec extends javax.swing.JFrame {
         this.setSize(600, 400);
         notificacion = new Notificacion();
         actualizar();
-        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
+        //setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
     /*el metodo "actualizar()" sirve sobre escribir los datos en 
     cada espacio en blanco, segun su variable correspondiente*/

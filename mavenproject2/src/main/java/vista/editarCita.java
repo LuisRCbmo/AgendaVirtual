@@ -45,7 +45,7 @@ public class editarCita extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         notificacion = new Notificacion();
-        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
+        //setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
     /* 
         actualiza la informacion de esta ventana con la informacion de la cita

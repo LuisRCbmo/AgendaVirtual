@@ -42,7 +42,7 @@ public class VistaAgendaVirtual extends javax.swing.JFrame implements Runnable {
         h1.start();
         actualizarCitas();
         agendaVirtual.reactivarAlarmas();
-        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
+        //setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
 
     @SuppressWarnings("unchecked")

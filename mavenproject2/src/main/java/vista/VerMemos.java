@@ -35,7 +35,7 @@ public class VerMemos extends javax.swing.JFrame {
         addMemos();
         mouseListener();
         notificacion = new Notificacion();
-        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
+        //setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
 
     @SuppressWarnings("unchecked")

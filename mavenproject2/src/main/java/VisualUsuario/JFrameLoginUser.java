@@ -26,7 +26,7 @@ public class JFrameLoginUser extends javax.swing.JFrame {
         this.users = users;
         this.setLocationRelativeTo(null);
         notificacion = new Notificacion();
-        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
+        //this.setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
 
     @SuppressWarnings("unchecked")

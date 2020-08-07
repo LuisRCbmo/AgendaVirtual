@@ -54,7 +54,7 @@ public class mostrarCita extends javax.swing.JFrame {
         setTextoBotonAlarma();
         this.setVisible(true);
         notificacion = new Notificacion();
-        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
+        //setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     
     }
     /*

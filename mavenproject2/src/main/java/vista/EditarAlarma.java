@@ -47,7 +47,7 @@ public class EditarAlarma extends javax.swing.JFrame implements Runnable{
         this.cita = cita;
         this.eCita = eCita;
         ordenar();
-        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
+        //setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
 
    

@@ -45,7 +45,7 @@ public class CrearAlarma extends javax.swing.JFrame implements Runnable {
         h1.start();
         setLocationRelativeTo(null);
         notificacion = new Notificacion();
-        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
+        //setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Nova_Code_Team.png/")).getImage());
     }
 
     @SuppressWarnings("unchecked")
